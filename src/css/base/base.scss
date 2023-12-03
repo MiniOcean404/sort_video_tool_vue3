@@ -1,0 +1,305 @@
+//https://juejin.cn/post/7055845836298649636#heading-7
+@import "./normalize";
+@import "./tool";
+
+/* 初始化 */
+a,
+abbr,
+acronym,
+address,
+applet,
+area,
+article,
+aside,
+audio,
+b,
+base,
+basefont,
+bdi,
+bdo,
+big,
+blockquote,
+body,
+br,
+button,
+canvas,
+caption,
+center,
+cite,
+code,
+col,
+colgroup,
+datalist,
+dd,
+del,
+details,
+dir,
+div,
+dfn,
+dialog,
+dl,
+dt,
+em,
+embed,
+fieldset,
+figcaption,
+figure,
+font,
+footer,
+form,
+frame,
+frameset,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+head,
+header,
+hr,
+html,
+i,
+iframe,
+img,
+input,
+ins,
+isindex,
+kbd,
+keygen,
+label,
+legend,
+li,
+link,
+map,
+mark,
+menu,
+menuitem,
+meta,
+meter,
+nav,
+noscript,
+object,
+ol,
+optgroup,
+option,
+output,
+p,
+param,
+pre,
+progress,
+q,
+rp,
+rt,
+ruby,
+s,
+samp,
+script,
+section,
+select,
+small,
+source,
+span,
+strike,
+strong,
+style,
+sub,
+summary,
+sup,
+table,
+tbody,
+td,
+textarea,
+tfoot,
+th,
+thead,
+time,
+title,
+tr,
+track,
+tt,
+u,
+ul,
+var,
+video,
+wbr,
+xmp {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+
+  // Chrome、Safari 等 webkit 浏览器内核
+  // 默认情况下，元素的背景色不会被打印，可通过设置属性来支持
+  -webkit-print-color-adjust: exact;
+  // 火狐
+  print-color-adjust: exact;
+  color-adjust: exact;
+}
+
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+// 张旭鑫推荐 https://www.bilibili.com/video/BV1b54y1Z7pu
+// 自定义字体
+@font-face {
+  font-family: Emoji;
+  // Apple Color Emojiji（苹果 Emoji）Segoe UI Symbol（win8.1/10）Segoe UI Symbol（win7/8）Noto Color Emoji（安卓）
+  src: local("Apple Color Emojiji"), local("Segoe UI Emoji"), local("Segoe UI Symbol"), local("Noto Color Emoji");
+  // 限制Emoji字体作用的字符范围，不限制的话,兜底字符的Unicode范围覆盖了emoji字体
+  //   unicode-range限制了Emoji字体的作用范围，符合该范围则使用Emoji这个font-family
+  unicode-range: U+1F000-1F644, U+203C-3299;
+}
+
+// 可变商用字体，可使用 font-variation-settings
+@font-face {
+  font-family: MiSans VF;
+  src: url("@/assets/font/MiSans/MiSans VF.ttf");
+  font-display: block;
+  font-style: normal italic;
+  font-weight: 100 900;
+  font-stretch: 0% 400%;
+  font-feature-settings: normal;
+  font-variation-settings: normal;
+}
+
+// 没有字体文件暂时注释
+// @font-face {
+//  font-family: Ping fang SC Medium;
+//  src: url('../../../assets/font/pingfangsc-medium.otf');
+// }
+
+// 适合标题的衬线字体
+.font-serif {
+  font-family: Georgia, Cambria, "Times New Roman", Times, serif;
+}
+
+// 适合代码的等宽字体：
+.font-mono {
+  font-family: Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+}
+
+@page {
+  size: auto A4 landscape; // 打印A4大小
+  margin: 0cm 2cm; // 可以控制打印布局（四周边距）,设置为 0 隐藏打印模式中的页眉页脚信息
+}
+
+html,
+body {
+  // electron 无边框窗口拖拽
+  -webkit-app-region: drag;
+  user-select: none;
+
+  // 设置 BFC
+  overflow: auto;
+  height: 100%;
+  // font-style 是否斜体, font-variant 和 font-weight 必须在 font-size 之前
+  // line-height 必须跟在 font-size 后面，由 "/" 分隔，例如 "16px/3"
+  // font-family 必须最后指定
+  font: 16px / 1.5 Ping fang SC Medium, system-ui, —apple-system, Segoe UI, Rototo, Emoji, Helvetica, Arial, sans-serif,
+    MiSans VF;
+
+  // 张旭鑫推荐 字体 系统字体：system-ui(chrome、safari) —apple-system(firefox)  兜底字体：Segoe UI(window) Arial(旧windows) sans-serif (旧Android) Segoe UI(Android字体) Helvetica(Mac Os iOS)
+  font-family: Ping fang SC Medium, system-ui, —apple-system, Segoe UI, Rototo, Emoji, Helvetica, Arial, sans-serif,
+    MiSans VF;
+
+  -webkit-font-smoothing: antialiased; // 取消字体抗锯齿
+  -moz-osx-font-smoothing: grayscale;
+
+  // 设置默认 锚点滚动 及 scrollIntoView({ behavior: 'smooth' }) 的效果
+  scroll-behavior: smooth;
+
+  // windows 防止界面加载因为滚动条而导致界面晃动，Mac 浏览器滚动条不会占据位置
+  // stable 右边会预留位置
+  // stable both-edges 两边会预留位置
+  // scrollbar-gutter: stable;
+
+  // 兼容 IE 和 Firefox
+  // 100vw相对于浏览器的window.innerWidth，是浏览器的内部宽度，注意，滚动条宽度也计算在内！
+  // 而100%是可用宽度，是不含滚动条的宽度。
+  // !仅PC端
+  // margin-right: calc(100vw - 100%);
+}
+
+img {
+  border: none;
+}
+img,
+picture,
+video,
+canvas,
+svg {
+  display: block;
+  max-width: 100%;
+}
+
+dl,
+li,
+menu,
+ol,
+ul {
+  list-style: none;
+}
+
+button,
+input,
+select,
+textarea {
+  font: inherit; // 在默认情况下，按钮和输入框不会从它们的父项继承排版样式。相反，他们有自己怪异的风格。
+  outline: none;
+}
+
+p,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  overflow-wrap: break-word; // 如果没有足够的空间容纳一行中的所有字符，文本将自动换行。
+  // word-break: break-all; // !英文单词自动换行
+}
+
+a,
+a:link,
+a:visited,
+a:hover,
+a:active {
+  text-decoration: none; // 设置a标签的下划线
+  hyphens: auto; // 连字符
+}
+
+#root,
+#__next {
+  isolation: isolate;
+}
+
+/* Chrome Safari 滚动条样式*/
+//*::-webkit-scrollbar {
+//	width: 0.5em;
+//	height: 0.5em;
+//}
+//
+//*::-webkit-scrollbar-track {
+//	background-color: #eee;
+//}
+//
+//*::-webkit-scrollbar-thumb {
+//	border-radius: 50px;
+//	background-color: rgba(0, 0, 0, 0.3);
+//}
+
+// 火狐滚动条
+html {
+  // 默认 auto 在Windows系统下是17px;
+  // thin 在Windows系统下是8px;
+  // none 宽度为0,但是内容依然可以滚动。
+  scrollbar-width: thin;
+
+  // 默认 auto
+  // 两个值为 滑竿颜色 轨道颜色(鼠标悬浮才显示)
+  scrollbar-color: rgba(0, 0, 0, 0.3) rgba(0, 0, 0, 0);
+}

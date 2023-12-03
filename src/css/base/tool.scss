@@ -1,0 +1,111 @@
+.clear {
+  overflow: hidden;
+  clear: both;
+  height: 0;
+  font-size: 0;
+}
+
+.clearfix::after {
+  display: block;
+  visibility: hidden;
+  clear: both;
+  height: 0;
+  font-size: 0;
+  content: '';
+}
+
+.center {
+  margin: 0 auto;
+}
+
+.taj {
+  text-align: justify;
+}
+
+/* 居中定位 */
+.abs-ct {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.abs-cx {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.abs-cy {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+/* 弹性布局 */
+.flex-ct-x {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.flex-ct-y {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.flex-fs {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-content: space-between;
+}
+
+/* 动画模式 */
+.td-camera {
+  perspective: 1000;
+}
+
+.td-space {
+  transform-style: preserve-3d;
+}
+
+.td-box {
+  backface-visibility: hidden;
+}
+
+.gpu-speed {
+  transform: translate3d(0, 0, 0);
+}
+
+/* 其他 */
+.fullscreen {
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+}
+
+.ellipsis {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.page-at {
+  overflow: auto;
+  width: 100%;
+  height: 100%;
+}
+
+.page-fs {
+  overflow: hidden;
+  width: 100%;
+  height: 100%;
+}
+
+.round {
+  border-radius: 100%;
+}
