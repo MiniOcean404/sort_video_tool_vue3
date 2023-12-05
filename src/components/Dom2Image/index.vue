@@ -31,7 +31,7 @@ onMounted(() => {
 
 const randomColor = () => `#${Math.floor(Math.random() * 0xffffff).toString(16)}`
 
-async function start() {
+const start = async () => {
   if (cover.value) {
     isShowBorder.value = false
     base64.value = await toPng(cover.value, { quality: 1, pixelRatio: window.devicePixelRatio * config.scale })
