@@ -1,10 +1,12 @@
-import { createApp } from "vue";
-import "./css/base/base.scss";
-import App from "./App.vue";
-import router from "@/router";
+import { createApp } from "vue"
+import "./css/base/base.scss"
+import App from "./App.vue"
+import router from "@/router"
+import store from "@/store"
 
 // 创建vue实例
-const app = createApp(App);
+const app = createApp(App)
 
-app.use(router);
-app.mount("#app");
+app.use(router)
+app.use(store)
+app.mount("#app")
