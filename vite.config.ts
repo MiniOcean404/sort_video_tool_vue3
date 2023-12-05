@@ -30,6 +30,7 @@ export default defineConfig({
   build: {
     sourcemap: true, // 构建后是否生成 source map 文件。如果为 true，将会创建一个独立的 source map 文件。
     assetsInlineLimit: 4096, // 图片转 base64 编码的阈值
+    minify: "terser",
     // 代码压缩配置
     terserOptions: {
       // 生产环境移除 console
