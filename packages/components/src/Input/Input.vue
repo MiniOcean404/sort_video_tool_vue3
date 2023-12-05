@@ -5,7 +5,7 @@
 </template>
 <script setup lang="ts">
 import { computed, ref } from "vue"
-import type { InputEmits, InputProps } from "./Input"
+import type { InputEmits, InputProps } from "./Input.d"
 
 defineOptions({
   name: "GieInput",

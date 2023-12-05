@@ -9,7 +9,11 @@ export interface Dom2ImageProp {
   seconds: number
 }
 
-const props = defineProps<Dom2ImageProp>()
+const props = withDefaults(defineProps<Dom2ImageProp>(), {
+  title: "封面制作",
+  minute: 1,
+  seconds: 0,
+})
 
 const config = reactive({
   borderSize: "15px",
