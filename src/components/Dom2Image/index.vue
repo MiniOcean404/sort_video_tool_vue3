@@ -135,9 +135,9 @@ const download = (filename: string, url: string) => {
 
           display: flex;
           align-items: center;
+          gap: 5cqw;
 
           .icon {
-            margin-right: 5cqw;
             display: inline-block;
             width: 4cqw;
             height: 4cqw;
