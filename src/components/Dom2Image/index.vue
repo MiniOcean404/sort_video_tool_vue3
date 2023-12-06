@@ -7,22 +7,21 @@ export interface Dom2ImageProp {
   title: string
   minute: number
   seconds: number
+  borderSize?: string
+  scale?: number
 }
 
 const props = withDefaults(defineProps<Dom2ImageProp>(), {
   title: "封面制作",
   minute: 1,
   seconds: 0,
-})
-
-const config = reactive({
   borderSize: "15px",
   scale: 1.5,
 })
 
 const color = ref()
 const base64 = ref<string>("")
-const cover = ref<HTMLElement>()
+const coverDom = ref<HTMLElement>()
 const isShowBorder = ref(true)
 
 onMounted(() => {
@@ -32,9 +31,9 @@ onMounted(() => {
 const randomColor = () => `#${Math.floor(Math.random() * 0xffffff).toString(16)}`
 
 const start = async () => {
-  if (cover.value) {
+  if (coverDom.value) {
     isShowBorder.value = false
-    base64.value = await toPng(cover.value, { quality: 1, pixelRatio: window.devicePixelRatio * config.scale })
+    base64.value = await toPng(coverDom.value, { quality: 1, pixelRatio: window.devicePixelRatio * props.scale })
     isShowBorder.value = true
   }
 }
@@ -48,7 +47,7 @@ const download = (filename: string, url: string) => {
 </script>
 
 <template>
-  <div class="cover-box" ref="cover">
+  <div class="cover-box" ref="coverDom">
     <div :class="['show-area', { border: isShowBorder }]">
       <div class="dyn-container">
         <div class="center">
@@ -119,8 +118,8 @@ const download = (filename: string, url: string) => {
             content: attr(data-storke);
             position: absolute;
             z-index: 0;
-            -webkit-text-stroke: v-bind("config.borderSize") #000;
-            text-stroke: v-bind("config.borderSize") #000;
+            -webkit-text-stroke: v-bind("props.borderSize") #000;
+            text-stroke: v-bind("props.borderSize") #000;
           }
         }
 
