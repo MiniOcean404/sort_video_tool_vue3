@@ -125,6 +125,7 @@ const download = (filename: string, url: string) => {
         }
 
         .time-box {
+          font-size: 4cqw;
           margin: 7.5cqw auto 0;
           padding: 2.5cqw 5cqw;
 
