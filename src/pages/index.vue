@@ -1,11 +1,13 @@
 <script setup lang="ts">
-import Dom2Image from "@/components/Dom2Image/index.vue"
+// import Dom2Image from "@/components/Dom2Image/index.vue"
+import Cover from "@/components/Cover/index.vue"
 // import { useUserStore } from '@/store/user'
 // const userStore = useUserStore()
 </script>
 
 <template>
-  <Dom2Image title="封面制作" :minute="1" :seconds="30"></Dom2Image>
+  <!-- <Dom2Image title="封面制作" :minute="1" :seconds="30"></Dom2Image> -->
+  <Cover></Cover>
 </template>
 
 <style scope lang="scss">
