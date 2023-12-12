@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { ref, reactive, onMounted } from "vue"
+import { ref, onMounted } from "vue"
 import TimeIcon from "@/assets/image/time-icon.png"
 import { toPng } from "html-to-image"
 
@@ -7,16 +7,18 @@ export interface Dom2ImageProp {
   title: string
   minute: number
   seconds: number
-  borderSize?: string
+  titleBorderSize?: string
   scale?: number
+  side?: boolean
 }
 
 const props = withDefaults(defineProps<Dom2ImageProp>(), {
   title: "封面制作",
   minute: 1,
   seconds: 0,
-  borderSize: "15px",
+  titleBorderSize: "15px",
   scale: 1.5,
+  side: false,
 })
 
 const color = ref()
@@ -48,7 +50,7 @@ const download = (filename: string, url: string) => {
 
 <template>
   <div class="cover-box" ref="coverDom">
-    <div :class="['show-area', { border: isShowBorder }]">
+    <div :class="['show-area', { border: isShowBorder, overflow: 'hidden' }]">
       <div class="dyn-container">
         <div class="center">
           <div class="title" data-storke="封面制作">
@@ -80,19 +82,11 @@ const download = (filename: string, url: string) => {
   background-color: v-bind(color);
 
   aspect-ratio: 16/9;
-  width: 960px;
-
-  display: grid;
-  grid-template-columns: 29% auto 29%;
-  grid-template-areas: "placeholder1 area placeholder2";
+  width: 920px;
 
   .show-area {
-    grid-area: area;
-
-    display: flex;
-    justify-content: center;
-    align-items: center;
-
+    margin: 0 29%;
+    height: 100%;
     position: relative;
 
     .dyn-container {
@@ -118,8 +112,8 @@ const download = (filename: string, url: string) => {
             content: attr(data-storke);
             position: absolute;
             z-index: 0;
-            -webkit-text-stroke: v-bind("props.borderSize") #000;
-            text-stroke: v-bind("props.borderSize") #000;
+            -webkit-text-stroke: v-bind("props.titleBorderSize") #000;
+            text-stroke: v-bind("props.titleBorderSize") #000;
           }
         }
 
