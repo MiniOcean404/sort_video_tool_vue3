@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { ref, onMounted } from "vue"
-import TimeIcon from "@/assets/image/time-icon.png"
+import TimeIcon from "@/assets/image/time-icon-transparent.png"
 import { toPng } from "html-to-image"
 
 export interface Dom2ImageProp {
@@ -53,12 +53,15 @@ const download = (filename: string, url: string) => {
     <div :class="['show-area', { border: isShowBorder, overflow: 'hidden' }]">
       <div class="dyn-container">
         <div class="center">
-          <div class="logo">
-            <img src="" alt="" />
-          </div>
+          <div>
+            <div class="logo-box">
+              <img class="logo" src="@/assets/image/logo.png" alt="" />
+              <span class="type">web</span>
+            </div>
 
-          <div class="title" data-storke="封面制作">
-            <span class="font">{{ props.title }}</span>
+            <span class="title" data-storke="封面制作">{{ props.title }}</span>
+
+            <span class="desc">剪映 v 1.3.0 版本</span>
           </div>
 
           <div class="time-box">
@@ -86,7 +89,7 @@ const download = (filename: string, url: string) => {
   background-color: v-bind(color);
 
   aspect-ratio: 16/9;
-  width: 1920px;
+  width: 960px;
 
   .show-area {
     margin: 0 29%;
@@ -98,49 +101,91 @@ const download = (filename: string, url: string) => {
       inset: 0;
       container-type: inline-size;
 
-      display: flex;
-      justify-content: center;
-      align-items: center;
-
       .center {
-        .logo {
+        height: 100%;
+        padding: 12.5cqw;
+        display: flex;
+        justify-content: space-between;
+        flex-direction: column;
+        align-items: center;
+
+        .logo-box {
+          width: max-content;
+          padding: 3.5cqw 4cqw;
+          border-radius: 3cqw;
+          border: 0.75cqw solid rgba(0, 0, 0, 0.9);
+
+          display: flex;
+          gap: 2cqw;
+
+          .logo {
+            width: 6.25cqw;
+            height: 6.25cqw;
+          }
+
+          .type {
+            color: rgba(0, 0, 0, 0.9);
+            font-feature-settings: "cv05" on;
+            font-size: 5cqw;
+            font-style: normal;
+            font-weight: 750;
+            line-height: 130%; /* 26px */
+            letter-spacing: 0.2cqw;
+            text-transform: uppercase;
+          }
         }
 
         .title {
+          display: inline-block;
+          margin-top: 8cqw;
+
           position: relative;
           font-size: 20cqw;
 
-          .font {
-            position: relative;
-            z-index: 1;
-          }
+          color: #101011;
+          font-feature-settings: "cv05" on;
+          font-size: 16.25cqw;
+          font-style: normal;
+          font-weight: 750;
+          line-height: 100%; /* 65px */
+          letter-spacing: -0.65cqw;
+        }
 
-          &::before {
-            content: attr(data-storke);
-            position: absolute;
-            z-index: 0;
-            -webkit-text-stroke: v-bind("props.titleBorderSize") #000;
-            text-stroke: v-bind("props.titleBorderSize") #000;
-          }
+        .desc {
+          display: inline-block;
+          margin-top: 4cqw;
+
+          color: #101011;
+          font-feature-settings: "cv05" on;
+          font-family: Inter;
+          font-size: 7cqw;
+          font-style: normal;
+          font-weight: 450;
+          line-height: 130%; /* 36.4px */
+          letter-spacing: -0.21cqw;
         }
 
         .time-box {
-          font-size: 4cqw;
-          margin: 7.5cqw auto 0;
+          color: #101011;
+          font-feature-settings: "cv05" on;
+          font-size: 5cqw;
+          font-style: normal;
+          font-weight: 750;
+          line-height: 100%; /* 20px */
+          letter-spacing: -0.2cqw;
+
           padding: 2.5cqw 5cqw;
 
-          background-color: #000;
           width: max-content;
-          border-radius: 1000px;
 
           display: flex;
           align-items: center;
-          gap: 5cqw;
+          gap: 2.5cqw;
 
           .icon {
             display: inline-block;
-            width: 4cqw;
-            height: 4cqw;
+            width: 6.25cqw;
+            height: 6.25cqw;
           }
         }
       }
