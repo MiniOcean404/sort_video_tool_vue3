@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { ref, onMounted } from "vue"
+import { ref, onBeforeMount, onMounted } from "vue"
 import TimeIcon from "@/assets/svg/time-icon.svg"
 import { toPng } from "html-to-image"
 
