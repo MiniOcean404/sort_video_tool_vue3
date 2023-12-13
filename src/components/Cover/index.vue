@@ -1,24 +1,30 @@
 <script setup lang="ts">
 import { ref, onMounted } from "vue"
-import TimeIcon from "@/assets/image/time-icon-transparent.png"
+import TimeIcon from "@/assets/svg/time-icon.svg"
 import { toPng } from "html-to-image"
 
 export interface Dom2ImageProp {
+  type: string
   title: string
+  desc: string
   minute: number
   seconds: number
   titleBorderSize?: string
   scale?: number
   side?: boolean
+  boxWidth?: string
 }
 
 const props = withDefaults(defineProps<Dom2ImageProp>(), {
+  type: "web",
   title: "封面制作",
+  desc: "剪映 v 1.3.0 版本",
   minute: 1,
-  seconds: 0,
+  seconds: 30,
   titleBorderSize: "15px",
-  scale: 1.5,
+  scale: 2,
   side: false,
+  boxWidth: "960px",
 })
 
 const color = ref()
@@ -52,16 +58,16 @@ const download = (filename: string, url: string) => {
   <div class="cover-box" ref="coverDom">
     <div :class="['show-area', { border: isShowBorder, overflow: 'hidden' }]">
       <div class="dyn-container">
-        <div class="center">
+        <div class="layout-box">
           <div>
             <div class="logo-box">
-              <img class="logo" src="@/assets/image/logo.png" alt="" />
-              <span class="type">web</span>
+              <img class="logo" src="@/assets/svg/logo.svg" alt="" />
+              <span class="type">{{ props.type }}</span>
             </div>
 
             <span class="title" data-storke="封面制作">{{ props.title }}</span>
 
-            <span class="desc">剪映 v 1.3.0 版本</span>
+            <span class="desc">{{ props.desc }}</span>
           </div>
 
           <div class="time-box">
@@ -74,8 +80,6 @@ const download = (filename: string, url: string) => {
   </div>
 
   <div class="" @click="start">开始截图</div>
-  <!-- <div @click="to">开始转换</div> -->
-
   <img :src="base64" alt="" />
 </template>
 
@@ -89,7 +93,7 @@ const download = (filename: string, url: string) => {
   background-color: v-bind(color);
 
   aspect-ratio: 16/9;
-  width: 960px;
+  width: v-bind("props.boxWidth");
 
   .show-area {
     margin: 0 29%;
@@ -100,94 +104,93 @@ const download = (filename: string, url: string) => {
       position: absolute;
       inset: 0;
       container-type: inline-size;
+    }
+  }
 
-      .center {
-        height: 100%;
-        padding: 12.5cqw;
-        display: flex;
-        justify-content: space-between;
-        flex-direction: column;
-        align-items: center;
+  .layout-box {
+    height: 100%;
+    padding: 12.5cqw;
+    display: flex;
+    justify-content: space-between;
+    flex-direction: column;
 
-        .logo-box {
-          width: max-content;
-          padding: 3.5cqw 4cqw;
-          border-radius: 3cqw;
-          border: 0.75cqw solid rgba(0, 0, 0, 0.9);
+    .logo-box {
+      width: max-content;
+      padding: 3.5cqw 4cqw;
+      border-radius: 3cqw;
+      border: 0.75cqw solid rgba(0, 0, 0, 0.9);
 
-          display: flex;
-          gap: 2cqw;
+      display: flex;
+      gap: 2cqw;
 
-          .logo {
-            width: 6.25cqw;
-            height: 6.25cqw;
-          }
+      .logo {
+        width: 6.25cqw;
+        height: 6.25cqw;
+      }
 
-          .type {
-            color: rgba(0, 0, 0, 0.9);
-            font-feature-settings: "cv05" on;
-            font-size: 5cqw;
-            font-style: normal;
-            font-weight: 750;
-            line-height: 130%; /* 26px */
-            letter-spacing: 0.2cqw;
-            text-transform: uppercase;
-          }
-        }
+      .type {
+        color: rgba(0, 0, 0, 0.9);
+        font-feature-settings: "cv05" on;
+        font-size: 5cqw;
+        font-style: normal;
+        font-weight: 750;
+        line-height: 130%;
+        letter-spacing: 0.2cqw;
+        text-transform: uppercase;
+      }
+    }
 
-        .title {
-          display: inline-block;
-          margin-top: 8cqw;
+    .title {
+      display: inline-block;
+      margin-top: 8cqw;
 
-          position: relative;
-          font-size: 20cqw;
+      position: relative;
+      font-size: 20cqw;
 
-          color: #101011;
-          font-feature-settings: "cv05" on;
-          font-size: 16.25cqw;
-          font-style: normal;
-          font-weight: 750;
-          line-height: 100%; /* 65px */
-          letter-spacing: -0.65cqw;
-        }
+      color: #101011;
+      font-feature-settings: "cv05" on;
+      font-size: 16.25cqw;
+      font-style: normal;
+      font-weight: 750;
+      line-height: 100%;
+      letter-spacing: -0.65cqw;
+    }
 
-        .desc {
-          display: inline-block;
-          margin-top: 4cqw;
+    .desc {
+      display: inline-block;
+      margin-top: 4cqw;
 
-          color: #101011;
-          font-feature-settings: "cv05" on;
-          font-family: Inter;
-          font-size: 7cqw;
-          font-style: normal;
-          font-weight: 450;
-          line-height: 130%; /* 36.4px */
-          letter-spacing: -0.21cqw;
-        }
+      color: #101011;
+      font-feature-settings: "cv05" on;
+      font-family: Inter;
+      font-size: 7cqw;
+      font-style: normal;
+      font-weight: 450;
+      line-height: 130%;
+      letter-spacing: -0.21cqw;
+    }
 
-        .time-box {
-          color: #101011;
-          font-feature-settings: "cv05" on;
-          font-size: 5cqw;
-          font-style: normal;
-          font-weight: 750;
-          line-height: 100%; /* 20px */
-          letter-spacing: -0.2cqw;
+    .time-box {
+      display: flex;
+      align-self: center;
+      align-items: center;
 
-          padding: 2.5cqw 5cqw;
+      color: #101011;
+      font-feature-settings: "cv05" on;
+      font-size: 5cqw;
+      font-style: normal;
+      font-weight: 750;
+      line-height: 100%;
+      letter-spacing: -0.2cqw;
 
-          width: max-content;
+      padding: 2.5cqw 3.75cqw;
+      width: max-content;
+      gap: 1.25cqw;
 
-          display: flex;
-          align-items: center;
-          gap: 2.5cqw;
-
-          .icon {
-            display: inline-block;
-            width: 6.25cqw;
-            height: 6.25cqw;
-          }
-        }
+      .icon {
+        display: inline-block;
+        width: 6.25cqw;
+        height: 6.25cqw;
       }
     }
   }

@@ -7,7 +7,7 @@ import Cover from "@/components/Cover/index.vue"
 
 <template>
   <!-- <Dom2Image title="封面制作" :minute="1" :seconds="30"></Dom2Image> -->
-  <Cover title="局部放大的妙用"></Cover>
+  <Cover title="局部放大的妙用" :seconds="30"></Cover>
 </template>
 
 <style scope lang="scss">
