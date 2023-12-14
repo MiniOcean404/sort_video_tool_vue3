@@ -12,17 +12,16 @@ function getRoutes() {
     import: "default",
   })
 
-  return Object.entries(configs).map(([path, meta]) => {
-    const compPath = path.replace("config.ts", "index.vue")
-
-    path = path.replace("/src/pages", "").replace("/config.ts", "") || "/"
-    const name = path.split("/").join("-") || "index"
+  return Object.entries(comp).map(([path, component]) => {
+    const meta = configs[path.replace("index.vue", "config.ts")]
+    path = path.replace(/\/src\/[pages|views]+(?<path>.*)\/index.vue/gims, "$<path>") || "/"
+    const name = path.split("/").join("-")
 
     return {
       path,
       name,
       meta,
-      component: comp[compPath],
+      component,
     }
   })
 }
