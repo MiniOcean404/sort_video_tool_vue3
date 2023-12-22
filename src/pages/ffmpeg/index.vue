@@ -6,7 +6,6 @@ import { onMounted, ref } from "vue"
 import ffmpegCore from "@ffmpeg/core?url"
 import ffmpegCoreWasm from "@ffmpeg/core/wasm?url"
 import ffmpegWorker from "@ffmpeg/core-mt?url"
-import { FileData } from "node_modules/@ffmpeg/ffmpeg/dist/esm/types"
 
 document.title = "FFmpeg 工具"
 
@@ -68,9 +67,9 @@ async function pause() {
   // 运行 ffmpeg 命令来将图片合并为视频
   await ffmpeg.exec(["-framerate", "144", "-i", "/image/input%d.png", "/video/output.mp4"])
   // 读取输出文件
-  const data: FileData = await ffmpeg.readFile("/video/output.mp4")
+  const data = (await ffmpeg.readFile("/video/output.mp4")) as Uint8Array
 
-  if (data instanceof Uint8Array) download({ fileData: data, fileName: "video", ext: "mp4" })
+  download({ fileData: data, fileName: "video", ext: "mp4" })
 }
 
 function download({ fileData, fileName = "", ext = "mp4" }: { fileData: Uint8Array; fileName: string; ext?: string }) {
