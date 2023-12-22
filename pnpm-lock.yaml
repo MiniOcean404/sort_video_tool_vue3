@@ -8,6 +8,12 @@ importers:
 
   .:
     dependencies:
+      '@ffmpeg/ffmpeg':
+        specifier: ^0.12.5
+        version: 0.12.9
+      '@ffmpeg/util':
+        specifier: ^0.12.1
+        version: 0.12.1
       '@giegie/components':
         specifier: workspace:*
         version: link:packages/components
@@ -304,6 +310,23 @@ packages:
     requiresBuild: true
     dev: true
     optional: true
+
+  /@ffmpeg/ffmpeg@0.12.9:
+    resolution: {integrity: sha512-0UB7e8+nL9t8tBjQzSgh2dbA5XycLfL2nkR+4dP3HB4Dmog8fKeSRZpAVX9dT8Q9EJcBwJDR2dRL/0bt5UCiuQ==}
+    engines: {node: '>=18.x'}
+    dependencies:
+      '@ffmpeg/types': 0.12.2
+    dev: false
+
+  /@ffmpeg/types@0.12.2:
+    resolution: {integrity: sha512-NJtxwPoLb60/z1Klv0ueshguWQ/7mNm106qdHkB4HL49LXszjhjCCiL+ldHJGQ9ai2Igx0s4F24ghigy//ERdA==}
+    engines: {node: '>=16.x'}
+    dev: false
+
+  /@ffmpeg/util@0.12.1:
+    resolution: {integrity: sha512-10jjfAKWaDyb8+nAkijcsi9wgz/y26LOc1NKJradNMyCIl6usQcBbhkjX5qhALrSBcOy6TOeksunTYa+a03qNQ==}
+    engines: {node: '>=18.x'}
+    dev: false
 
   /@jridgewell/sourcemap-codec@1.4.15:
     resolution: {integrity: sha512-eF2rxCRulEKXHTRiDrDy6erMYWqNw4LPdQ8UQA4huuxaQsVeRPFl2oM8oDGxMFhJUWZf9McpLtJasDDZb/Bpeg==}
