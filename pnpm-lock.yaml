@@ -8,8 +8,14 @@ importers:
 
   .:
     dependencies:
-      '@ffmpeg/ffmpeg':
+      '@ffmpeg/core':
         specifier: ^0.12.5
+        version: 0.12.5
+      '@ffmpeg/core-mt':
+        specifier: ^0.12.5
+        version: 0.12.5
+      '@ffmpeg/ffmpeg':
+        specifier: ^0.12.9
         version: 0.12.9
       '@ffmpeg/util':
         specifier: ^0.12.1
@@ -310,6 +316,16 @@ packages:
     requiresBuild: true
     dev: true
     optional: true
+
+  /@ffmpeg/core-mt@0.12.5:
+    resolution: {integrity: sha512-y1OFFWf2omzq62JQ6VIiGYcc3cYNlBVKfAjc9QU4Ab+2RjgU20CbTn9/47I1ERDYKBRObM/TaasnSuSbrGVp8A==}
+    engines: {node: '>=16.x'}
+    dev: false
+
+  /@ffmpeg/core@0.12.5:
+    resolution: {integrity: sha512-NTy9oPHh1sLkcoBaVPkWkqAQXSRQ1vIAtd9m8mKX5Ax1+QuanyziljE3rwc72SSF1N4C1YozWz+Fr8NiCnHw6w==}
+    engines: {node: '>=16.x'}
+    dev: false
 
   /@ffmpeg/ffmpeg@0.12.9:
     resolution: {integrity: sha512-0UB7e8+nL9t8tBjQzSgh2dbA5XycLfL2nkR+4dP3HB4Dmog8fKeSRZpAVX9dT8Q9EJcBwJDR2dRL/0bt5UCiuQ==}

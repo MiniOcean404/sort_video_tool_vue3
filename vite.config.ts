@@ -46,6 +46,11 @@ export default defineConfig({
       host: "127.0.0.1",
       port: 3000,
     },
+    headers: {
+      // 如果需要用到ffmpeg合并视频，需要将 COEP 和 COOP 打开，来确保 ShareArrayBuffer 能够正常使用
+      "Cross-Origin-Embedder-Policy": "require-corp",
+      "Cross-Origin-Opener-Policy": "same-origin",
+    },
   },
   css: {
     modules: {
@@ -65,5 +70,6 @@ export default defineConfig({
     // 而有时候我们想要修改依赖模块的代码，做一些测试或者打个补丁，这时候就要用到强制依赖预构建。
     // 除了这个方法，我们还可以通过删除 .vite 文件夹或运行 npx vite --force 来强制进行依赖预构建。
     force: false, // 强制进行依赖预构建
+    exclude: ["@ffmpeg/ffmpeg", "@ffmpeg/util"],
   },
 })
