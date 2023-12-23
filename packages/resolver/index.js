@@ -7,7 +7,7 @@ function GieResolver() {
         return {
           name: "Gie" + partialName,
           from: `@giegie/components`,
-          sideEffects: `@giegie/components/es/${partialName}/style/index.css`,
+          sideEffects: `@giegie/components/dist/es/${partialName}/style/index.css`,
         }
       }
     },

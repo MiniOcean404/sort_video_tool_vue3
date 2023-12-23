@@ -10,6 +10,7 @@ declare module 'vue' {
     Cover: typeof import('./src/components/Cover/index.vue')['default']
     Dom2Image: typeof import('./src/components/Dom2Image/index.vue')['default']
     FFmpeg: typeof import('./src/components/FFmpeg/index.vue')['default']
+    GieInput: typeof import('@giegie/components')['GieInput']
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']
   }

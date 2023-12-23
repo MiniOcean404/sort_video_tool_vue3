@@ -12,7 +12,6 @@
         "global.d.ts"
     ],
     "scripts": {
-        "test": "vite build",
         "build": "gulp -f build/gulpfile.js"
     },
     "keywords": [],

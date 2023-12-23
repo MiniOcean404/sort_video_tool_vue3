@@ -2,7 +2,7 @@
 import gulp from "gulp"
 import { resolve, dirname } from "path"
 import { fileURLToPath } from "url"
-import dartSass from "sass"
+import * as dartSass from "sass"
 import gulpSass from "gulp-sass"
 import autoprefixer from "gulp-autoprefixer"
 import shell from "shelljs"

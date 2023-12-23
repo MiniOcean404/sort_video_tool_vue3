@@ -9,6 +9,7 @@ import Cover from "@/components/Cover/index.vue"
 <template>
   <!-- <Dom2Image title="封面制作" :minute="1" :seconds="30"></Dom2Image> -->
   <Cover type="web" title="局部放大的妙用" desc="剪映 v 1.3.0 版本" :minute="1" :seconds="30"></Cover>
+  <GieInput></GieInput>
 </template>
 
 <style scope lang="scss">
