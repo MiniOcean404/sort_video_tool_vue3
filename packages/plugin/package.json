@@ -10,9 +10,7 @@
     "dist",
     "global.d.ts"
   ],
-  "scripts": {
-    "build": "vite build"
-  },
+  "scripts": {},
   "keywords": [],
   "author": "",
   "license": "ISC",

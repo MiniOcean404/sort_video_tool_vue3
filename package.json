@@ -7,7 +7,7 @@
     "dev": "vite --host",
     "build": "vue-tsc && vite build",
     "preview": "vite preview",
-    "build-packages": "pnpm --filter=@giegie/components run build"
+    "build-packages": "pnpm --filter=@giegie/* run build"
   },
   "dependencies": {
     "@ffmpeg/core": "^0.12.5",
@@ -27,6 +27,7 @@
   "devDependencies": {
     "@giegie/resolver": "workspace:*",
     "@types/node": "^20.10.2",
+    "@types/shelljs": "^0.8.15",
     "@vitejs/plugin-vue": "^4.5.0",
     "sass": "^1.69.5",
     "typescript": "^5.2.2",
