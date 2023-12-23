@@ -2,17 +2,17 @@
     "name": "@giegie/components",
     "version": "0.0.1",
     "description": "组件库",
-    "main": "lib",
-    "module": "es",
+    "main": "dist/lib",
+    "module": "dist/es",
     "type": "module",
     "types": "types/index.d.ts",
     "files": [
-        "es",
-        "lib",
+        "dist",
         "types",
         "global.d.ts"
     ],
     "scripts": {
+        "test": "vite build",
         "build": "gulp -f build/gulpfile.js"
     },
     "keywords": [],

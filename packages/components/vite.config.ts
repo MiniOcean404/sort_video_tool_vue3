@@ -20,7 +20,7 @@ export default defineConfig(() => {
             // 打包目录和开发目录对应
             preserveModules: true,
             // 输出目录
-            dir: "es",
+            dir: "dist/es",
             // 指定保留模块结构的根目录
             preserveModulesRoot: "src",
           },
@@ -32,7 +32,7 @@ export default defineConfig(() => {
             // 打包目录和开发目录对应
             preserveModules: true,
             // 输出目录
-            dir: "lib",
+            dir: "dist/lib",
             // 指定保留模块结构的根目录
             preserveModulesRoot: "src",
           },
@@ -54,6 +54,7 @@ export default defineConfig(() => {
         staticImport: true,
         // 将所有的类型合并到一个文件中
         rollupTypes: true,
+        // entryRoot: "dist",
       }),
     ],
   } as UserConfig
