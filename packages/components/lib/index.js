@@ -1,1 +1,0 @@
-"use strict";Object.defineProperties(exports,{__esModule:{value:!0},[Symbol.toStringTag]:{value:"Module"}});const e=require("./utils/install.js"),t=require("./install.js"),i=require("./Input/index.js"),n=e.makeInstaller([...t]);exports.GieInput=i.GieInput;exports.default=n;

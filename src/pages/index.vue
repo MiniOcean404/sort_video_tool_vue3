@@ -1,6 +1,7 @@
 <script setup lang="ts">
 // import Dom2Image from "@/components/Dom2Image/index.vue"
 import Cover from "@/components/Cover/index.vue"
+
 // import { useUserStore } from '@/store/user'
 // const userStore = useUserStore()
 </script>

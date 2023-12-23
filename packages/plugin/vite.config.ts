@@ -2,6 +2,7 @@ import { defineConfig } from "vite"
 import type { UserConfig } from "vite"
 import vue from "@vitejs/plugin-vue"
 import dts from "vite-plugin-dts"
+import copyPlugin from "rollup-plugin-copy"
 
 export default defineConfig(() => {
   return {
@@ -17,7 +18,7 @@ export default defineConfig(() => {
             // 打包目录和开发目录对应
             preserveModules: true,
             // 输出目录
-            dir: "es",
+            dir: "dist/es",
             // 指定保留模块结构的根目录
             preserveModulesRoot: "src",
           },
@@ -25,14 +26,19 @@ export default defineConfig(() => {
             // 打包成 commonjs
             format: "cjs",
             // 重命名
-            entryFileNames: "[name].js",
+            entryFileNames: "[name].cjs",
             // 打包目录和开发目录对应
             preserveModules: true,
             // 输出目录
-            dir: "lib",
+            dir: "dist/lib",
             // 指定保留模块结构的根目录
             preserveModulesRoot: "src",
           },
+        ],
+        plugins: [
+          copyPlugin({
+            targets: [{ src: "./src/cert", dest: "./dist" }],
+          }),
         ],
       },
       lib: {
@@ -46,7 +52,7 @@ export default defineConfig(() => {
       vue(),
       dts({
         // 输出目录
-        outDir: ["types"],
+        outDir: ["dist/types"],
         // 将动态引入转换为静态（例如：`import('vue').DefineComponent` 转换为 `import { DefineComponent } from 'vue'`）
         staticImport: true,
         // 将所有的类型合并到一个文件中
