@@ -9,6 +9,7 @@ declare module 'vue' {
   export interface GlobalComponents {
     Cover: typeof import('./src/components/Cover/index.vue')['default']
     Dom2Image: typeof import('./src/components/Dom2Image/index.vue')['default']
+    FFmpeg: typeof import('./src/components/FFmpeg/index.vue')['default']
     GieInput: typeof import('@giegie/components')['GieInput']
     HelloWorld: typeof import('./src/components/HelloWorld.vue')['default']
     RouterLink: typeof import('vue-router')['RouterLink']
