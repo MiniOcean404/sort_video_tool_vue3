@@ -23,6 +23,9 @@ importers:
       '@giegie/components':
         specifier: workspace:*
         version: link:packages/components
+      '@giegie/vite-plugin':
+        specifier: workspace:^
+        version: link:packages/plugin
       '@vueuse/core':
         specifier: ^10.6.1
         version: 10.6.1(vue@3.3.8)
@@ -87,6 +90,8 @@ importers:
       shelljs:
         specifier: ^0.8.5
         version: 0.8.5
+
+  packages/plugin: {}
 
   packages/resolver: {}
 

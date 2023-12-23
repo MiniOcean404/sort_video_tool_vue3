@@ -9,4 +9,4 @@ export default GieInput
 
 // 给 components.ts 使用
 export * from "./Input.vue"
-export * from "./Input.d"
+export type * from "./Input"

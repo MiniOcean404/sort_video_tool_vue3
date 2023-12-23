@@ -1,12 +1,15 @@
 import { defineConfig } from "vite"
 import vue from "@vitejs/plugin-vue"
-import path from "path"
+import { fileURLToPath, URL } from "node:url"
 
 // 按需引入组件，不用一次性导入全部，但是还是需要手动导入
 import Components from "unplugin-vue-components/vite"
 // 自动导入组件
 import AutoImport from "unplugin-auto-import/vite"
 import { GieResolver } from "@giegie/resolver"
+
+// 自定义插件
+import ViteProxyServer from "@giegie/vite-plugin"
 
 // https://vitejs.dev/config/
 export default defineConfig({
@@ -19,11 +22,12 @@ export default defineConfig({
     AutoImport({
       resolvers: [GieResolver()],
     }),
+    ViteProxyServer(),
   ],
   resolve: {
     //设置别名
     alias: {
-      "@": path.resolve(__dirname, "src"),
+      "@": fileURLToPath(new URL("./src", import.meta.url)),
     },
     extensions: [".mjs", ".js", ".mts", ".ts", ".jsx", ".tsx", ".json"],
   },

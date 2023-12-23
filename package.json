@@ -7,7 +7,7 @@
     "dev": "vite --host",
     "build": "vue-tsc && vite build",
     "preview": "vite preview",
-    "build-components": "pnpm --filter=@giegie/* run build"
+    "build-packages": "pnpm --filter=@giegie/* run build"
   },
   "dependencies": {
     "@ffmpeg/core": "^0.12.5",
@@ -15,6 +15,7 @@
     "@ffmpeg/ffmpeg": "^0.12.9",
     "@ffmpeg/util": "^0.12.1",
     "@giegie/components": "workspace:*",
+    "@giegie/vite-plugin": "workspace:^",
     "@vueuse/core": "^10.6.1",
     "html-to-image": "^1.11.11",
     "pinia": "^2.1.7",

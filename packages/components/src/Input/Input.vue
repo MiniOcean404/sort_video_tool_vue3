@@ -5,7 +5,7 @@
 </template>
 <script setup lang="ts">
 import { computed, ref } from "vue"
-import type { InputEmits, InputProps } from "./Input.d"
+import type { InputEmits, InputProps } from "./Input"
 
 defineOptions({
   name: "GieInput",
@@ -35,4 +35,4 @@ defineExpose({
   focus,
 })
 </script>
-./Input
+./Input ./Input
