@@ -8,13 +8,18 @@
   "types": "types/index.d.ts",
   "files": [
     "dist",
+    "types",
     "global.d.ts"
   ],
-  "scripts": {},
+  "scripts": {
+    "build": "vite build"
+  },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "devDependencies": {
-    "rollup-plugin-copy": "^3.5.0"
-  }
+    "rollup-plugin-copy": "^3.5.0",
+    "glob": "^10.3.10"
+  },
+  "dependencies": {}
 }

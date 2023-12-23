@@ -8,7 +8,13 @@ import ffmpegCoreWasm from "@ffmpeg/core/wasm?url"
 import ffmpegWorker from "@ffmpeg/core-mt?url"
 import type { DownloadProps, DrawProps } from "@/components/FFmpeg"
 
-const props = withDefaults(defineProps(), {
+interface FFmpegProps {
+  videoUrl: string
+  width: number
+  height: number
+}
+
+const props = withDefaults(defineProps<FFmpegProps>(), {
   videoUrl: "",
   width: 300,
   height: 300,

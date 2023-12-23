@@ -37,7 +37,10 @@ export default defineConfig(() => {
         ],
         plugins: [
           copyPlugin({
-            targets: [{ src: "./src/cert", dest: "./dist" }],
+            targets: [
+              { src: "./src/cert", dest: "./dist" },
+              { src: "./src/mock", dest: "./dist" },
+            ],
           }),
         ],
       },
@@ -52,7 +55,7 @@ export default defineConfig(() => {
       vue(),
       dts({
         // 输出目录
-        outDir: ["dist/types"],
+        outDir: ["types"],
         // 将动态引入转换为静态（例如：`import('vue').DefineComponent` 转换为 `import { DefineComponent } from 'vue'`）
         staticImport: true,
         // 将所有的类型合并到一个文件中

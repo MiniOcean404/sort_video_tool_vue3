@@ -9,7 +9,7 @@ import AutoImport from "unplugin-auto-import/vite"
 import { GieResolver } from "@giegie/resolver"
 
 // 自定义插件
-// import { ProxyServer } from "@giegie/vite-plugin"
+import { ProxyServer } from "@giegie/vite-plugin"
 
 // https://vitejs.dev/config/
 export default defineConfig({
@@ -22,7 +22,7 @@ export default defineConfig({
     AutoImport({
       resolvers: [GieResolver()],
     }),
-    // ProxyServer(),
+    ProxyServer(),
   ],
   resolve: {
     //设置别名
