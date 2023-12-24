@@ -2,3 +2,12 @@
 按需自动导入：https://juejin.cn/post/7288597387798904866?searchId=202312052250262B15A739D5DBDB11DD34#heading-3
 
 workspace 安装依赖命令：`pnpm add xx -D --filter 包名/后的名字`
+
+## Demo
+1. FFmpeg Demo
+2. WebRTC Demo
+3. pnpm + Workspace Vite 组件库
+
+## 工具
+1. 短视频封面
+
