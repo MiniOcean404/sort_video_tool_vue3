@@ -1,6 +1,6 @@
 <script setup lang="ts">
-import FFmpeg from "@/components/FFmpeg/index.vue"
-import video from "@/assets/video/cn-banner1.85c964f.webm"
+import FFmpeg from "@/demo/FFmpeg/index.vue"
+import video from "@/assets/video/davinci_web_all.webm"
 </script>
 
 <template>

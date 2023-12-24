@@ -22,7 +22,7 @@ export default defineConfig({
     AutoImport({
       resolvers: [GieResolver()],
     }),
-    ProxyServer(),
+    // ProxyServer(),
   ],
   resolve: {
     //设置别名
