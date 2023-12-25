@@ -1,9 +1,11 @@
 <script setup lang="ts">
-import WebRTC from "@/demo/WebRTC/take-phone.vue"
+import TakePhone from "@/demo/WebRTC/take-phone.vue"
+import ShareScreen from "@/demo/WebRTC/share-screen.vue"
 </script>
 
 <template>
-  <WebRTC></WebRTC>
+  <!-- <TakePhone></TakePhone> -->
+  <ShareScreen></ShareScreen>
 </template>
 
 <style lang="scss" scoped></style>

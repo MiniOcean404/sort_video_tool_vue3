@@ -2,7 +2,7 @@
   <!-- 添加一个 autoplay 属性，这样就可以在摄像头获取到媒体流后自动播放了。 -->
   <!-- playsinline: 指明视频将内联（inline）播放，即在元素的播放区域内。 -->
   <!-- muted：静音 -->
-  <video ref="video" id="localVideo" autoplay playsinline muted></video>
+  <video ref="video" id="localVideo" autoplay playsinline muted width="800"></video>
 
   <div>
     <el-button type="primary" @click="takePhoto">开始拍照</el-button>
@@ -59,8 +59,8 @@ async function getLocalStream() {
   const stream = await navigator.mediaDevices.getUserMedia({
     audio: true,
     video: {
-      width: 2048,
-      height: 1080,
+      width: window.innerWidth * window.devicePixelRatio * 3,
+      height: window.innerHeight * window.devicePixelRatio * 3,
     },
   })
 
@@ -114,8 +114,8 @@ async function handleDeviceChange(deviceId: string) {
   const stream = await navigator.mediaDevices.getUserMedia({
     audio: false,
     video: {
-      width: 2048,
-      height: 1080,
+      width: window.innerWidth * window.devicePixelRatio * 3,
+      height: window.innerHeight * window.devicePixelRatio * 3,
       deviceId: { exact: deviceId },
     },
   })
