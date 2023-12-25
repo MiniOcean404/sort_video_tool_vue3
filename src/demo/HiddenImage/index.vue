@@ -18,8 +18,6 @@ async function encode() {
   let hiddenData = await get_image_info(icon)
 
   if (targetData && hiddenData) {
-    targetData && convert_binary_end_zero(targetData)
-
     const scale = Math.round((targetData.binary.length / 8 / hiddenData.binary.length) * 100) / 100
     // 获取缩放后的图片
     hiddenData = await get_image_info(icon, scale)

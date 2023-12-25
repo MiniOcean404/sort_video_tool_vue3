@@ -1,22 +1,5 @@
 import { ImageDateWithBinary } from "@/demo/HiddenImage"
 
-// 获取原始展示的画布像素数据，并将 2 进制最低位变为 0
-export function convert_binary_end_zero(data: ImageDateWithBinary) {
-  // 将数字最低位变为 0
-  function evenNum(num: number) {
-    return num > 254 ? num - 1 : num
-  }
-
-  // 将画布 2 进制最低位变为 0
-  if (data.imageDate?.data) {
-    data.binary = Array.from(data.imageDate?.data).map((color, index, arr) => {
-      const to = evenNum(color)
-      arr[index] = to
-      return to.toString(2).padStart(8, "0").split("")
-    })
-  }
-}
-
 // 将隐写的资源图片数据存到目标图片的二进制最低位中
 export function write_hidden_to_origin(hiddenData: ImageDateWithBinary, targetData: ImageDateWithBinary, width: number, height: number): string {
   // 将隐藏的数据的二进制全部放到一个数组里面，并且展开
