@@ -8,7 +8,7 @@ workspace 安装依赖命令：`pnpm add xx -D --filter 包名/后的名字`
 1. FFmpeg Demo
 2. WebRTC Demo
 3. pnpm + Workspace Vite 组件库
-4. 隐写术：加密图片与解密
+4. 隐写术：加密图片与解密、文字加密与解密
 
 ## 工具
 
