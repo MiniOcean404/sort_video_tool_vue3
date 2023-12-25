@@ -17,6 +17,7 @@
     "@giegie/components": "workspace:*",
     "@giegie/vite-plugin": "workspace:^",
     "@vueuse/core": "^10.7.0",
+    "element-plus": "^2.4.4",
     "fabric": "^5.3.0",
     "html-to-image": "^1.11.11",
     "pinia": "^2.1.7",

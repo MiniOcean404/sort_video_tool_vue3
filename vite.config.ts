@@ -7,6 +7,7 @@ import Components from "unplugin-vue-components/vite"
 // 自动导入组件
 import AutoImport from "unplugin-auto-import/vite"
 import { GieResolver } from "@giegie/resolver"
+import { ElementPlusResolver } from "unplugin-vue-components/resolvers"
 
 // 自定义插件
 import { ProxyServer } from "@giegie/vite-plugin"
@@ -17,10 +18,10 @@ export default defineConfig({
   plugins: [
     vue(),
     Components({
-      resolvers: [GieResolver()],
+      resolvers: [GieResolver(), ElementPlusResolver()],
     }),
     AutoImport({
-      resolvers: [GieResolver()],
+      resolvers: [GieResolver(), ElementPlusResolver()],
     }),
     // ProxyServer(),
   ],

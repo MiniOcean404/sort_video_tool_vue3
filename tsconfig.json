@@ -4,10 +4,11 @@
       "@/*": ["./src/*"]
     },
     "typeRoots": [
+      "node_modules/@types", // 默认值
+      "src/types",
       "./components.d.ts",
       "./auto-imports.d.ts",
-      "node_modules/@types", // 默认值
-      "src/types"
+      "element-plus/global"
     ],
 
     "target": "ESNext",

@@ -5,7 +5,7 @@
   </div>
 </template>
 <script setup lang="ts">
-import { convert_binary_end_zero, write_hidden_to_origin } from "@/demo/HiddenImage/encode"
+import { write_hidden_to_origin } from "@/demo/HiddenImage/encode"
 import icon from "@/assets/image/time-icon.png"
 import bg from "@/assets/image/bg.jpg"
 import encodeImg from "@/assets/image/encode.png"
