@@ -2,12 +2,9 @@ import { ImageDateWithBinary } from "@/demo/HiddenImage"
 
 // 获取原始展示的画布像素数据，并将 2 进制最低位变为 0
 export function convert_binary_end_zero(data: ImageDateWithBinary) {
-  // 将数字化为非奇数
+  // 将数字最低位变为 0
   function evenNum(num: number) {
-    num = num > 254 ? num - 1 : num
-    num = num % 2 == 1 ? num - 1 : num
-
-    return num
+    return num > 254 ? num - 1 : num
   }
 
   // 将画布 2 进制最低位变为 0
@@ -21,7 +18,7 @@ export function convert_binary_end_zero(data: ImageDateWithBinary) {
 }
 
 // 将隐写的资源图片数据存到目标图片的二进制最低位中
-export function drawHiddenData(hiddenData: ImageDateWithBinary, targetData: ImageDateWithBinary, width: number, height: number): string {
+export function write_hidden_to_origin(hiddenData: ImageDateWithBinary, targetData: ImageDateWithBinary, width: number, height: number): string {
   // 将隐藏的数据的二进制全部放到一个数组里面，并且展开
   let hiddenFlat: any = hiddenData.binary?.flat(1)
 
@@ -45,6 +42,7 @@ export function drawHiddenData(hiddenData: ImageDateWithBinary, targetData: Imag
   image.onload = () => {
     document.body.appendChild(image)
   }
+
   console.log("加密成功")
 
   return canvas.toDataURL("image/png")

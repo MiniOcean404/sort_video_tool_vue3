@@ -5,30 +5,32 @@
   </div>
 </template>
 <script setup lang="ts">
-import { convert_binary_end_zero, drawHiddenData } from "@/demo/HiddenImage/encode"
+import { convert_binary_end_zero, write_hidden_to_origin } from "@/demo/HiddenImage/encode"
 import icon from "@/assets/image/time-icon.png"
 import bg from "@/assets/image/bg.jpg"
 import encodeImg from "@/assets/image/encode.png"
-import { getEncodeInfo } from "@/demo/HiddenImage/utils"
+import { get_image_info } from "@/demo/HiddenImage/utils"
 import { decodeImage } from "@/demo/HiddenImage/decode"
 // import { fabric } from "fabric"
 
 async function encode() {
-  const targetData = await getEncodeInfo(bg)
-  let hiddenData = await getEncodeInfo(icon)
+  const targetData = await get_image_info(bg)
+  let hiddenData = await get_image_info(icon)
 
   if (targetData && hiddenData) {
     targetData && convert_binary_end_zero(targetData)
 
     const scale = Math.round((targetData.binary.length / 8 / hiddenData.binary.length) * 100) / 100
-    hiddenData = await getEncodeInfo(icon, scale)
-    hiddenData && drawHiddenData(hiddenData, targetData, targetData.imageDate.width, targetData.imageDate.height)
+    // 获取缩放后的图片
+    hiddenData = await get_image_info(icon, scale)
+    hiddenData && write_hidden_to_origin(hiddenData, targetData, targetData.imageDate.width, targetData.imageDate.height)
   }
 }
 
 async function decode() {
-  const decodeDate = await getEncodeInfo(encodeImg)
-  decodeDate && decodeImage(decodeDate)
+  const decodeDate = await get_image_info(encodeImg)
+  // 解密时需要知道原始图片的尺寸
+  decodeDate && decodeImage(decodeDate, 273, 273)
 }
 </script>
 <style lang="scss" scoped></style>
