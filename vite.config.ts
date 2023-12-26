@@ -2,9 +2,9 @@ import { defineConfig } from "vite"
 import vue from "@vitejs/plugin-vue"
 import { fileURLToPath, URL } from "node:url"
 
-// 按需引入组件，不用一次性导入全部，但是还是需要手动导入
+// unplugin-vue-components插件的作用是自动注册Vue组件。它会根据我们在代码中使用的组件标签自动注册相应的组件。这样，我们就不需要在每个页面或组件中手动注册它们了。
 import Components from "unplugin-vue-components/vite"
-// 自动导入组件
+// unplugin-auto-import插件的作用是自动导入第三方库或组件。它会根据我们在代码中使用的标识符自动检测并导入相应的库或组件。这样，我们就不需要手动导入它们了。
 import AutoImport from "unplugin-auto-import/vite"
 import { GieResolver } from "@giegie/resolver"
 import { ElementPlusResolver } from "unplugin-vue-components/resolvers"
