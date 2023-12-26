@@ -6,11 +6,12 @@ import { fileURLToPath, URL } from "node:url"
 import Components from "unplugin-vue-components/vite"
 // unplugin-auto-import插件的作用是自动导入第三方库或组件。它会根据我们在代码中使用的标识符自动检测并导入相应的库或组件。这样，我们就不需要手动导入它们了。
 import AutoImport from "unplugin-auto-import/vite"
-import { GieResolver } from "@giegie/resolver"
 import { ElementPlusResolver } from "unplugin-vue-components/resolvers"
 
+import { GieResolver } from "@giegie/resolver"
+
 // 自定义插件
-import { ProxyServer } from "@giegie/vite-plugin"
+import { ProxyServer, RmoveConsole } from "@giegie/vite-plugin"
 
 // https://vitejs.dev/config/
 export default defineConfig({
