@@ -18,7 +18,7 @@
     "@giegie/vite-plugin": "workspace:^",
     "@vueuse/core": "^10.7.0",
     "element-plus": "^2.4.4",
-    "fabric": "^5.3.0",
+    "fabric": "5.3.0",
     "html-to-image": "^1.11.11",
     "nanoid": "^5.0.4",
     "pinia": "^2.1.7",
@@ -30,7 +30,7 @@
   },
   "devDependencies": {
     "@giegie/resolver": "workspace:*",
-    "@types/fabric": "^5.3.6",
+    "@types/fabric": "5.3.0",
     "@types/node": "^20.10.5",
     "@types/shelljs": "^0.8.15",
     "@vitejs/plugin-vue": "^4.5.2",

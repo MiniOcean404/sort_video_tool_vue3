@@ -33,7 +33,7 @@ importers:
         specifier: ^2.4.4
         version: 2.4.4(vue@3.3.13)
       fabric:
-        specifier: ^5.3.0
+        specifier: 5.3.0
         version: 5.3.0
       html-to-image:
         specifier: ^1.11.11
@@ -64,8 +64,8 @@ importers:
         specifier: workspace:*
         version: link:packages/resolver
       '@types/fabric':
-        specifier: ^5.3.6
-        version: 5.3.6
+        specifier: 5.3.0
+        version: 5.3.0
       '@types/node':
         specifier: ^20.10.5
         version: 20.10.5
@@ -694,8 +694,8 @@ packages:
     resolution: {integrity: sha512-Q5Vn3yjTDyCMV50TB6VRIbQNxSE4OmZR86VSbGaNpfUolm0iePBB4KdEEHmxoY5sT2+2DIvXW0rvMDP2nHZ4Mg==}
     dev: true
 
-  /@types/fabric@5.3.6:
-    resolution: {integrity: sha512-nTP5I68SsGnanIHxCoBX83ghscw9M9DI27iSDcd0Z+cpiQ5cZByH0nzkm4itDR/LgAy253q7B93xHgyOh2+hFQ==}
+  /@types/fabric@5.3.0:
+    resolution: {integrity: sha512-HIsNsuvyQmsNi0+bT8Q7t5sC8g6e8xAdgZfO7S4HpeFKn0XK1BKrgdRjocM0hsB/vVVT/4M7IBPqqyvbF3Kl5g==}
     dev: true
 
   /@types/fs-extra@8.1.5:

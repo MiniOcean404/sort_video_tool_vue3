@@ -12,6 +12,7 @@ declare module 'vue' {
     ElButton: typeof import('element-plus/es')['ElButton']
     ElOption: typeof import('element-plus/es')['ElOption']
     ElSelect: typeof import('element-plus/es')['ElSelect']
+    ElUpload: typeof import('element-plus/es')['ElUpload']
     FFmpeg: (typeof import("./src/demo/FFmpeg/index.vue"))["default"]
     GieInput: typeof import('@giegie/components')['GieInput']
     RouterLink: typeof import('vue-router')['RouterLink']
