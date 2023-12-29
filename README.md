@@ -9,6 +9,7 @@ workspace 安装依赖命令：`pnpm add xx -D --filter 包名/后的名字`
 2. WebRTC + Element Plus Demo -> 拍照、录屏、共享屏幕
 3. pnpm + Workspace Vite 组件库
 4. 隐写术：加密图片与解密、文字加密与解密
+5. 千图成像
 
 ## 工具
 
