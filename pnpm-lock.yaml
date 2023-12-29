@@ -26,9 +26,15 @@ importers:
       '@giegie/vite-plugin':
         specifier: workspace:^
         version: link:packages/plugin
+      '@types/chroma-js':
+        specifier: ^2.4.3
+        version: 2.4.3
       '@vueuse/core':
         specifier: ^10.7.0
         version: 10.7.0(vue@3.3.13)
+      chroma-js:
+        specifier: ^2.4.2
+        version: 2.4.2
       color-diff:
         specifier: ^1.4.0
         version: 1.4.0
@@ -692,6 +698,10 @@ packages:
   /@types/argparse@1.0.38:
     resolution: {integrity: sha512-ebDJ9b0e702Yr7pWgB0jzm+CX4Srzz8RcXtLJDJB+BSccqMa36uyH/zUsSYao5+BD1ytv3k3rPYCq4mAE1hsXA==}
     dev: true
+
+  /@types/chroma-js@2.4.3:
+    resolution: {integrity: sha512-1ly5ly/7S/YF8aD7MxUQnFOZxdegimuOunJl0xDsLlguu5JrwuSTVGVH3UpIUlh6YauI0RMNT4cqjBonhgbdIQ==}
+    dev: false
 
   /@types/color-diff@1.2.5:
     resolution: {integrity: sha512-O+poH2XxhkQg8yGA5c4ejheHLpFcZaE33BG6rLp1eJq2W39iij9+9kGldqsoLq5BQuNt1FjsKwmdDitniK/Qtw==}
@@ -1460,6 +1470,10 @@ packages:
     requiresBuild: true
     dev: false
     optional: true
+
+  /chroma-js@2.4.2:
+    resolution: {integrity: sha512-U9eDw6+wt7V8z5NncY2jJfZa+hUH8XEj8FQHgFJTrUFnJfXYf4Ml4adI2vXZOjqRDpFWtYVWypDfZwnJ+HIR4A==}
+    dev: false
 
   /class-utils@0.3.6:
     resolution: {integrity: sha512-qOhPa/Fj7s6TY8H8esGu5QNpMMQxz79h+urzrNYN6mn+9BnxlDGf5QZ+XeCDsxSjPqsSR56XOZOJmpeurnLMeg==}

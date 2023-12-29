@@ -40,6 +40,7 @@ let videoDevices: { deviceId: string; label: string }[] = []
 
 onMounted(() => {
   getDevices()
+  getLocalStream()
 })
 
 // 获取所有视频输入设备
