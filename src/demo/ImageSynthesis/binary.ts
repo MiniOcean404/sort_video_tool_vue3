@@ -1,12 +1,16 @@
-import { fabric } from "fabric"
 import { createImage, getPixelPrimaryColor } from "@/demo/ImageSynthesis/utils.ts"
 import { BlockImageInfo, MinSubImage, PixelBlockInfo, PixelImageInfo } from "./index"
 import { diff } from "color-diff"
 
-export function getBlockData(canvas: fabric.Canvas, GrilleSize: number) {
-  const ctx = canvas.getContext()
+export function getBlockData(image: ImageData, width: number, height: number, GrilleSize: number) {
+  const canvas = new OffscreenCanvas(width, height)
 
-  if (!canvas.width || !canvas.height || !ctx) return
+  // willReadFrequently(经常阅读) 可以使 getImageData 计算更快
+  const ctx = canvas.getContext("2d", { willReadFrequently: true })
+
+  if (!ctx) return
+
+  ctx.putImageData(image, 0, 0)
 
   const blocks: PixelBlockInfo[] = []
 
@@ -30,7 +34,7 @@ export function getBlockData(canvas: fabric.Canvas, GrilleSize: number) {
 
 // 获取每张资源图的主色调
 export async function getImageDate(url: string, scale: number = 1): Promise<PixelImageInfo> {
-  const canvas = document.createElement("canvas")
+  const canvas = new OffscreenCanvas(0, 0)
   const ctx = canvas.getContext("2d")
   let res: PixelImageInfo
 
@@ -81,3 +85,5 @@ export function getMinDiff(images: PixelImageInfo[], blocks: PixelBlockInfo[]) {
 
   return urls
 }
+
+export function test() {}

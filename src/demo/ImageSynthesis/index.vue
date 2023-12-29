@@ -22,11 +22,11 @@
 
 <script setup lang="ts">
 import type { UploadInstance, UploadProps } from "element-plus"
-import { onMounted, ref } from "vue"
+import { ref } from "vue"
 import { fabric } from "fabric"
 
 import { drawLine, drawMainImage, generateImg, initCanvas } from "@/demo/ImageSynthesis/draw.ts"
-import { getBlockData, getImageDate, getMinDiff } from "@/demo/ImageSynthesis/binary.ts"
+import { getImageDate, getMinDiff } from "@/demo/ImageSynthesis/binary.ts"
 
 import type { PixelBlockInfo, PixelImageInfo } from "@/demo/ImageSynthesis/index"
 
@@ -39,28 +39,39 @@ let canvas: fabric.Canvas
 
 const GrilleSize = 8
 
-onMounted(() => {})
-
 const handleFile: UploadProps["onChange"] = async (file) => {
   uploadRef.value!.clearFiles()
 
   if (file.raw) {
     const url = URL.createObjectURL(file.raw)
+
     canvas = await initCanvas(url)
-    await drawMainImage(url, canvas)
-
-    blocks = getBlockData(canvas, GrilleSize)
-
-    //绘制网格线条
+    const imageData = await drawMainImage(url, canvas)
+    // 绘制网格线条
     drawLine(canvas, GrilleSize, 1)
+
+    const worker = new Worker(new URL("./worker.ts", import.meta.url), {
+      type: "module",
+    })
+
+    worker.onmessage = (event) => {
+      blocks = event.data
+      console.log("🚀 ~ file: index.vue:59 ~ consthandleFile:UploadProps= ~ blocks:", "格栅计算完成")
+    }
+
+    worker.postMessage({ imageData, width: canvas.width || 0, height: canvas.height || 0, GrilleSize })
   }
 }
 
 const handleFiles: UploadProps["onChange"] = async (file) => {
+  loading.value = true
+
   uploadRef.value!.clearFiles()
   if (file.raw) {
     const res = await getImageDate(URL.createObjectURL(file.raw), 0.2)
     images.push(res)
+    loading.value = false
+    console.log("🚀 ~ file: index.vue:73 ~ consthandleFiles:UploadProps", "千图计算完成")
   }
 }
 

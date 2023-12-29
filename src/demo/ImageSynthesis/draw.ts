@@ -16,7 +16,7 @@ export async function initCanvas(url: string) {
 }
 
 // 绘制主图片
-export function drawMainImage(url: string, canvas: fabric.Canvas): Promise<void> {
+export function drawMainImage(url: string, canvas: fabric.Canvas): Promise<ImageData> {
   return new Promise((resolve) => {
     if (!canvas) return
 
@@ -30,14 +30,13 @@ export function drawMainImage(url: string, canvas: fabric.Canvas): Promise<void>
         selectable: false, //可交互
       })
 
-      // 图片添加到画布的回调函数
-      img.on("added", () => {
-        setTimeout(() => {
-          resolve()
-        }, 500)
-      })
+      // 图片添加到画布,但是不一定渲染完了
+      img.on("added", () => {})
+      img.viewportCenter() //图片居中
 
       canvas.add(img) //将图片添加到画布
+      canvas.renderAll()
+      resolve(canvas.getContext().getImageData(0, 0, canvas.width || 0, canvas.height || 0))
     })
   })
 }
