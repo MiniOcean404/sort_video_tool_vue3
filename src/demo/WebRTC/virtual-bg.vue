@@ -35,11 +35,14 @@ const HEIGHT = 300 // 视频高度
 onMounted(async () => {
   setColorDefault()
 
-  getBackgroundImageData()
+  await getBackgroundImageData()
 
   // const stream = await getLocalStream({ video: { width: WIDTH, height: HEIGHT } })
+  // 设置播放视频还是播放 摄像头的媒体流
   playRealVideo(undefined, green_screen)
 
+  // 初始化虚拟 canvas ，准备将绿幕视频和背景计算的差值写入
+  initVirtualCanvas()
   drawVideoToCanvas(realVideo)
 })
 
@@ -62,15 +65,18 @@ function handleColorChange(e: Event) {
 // 虚拟背景的 canvas中的图片数据
 let backgroundImageData: ImageData
 // 获取背景图像数据
-function getBackgroundImageData() {
-  const backgroundCanvas = document.querySelector("#backgroundImg") as HTMLCanvasElement
-  const backgroundCtx = backgroundCanvas.getContext("2d")!
-  const img = new Image()
-  img.src = bg
-  img.onload = () => {
-    backgroundCtx.drawImage(img, 0, 0, backgroundCanvas.width, backgroundCanvas.height)
-    backgroundImageData = backgroundCtx.getImageData(0, 0, backgroundCanvas.width, backgroundCanvas.height)
-  }
+function getBackgroundImageData(): Promise<void> {
+  return new Promise((res) => {
+    const backgroundCanvas = document.querySelector("#backgroundImg") as HTMLCanvasElement
+    const backgroundCtx = backgroundCanvas.getContext("2d")!
+    const img = new Image()
+    img.src = bg
+    img.onload = () => {
+      backgroundCtx.drawImage(img, 0, 0, backgroundCanvas.width, backgroundCanvas.height)
+      backgroundImageData = backgroundCtx.getImageData(0, 0, backgroundCanvas.width, backgroundCanvas.height)
+      res()
+    }
+  })
 }
 
 // 将摄像头的流获取
@@ -92,30 +98,15 @@ function playRealVideo(stream?: MediaStream, url?: string) {
   }
 }
 
-// 将视频写到 canvas 中
-function drawVideoToCanvas(realVideo: HTMLVideoElement) {
-  realVideoCanvas = new OffscreenCanvas(WIDTH, HEIGHT)
-  // willReadFrequently(经常阅读) 可以使 getImageData 计算更快
-  realVideoCtx = realVideoCanvas.getContext("2d", { willReadFrequently: true })!
-
+function initVirtualCanvas() {
   virtualVideoCanvas = document.createElement("canvas") as HTMLCanvasElement
   virtualVideoCtx = virtualVideoCanvas.getContext("2d")!
 
-  realVideoCanvas.width = virtualVideoCanvas.width = WIDTH
-  realVideoCanvas.height = virtualVideoCanvas.height = HEIGHT
+  virtualVideoCanvas.width = WIDTH
+  virtualVideoCanvas.height = HEIGHT
 
   // 准备从 VirtualVideoCanvas 中获取视频流并在 virtualVideo 中播放
   getStreamFromVirtualVideoCanvas()
-
-  // 每隔 100ms 将真实的视频写到 canvas 中，并获取视频的图像数据
-  setInterval(() => {
-    realVideoCtx.drawImage(realVideo, 0, 0, WIDTH, HEIGHT)
-    // 获取 realVideoCanvas 中的图像数据
-    realVideoImageData = realVideoCtx.getImageData(0, 0, WIDTH, HEIGHT)
-
-    // 处理真实视频的图像数据，将其写到虚拟视频的 canvas 中
-    processFrameDrawToVirtualVideo()
-  }, 2000)
 }
 
 // 从 VirtualVideoCanvas 中获取 canvas 视频流并在 virtualVideo 中播放
@@ -123,6 +114,28 @@ function getStreamFromVirtualVideoCanvas() {
   virtualVideo = document.querySelector("#virtual-video") as HTMLVideoElement
   const stream = virtualVideoCanvas.captureStream(30)
   virtualVideo.srcObject = stream
+}
+
+// 将视频写到 canvas 中
+function drawVideoToCanvas(realVideo: HTMLVideoElement) {
+  realVideoCanvas = new OffscreenCanvas(WIDTH, HEIGHT)
+  // willReadFrequently(经常阅读) 可以使 getImageData 计算更快
+  realVideoCtx = realVideoCanvas.getContext("2d", { willReadFrequently: true })!
+
+  realVideoCanvas.width = WIDTH
+  realVideoCanvas.height = HEIGHT
+
+  // 将真实的视频写到 canvas 中，并获取视频的图像数据
+  function draw() {
+    realVideoCtx.drawImage(realVideo, 0, 0, WIDTH, HEIGHT)
+    // 获取 realVideoCanvas 中的图像数据
+    realVideoImageData = realVideoCtx.getImageData(0, 0, WIDTH, HEIGHT)
+
+    // 处理真实视频的图像数据，将其写到虚拟视频的 canvas 中
+    processFrameDrawToVirtualVideo()
+  }
+
+  setInterval(draw, 200)
 }
 
 // 处理真实视频的图像数据，将其写到虚拟视频的 canvas 中
