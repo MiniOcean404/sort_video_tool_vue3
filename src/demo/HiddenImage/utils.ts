@@ -24,7 +24,7 @@ export async function get_image_info(url: string, scale: number = 1): Promise<Im
   }
 }
 
-export function createImage(url: string, cb?: (iamge: HTMLImageElement) => any): Promise<HTMLImageElement> {
+export function createImage(url: string, cb?: (image: HTMLImageElement) => any): Promise<HTMLImageElement> {
   return new Promise((res) => {
     const image = new Image()
     image.src = url

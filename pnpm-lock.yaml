@@ -29,6 +29,9 @@ importers:
       '@vueuse/core':
         specifier: ^10.7.0
         version: 10.7.0(vue@3.3.13)
+      color-diff:
+        specifier: ^1.4.0
+        version: 1.4.0
       element-plus:
         specifier: ^2.4.4
         version: 2.4.4(vue@3.3.13)
@@ -63,6 +66,9 @@ importers:
       '@giegie/resolver':
         specifier: workspace:*
         version: link:packages/resolver
+      '@types/color-diff':
+        specifier: ^1.2.5
+        version: 1.2.5
       '@types/fabric':
         specifier: 5.3.0
         version: 5.3.0
@@ -685,6 +691,10 @@ packages:
 
   /@types/argparse@1.0.38:
     resolution: {integrity: sha512-ebDJ9b0e702Yr7pWgB0jzm+CX4Srzz8RcXtLJDJB+BSccqMa36uyH/zUsSYao5+BD1ytv3k3rPYCq4mAE1hsXA==}
+    dev: true
+
+  /@types/color-diff@1.2.5:
+    resolution: {integrity: sha512-O+poH2XxhkQg8yGA5c4ejheHLpFcZaE33BG6rLp1eJq2W39iij9+9kGldqsoLq5BQuNt1FjsKwmdDitniK/Qtw==}
     dev: true
 
   /@types/estree@1.0.5:
@@ -1519,6 +1529,10 @@ packages:
     dependencies:
       color-name: 1.1.4
     dev: true
+
+  /color-diff@1.4.0:
+    resolution: {integrity: sha512-4oDB/o78lNdppbaqrg0HjOp7pHmUc+dfCxWKWFnQg6AB/1dkjtBDop3RZht5386cq9xBUDRvDvSCA7WUlM9Jqw==}
+    dev: false
 
   /color-name@1.1.4:
     resolution: {integrity: sha512-dOy+3AuW3a2wNbZHIuMZpTcgjGuLU/uBL/ubcZF9OXbDo8ff4O8yVp5Bf0efS8uEoYo5q4Fx7dY9OgQGXgAsQA==}
