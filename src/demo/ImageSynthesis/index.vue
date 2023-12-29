@@ -43,6 +43,7 @@ const handleFile: UploadProps["onChange"] = async (file) => {
   uploadRef.value!.clearFiles()
 
   if (file.raw) {
+    loading.value = true
     const url = URL.createObjectURL(file.raw)
 
     canvas = await initCanvas(url)
@@ -57,6 +58,7 @@ const handleFile: UploadProps["onChange"] = async (file) => {
     worker.onmessage = (event) => {
       blocks = event.data
       console.log("🚀 ~ file: index.vue:59 ~ consthandleFile:UploadProps= ~ blocks:", "格栅计算完成")
+      loading.value = false
     }
 
     worker.postMessage({ imageData, width: canvas.width || 0, height: canvas.height || 0, GrilleSize })
