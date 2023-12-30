@@ -37,6 +37,7 @@ export default defineConfig((config) => ({
       iconDirs: [path.resolve(process.cwd(), "src/assets/svg")],
       symbolId: "icon-[name]",
     }),
+    // 各种各样的 Icon 组件集合
     Icons({
       compiler: "vue3",
       defaultStyle: "font-size: 16px;",
