@@ -9,3 +9,8 @@ workspace 安装依赖命令：`pnpm add xx -D --filter 包名/后的名字`
 1. vercel.json
 2. 自定义 plugin 的 代理服务、
 3. postcss.config.js 配置
+
+## 已处理
+
+1. ts 全局导入 vue 后的不导入直接使用报错
+   `使用 ts include 导入类型文件解决`

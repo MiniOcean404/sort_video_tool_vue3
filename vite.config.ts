@@ -25,10 +25,7 @@ export default defineConfig((config) => ({
   base: "./", // 开发或生产环境服务的公共基础路径
   plugins: [
     filePathInject(),
-    vue({
-      // 开启响应式语法糖
-      reactivityTransform: true,
-    }),
+    vue(),
     viteCompression(),
     // 开启 jsx 支持
     vueJsx(),
