@@ -22,78 +22,6 @@ onMounted(async () => {
   await initRemote()
 })
 
-function initConnect() {
-  if (!roomId.value) return ElMessage.error("请输入房间号")
-
-  // socket = io('https://47.95.239.198:3000')
-  socket = io("https://signaling.fedtop.com")
-  // socket = io('https://192.168.1.126:12345')
-
-  // 连接成功时触发
-  socket.on("connect", () => {
-    handleConnect()
-  })
-
-  // 断开连接时触发
-  socket.on("disconnect", (reason) => {
-    if (reason === "io server disconnect") {
-      // 断线是由服务器发起的，重新连接。
-      socket.connect()
-    }
-    ElMessage.warning("您已断开连接")
-  })
-  // 服务端发送报错信息
-  socket.on("error", (data) => {
-    ElMessage.error(data)
-  })
-  // 当有用户加入房间时触发
-  socket.on("welcome", (data) => {
-    ElMessage.success(data.userId === userId ? "🦄成功加入房间" : `🦄${data.userId}加入房间`)
-  })
-  // 当有用户离开房间时触发
-  socket.on("leave", (data) => {
-    ElMessage.warning(data.userId === userId ? "🦄成功离开房间" : `🦄${data.userId}离开房间`)
-  })
-  // 当有用户发送消息时触发
-  socket.on("message", () => {})
-  // 创建offer,发送给远端
-  socket.on("createOffer", () => {
-    // 发送 offer
-    if (offerSdp) {
-      socket.emit("offer", {
-        userId,
-        roomId: roomId.value,
-        sdp: offerSdp,
-      })
-      return
-    }
-    createOffer()
-  })
-  // 收到offer,创建answer
-  socket.on("offer", (data) => {
-    createAnswer(data.sdp)
-  })
-  // 收到answer,设置远端sdp
-  socket.on("answer", (data) => {
-    addAnswer(data.sdp)
-  })
-}
-
-// 连接成功
-function handleConnect() {
-  socket.emit("join", { userId, roomId: roomId.value })
-}
-
-// 离开房间
-function handleLeave() {
-  // 关闭对等连接
-  peerConnection.close()
-  // 发送离开的消息
-  socket.emit("leave", { userId, roomId: roomId.value })
-  // 关闭socket连接
-  socket.disconnect()
-}
-
 async function initLocal() {
   // 获取本地端视频标签
   const localVideo = document.getElementById("local") as HTMLVideoElement
@@ -129,6 +57,82 @@ async function initRemote() {
       remoteStream.addTrack(track)
     })
   }
+}
+
+function initConnect() {
+  if (!roomId.value) return ElMessage.error("请输入房间号")
+
+  // socket = io('https://47.95.239.198:3000')
+  socket = io("https://signaling.fedtop.com")
+
+  // 连接成功时触发
+  socket.on("connect", () => handleConnect())
+
+  // 当有用户加入房间时触发
+  socket.on("welcome", (data) => {
+    ElMessage.success(data.userId === userId ? "🦄成功加入房间" : `🦄${data.userId}加入房间`)
+  })
+
+  // 当有用户离开房间时触发
+  socket.on("leave", (data) => {
+    ElMessage.warning(data.userId === userId ? "🦄成功离开房间" : `🦄${data.userId}离开房间`)
+  })
+
+  // 创建 offer,发送给远端
+  socket.on("createOffer", () => {
+    // 发送 offer
+    if (offerSdp) {
+      socket.emit("offer", {
+        userId,
+        roomId: roomId.value,
+        sdp: offerSdp,
+      })
+      return
+    }
+    createOffer()
+  })
+
+  // 收到offer,创建answer
+  socket.on("offer", (data) => {
+    createAnswer(data.sdp)
+  })
+
+  // 收到answer,设置远端sdp
+  socket.on("answer", (data) => {
+    addAnswer(data.sdp)
+  })
+
+  // 当有用户发送消息时触发
+  socket.on("message", () => {})
+
+  // 断开连接时触发
+  socket.on("disconnect", (reason) => {
+    if (reason === "io server disconnect") {
+      // 断线是由服务器发起的，重新连接。
+      socket.connect()
+    }
+    ElMessage.warning("您已断开连接")
+  })
+
+  // 服务端发送报错信息
+  socket.on("error", (data) => {
+    ElMessage.error(data)
+  })
+}
+
+// 连接成功
+function handleConnect() {
+  socket.emit("join", { userId, roomId: roomId.value })
+}
+
+// 离开房间
+function handleLeave() {
+  // 关闭对等连接
+  peerConnection.close()
+  // 发送离开的消息
+  socket.emit("leave", { userId, roomId: roomId.value })
+  // 关闭socket连接
+  socket.disconnect()
 }
 
 // 创建 offer
