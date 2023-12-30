@@ -10,6 +10,7 @@ declare module 'vue' {
     Cover: typeof import('./src/components/Cover/index.vue')['default']
     Dom2Image: typeof import('./src/components/Dom2Image/index.vue')['default']
     ElButton: typeof import('element-plus/es')['ElButton']
+    ElInput: typeof import('element-plus/es')['ElInput']
     ElOption: typeof import('element-plus/es')['ElOption']
     ElSelect: typeof import('element-plus/es')['ElSelect']
     ElUpload: typeof import('element-plus/es')['ElUpload']

@@ -29,7 +29,8 @@
     "unplugin-auto-import": "^0.17.2",
     "unplugin-vue-components": "^0.26.0",
     "vue": "^3.3.13",
-    "vue-router": "^4.2.5"
+    "vue-router": "^4.2.5",
+    "webrtc-adapter": "^8.2.3"
   },
   "devDependencies": {
     "@giegie/resolver": "workspace:*",
