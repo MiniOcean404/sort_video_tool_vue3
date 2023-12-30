@@ -3,6 +3,9 @@ import "./css/base/base.scss"
 import App from "./App.vue"
 import router from "@/router"
 import store from "@/store"
+import VConsole from "vconsole"
+
+new VConsole()
 
 // 创建vue实例
 const app = createApp(App)

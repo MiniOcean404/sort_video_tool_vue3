@@ -1,9 +1,6 @@
 <script setup lang="ts">
-import { ElMessage } from "element-plus"
 import io, { Socket } from "socket.io-client"
-// import VConsole from 'vconsole'
 
-// const vConsole = new VConsole()
 const peerConnection = new RTCPeerConnection({
   iceServers: [
     {
@@ -20,11 +17,14 @@ let localStream: MediaStream
 let remoteStream: MediaStream
 let offerSdp = ""
 
+onMounted(async () => {
+  await initLocal()
+  await initRemote()
+})
+
 function initConnect() {
-  if (!roomId.value) {
-    ElMessage.error("请输入房间号")
-    return
-  }
+  if (!roomId.value) return ElMessage.error("请输入房间号")
+
   // socket = io('https://47.95.239.198:3000')
   socket = io("https://signaling.fedtop.com")
   // socket = io('https://192.168.1.126:12345')
@@ -55,9 +55,9 @@ function initConnect() {
     ElMessage.warning(data.userId === userId ? "🦄成功离开房间" : `🦄${data.userId}离开房间`)
   })
   // 当有用户发送消息时触发
-  socket.on("message", (data) => {})
+  socket.on("message", () => {})
   // 创建offer,发送给远端
-  socket.on("createOffer", (data) => {
+  socket.on("createOffer", () => {
     // 发送 offer
     if (offerSdp) {
       socket.emit("offer", {
@@ -84,21 +84,46 @@ function handleConnect() {
   socket.emit("join", { userId, roomId: roomId.value })
 }
 
-const init = async () => {
+// 离开房间
+function handleLeave() {
+  // 关闭对等连接
+  peerConnection.close()
+  // 发送离开的消息
+  socket.emit("leave", { userId, roomId: roomId.value })
+  // 关闭socket连接
+  socket.disconnect()
+}
+
+async function initLocal() {
+  // 获取本地端视频标签
   const localVideo = document.getElementById("local") as HTMLVideoElement
-  const remoteVideo = document.getElementById("remote-video") as HTMLVideoElement
-  localStream = await navigator.mediaDevices.getUserMedia({
+
+  // 采集本地媒体流
+  const localStream = await navigator.mediaDevices.getUserMedia({
     video: true,
     audio: false,
   })
-  remoteStream = new MediaStream()
+  // 设置本地视频流
   localVideo.srcObject = localStream
-  remoteVideo.srcObject = remoteStream
 
+  // 不推荐使用：已经过时的方法 [addStream API](https://developer.mozilla.org/en-US/docs/Web/API/RTCPeerConnection/addStream)
+  // pc.addStream(localStream);
+
+  // 添加本地媒体流的轨道都添加到 RTCPeerConnection 中
+  // track 是本地的音频视频信息
   localStream.getTracks().forEach((track) => {
     peerConnection.addTrack(track, localStream)
   })
+}
 
+async function initRemote() {
+  // 获取远程端视频标签
+  const remoteVideo = document.getElementById("remote-video") as HTMLVideoElement
+
+  remoteStream = new MediaStream()
+  remoteVideo.srcObject = remoteStream
+
+  // 监听远程通道流，方法一：
   peerConnection.ontrack = (event) => {
     event.streams[0].getTracks().forEach((track) => {
       remoteStream.addTrack(track)
@@ -170,24 +195,9 @@ function handleCamera() {
 //   })
 //   isAudioOpen.value = !isAudioOpen.value
 // }
-
-// 离开房间
-function handleLeave() {
-  // 关闭对等连接
-  peerConnection.close()
-  // 发送离开的消息
-  socket.emit("leave", { userId, roomId: roomId.value })
-  // 关闭socket连接
-  socket.disconnect()
-}
-
-onMounted(async () => {
-  await init()
-  nextTick(async () => {})
-})
 </script>
 <template>
-  <FilepathBox :file-path="'__filePath__'" />
+  <FilePath :file-path="'__filePath__'" />
   <div class="signaling-p2p-container">
     <div class="video-container">
       <div class="main-video">

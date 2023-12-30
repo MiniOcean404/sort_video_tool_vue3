@@ -48,11 +48,11 @@ export default defineConfig((config) => ({
       ],
       resolvers: [
         GieResolver(),
-        ElementPlusResolver(), // 自动注册图标组件
         IconsResolver({
           extension: "vue",
           // enabledCollections: ['ep'],
         }),
+        ElementPlusResolver(), // 自动注册图标组件
       ],
     }),
     AutoImport({
@@ -66,15 +66,15 @@ export default defineConfig((config) => ({
       imports: ["vue", "vue-router"],
       resolvers: [
         GieResolver(),
-        ElementPlusResolver(), // 自动导入图标组件
         // 自动导入必须遵循名称格式 {prefix：默认为i}-{collection：图标集合的名称}-{icon：图标名称}
         IconsResolver({
           // enabledCollections: ['ep'],
           extension: "vue",
         }),
+        ElementPlusResolver(), // 自动导入图标组件
       ],
       exclude: config.mode === "development" ? [/vision\/vision_wasm_internal\.js/] : null,
-      // eslint报错解决方案
+      // eslint 报错解决方案
       eslintrc: {
         enabled: true, // Default `false`
         filepath: "./.eslintrc-auto-import.json", // Default `./.eslintrc-auto-import.json`
