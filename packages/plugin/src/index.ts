@@ -6,3 +6,5 @@ export * from "./proxy-serve"
 // export type * from "./proxy-serve/index.d"
 
 export * from "./remove-console"
+
+export * from "./filepath-injector"
