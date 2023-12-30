@@ -147,6 +147,21 @@ export default defineConfig((config) => ({
     // 可以查看 CSS 的源码
     devSourcemap: true,
   },
+  postcss: {
+    plugins: [
+      {
+        // 通过 postcss删 除组件库中 scss 文件的 @charset:UTF-8
+        postcssPlugin: "internal:charset-removal",
+        AtRule: {
+          charset: (atRule) => {
+            if (atRule.name === "charset") {
+              atRule.remove()
+            }
+          },
+        },
+      },
+    ],
+  },
   optimizeDeps: {
     // 是否开启强制依赖预构建。node_modules 中的依赖模块构建过一次就会缓存在 node_modules/.vite/deps 文件夹下，下一次会直接使用缓存的文件。
     // 而有时候我们想要修改依赖模块的代码，做一些测试或者打个补丁，这时候就要用到强制依赖预构建。

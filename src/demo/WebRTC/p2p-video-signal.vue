@@ -15,6 +15,7 @@ const peerConnection = new RTCPeerConnection({
 const userId = Math.random().toString(36).substring(2)
 // const roomId = ref('3333')
 const roomId = ref("")
+
 let socket: Socket
 let localStream: MediaStream
 let remoteStream: MediaStream
