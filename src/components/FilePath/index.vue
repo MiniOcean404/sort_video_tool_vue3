@@ -13,7 +13,8 @@ function open(type: string) {
   } else {
     const githubAddr = "https://github.com/miniocean404-vue/tool_and_demo_vite_vue3"
     const branch = "master"
-    url = `${githubAddr}/blob/${branch}/${`src${props.filePath.split("src").slice(-1)[0]}`}`
+    const hightLine = "#L$1-L$10"
+    url = `${githubAddr}/blob/${branch}/${`src${props.filePath.split("src").slice(-1)[0]}`}${hightLine}`
   }
 
   window.open(url, "_blank")
