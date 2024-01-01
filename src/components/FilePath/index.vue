@@ -9,7 +9,8 @@ function open(type: string) {
   if (type === "VsCode") {
     url = `vscode://file/${props.filePath}:0:0`
   } else if (type === "WebStorm") {
-    url = `phpstorm://open?file=${props.filePath}&line=0&column=0`
+    // 无效
+    url = `webstorm://open?file=${props.filePath}&line=0&column=0`
   } else {
     const githubAddr = "https://github.com/miniocean404-vue/tool_and_demo_vite_vue3"
     const branch = "master"
