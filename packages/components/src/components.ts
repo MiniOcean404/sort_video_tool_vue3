@@ -3,3 +3,4 @@
 // import type { InputInstance } from '@giegie/components';
 
 export * from "./Input"
+export * from "./JumpCode"

@@ -2,13 +2,14 @@ import { defineConfig } from "vite"
 import type { UserConfig } from "vite"
 import vue from "@vitejs/plugin-vue"
 import dts from "vite-plugin-dts"
+import ElementPlus from "unplugin-element-plus/vite"
 
 export default defineConfig(() => {
   return {
     build: {
       rollupOptions: {
         // 将vue模块排除在打包文件之外，使用用这个组件库的项目的vue模块
-        external: ["vue"],
+        external: ["vue", "element-plus", "@element-plus/icons-vue", /\.scss/],
 
         // 输出配置
         output: [
@@ -23,6 +24,8 @@ export default defineConfig(() => {
             dir: "dist/es",
             // 指定保留模块结构的根目录
             preserveModulesRoot: "src",
+            // 关闭默认导出和普通导出的警告信息
+            exports: "named",
           },
           {
             // 打包成 commonjs
@@ -35,6 +38,7 @@ export default defineConfig(() => {
             dir: "dist/lib",
             // 指定保留模块结构的根目录
             preserveModulesRoot: "src",
+            exports: "named",
           },
         ],
       },
@@ -47,6 +51,10 @@ export default defineConfig(() => {
     },
     plugins: [
       vue(),
+      ElementPlus({
+        // 导入scss而不是css
+        useSource: true,
+      }),
       dts({
         // 输出目录
         outDir: ["types"],

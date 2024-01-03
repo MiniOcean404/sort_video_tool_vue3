@@ -91,7 +91,7 @@ function downloadFile(data: BlobPart[], fileName: string) {
 }
 </script>
 <template>
-  <FilePath :file-path="'__filePath__'" />
+  <GieJumpCode :path="'__filePath__'" />
 
   <div>
     <div>

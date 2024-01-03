@@ -35,4 +35,3 @@ defineExpose({
   focus,
 })
 </script>
-./Input ./Input

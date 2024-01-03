@@ -1,3 +1,4 @@
 import GieInput from "./Input"
+import GieJumpCode from "./JumpCode"
 
-export default [GieInput]
+export default [GieInput, GieJumpCode]

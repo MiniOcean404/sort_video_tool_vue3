@@ -10,7 +10,13 @@ import { VNodeProps } from 'vue';
 
 declare type __VLS_NonUndefinedable<T> = T extends undefined ? never : T;
 
+declare type __VLS_NonUndefinedable_2<T> = T extends undefined ? never : T;
+
 declare type __VLS_Prettify<T> = {
+    [K in keyof T]: T[K];
+} & {};
+
+declare type __VLS_Prettify_2<T> = {
     [K in keyof T]: T[K];
 } & {};
 
@@ -23,8 +29,23 @@ declare type __VLS_TypePropsToRuntimeProps<T> = {
     };
 };
 
+declare type __VLS_TypePropsToRuntimeProps_2<T> = {
+    [K in keyof T]-?: {} extends Pick<T, K> ? {
+        type: PropType<__VLS_NonUndefinedable_2<T[K]>>;
+    } : {
+        type: PropType<T[K]>;
+        required: true;
+    };
+};
+
 declare type __VLS_WithDefaults<P, D> = {
     [K in keyof Pick<P, keyof P>]: K extends keyof D ? __VLS_Prettify<P[K] & {
+        default: D[K];
+    }> : P[K];
+};
+
+declare type __VLS_WithDefaults_2<P, D> = {
+    [K in keyof Pick<P, keyof P>]: K extends keyof D ? __VLS_Prettify_2<P[K] & {
         default: D[K];
     }> : P[K];
 };
@@ -49,6 +70,14 @@ declare const _default_2: DefineComponent<__VLS_WithDefaults<__VLS_TypePropsToRu
 }, {
     modelValue: string;
     disabled: boolean;
+}, {}>;
+
+declare const _default_3: DefineComponent<__VLS_WithDefaults_2<__VLS_TypePropsToRuntimeProps_2<JumpCodeProps>, {
+    path: string;
+}>, {}, unknown, {}, {}, ComponentOptionsMixin, ComponentOptionsMixin, {}, string, VNodeProps & AllowedComponentProps & ComponentCustomProps, Readonly<ExtractPropTypes<__VLS_WithDefaults_2<__VLS_TypePropsToRuntimeProps_2<JumpCodeProps>, {
+    path: string;
+}>>>, {
+    path: string;
 }, {}>;
 
 declare function focus_2(): void;
@@ -84,6 +113,22 @@ export declare const GieInput: SFCWithInstall<DefineComponent<{
     disabled: boolean;
 }, {}>> & Record<string, any>;
 
+export declare const GieJumpCode: SFCWithInstall<DefineComponent<{
+    path: {
+        type: PropType<string>;
+        required: true;
+        default: string;
+    };
+}, {}, unknown, {}, {}, ComponentOptionsMixin, ComponentOptionsMixin, {}, string, VNodeProps & AllowedComponentProps & ComponentCustomProps, Readonly<ExtractPropTypes<{
+    path: {
+        type: PropType<string>;
+        required: true;
+        default: string;
+    };
+}>>, {
+    path: string;
+}, {}>> & Record<string, any>;
+
 /**
  * 定义emit类型
  */
@@ -102,6 +147,18 @@ export declare type InputInstance = InstanceType<typeof _default_2>;
 export declare interface InputProps {
     modelValue: string;
     disabled?: boolean;
+}
+
+/**
+ * 定义instance类型
+ */
+export declare type JumpCodeInstance = InstanceType<typeof _default_3>;
+
+/**
+ * 定义props类型
+ */
+export declare interface JumpCodeProps {
+    path: string;
 }
 
 declare type SFCWithInstall<T> = T & Plugin_2;

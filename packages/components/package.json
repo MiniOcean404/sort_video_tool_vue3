@@ -21,6 +21,10 @@
         "gulp-autoprefixer": "^9.0.0",
         "gulp-sass": "^5.1.0",
         "sass": "^1.69.5",
-        "shelljs": "^0.8.5"
+        "shelljs": "^0.8.5",
+        "unplugin-element-plus": "^0.8.0"
+    },
+    "peerDependencies": {
+        "element-plus": "^2.4.4"
     }
 }

@@ -201,7 +201,7 @@ function handleCamera() {
 // }
 </script>
 <template>
-  <FilePath :file-path="'__filePath__'" />
+  <GieJumpCode :path="'__filePath__'" />
   <div class="signaling-p2p-container">
     <div class="video-container">
       <div class="main-video">
