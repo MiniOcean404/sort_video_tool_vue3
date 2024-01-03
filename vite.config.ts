@@ -138,7 +138,7 @@ export default defineConfig((config) => ({
       charset: false,
       scss: {
         /* .scss全局预定义变量，引入多个文件 以;(分号分割)*/
-        // additionalData: `@import "./src/assets/css/global.scss";`,
+        // additionalData: `@import "@/xx/global.scss";`,
       },
     },
     // 可以查看 CSS 的源码
