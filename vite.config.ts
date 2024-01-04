@@ -21,13 +21,13 @@ import Inspect from "vite-plugin-inspect"
 
 import { GieResolver } from "@giegie/resolver"
 // 自定义插件
-import { ProxyServer, RmoveConsole, filePathInject } from "@giegie/vite-plugin"
+// import { ProxyServer, RmoveConsole, filePathInject } from "@giegie/vite-plugin"
 
 // https://vitejs.dev/config/
 export default defineConfig((config) => ({
   base: "./", // 开发或生产环境服务的公共基础路径
   plugins: [
-    filePathInject(),
+    // filePathInject(),
     vue(),
     viteCompression(),
     // 开启 jsx 支持
