@@ -67,7 +67,7 @@ export default defineConfig((config) => ({
       imports: ["vue", "vue-router"],
       resolvers: [
         GieResolver(),
-        ElementPlusResolver(), // 自动导入图标组件
+        ElementPlusResolver(), // 自动导入图标组件,只有进入使用界面的时候才会添加到声明文件中
         IconsResolver({
           // 启用 @iconify-json 中的 element-plus 的图标库
           enabledCollections: ["ep"],

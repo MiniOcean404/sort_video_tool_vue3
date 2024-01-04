@@ -3,7 +3,7 @@
     "paths": {
       "@/*": ["src/*"]
     },
-    "types": ["vite/client", "unplugin-icons/types/vue3"],
+    "types": ["vite/client", "unplugin-icons/types/vue3", "node"],
     "target": "ESNext",
     "useDefineForClassFields": true,
     "module": "ESNext",

@@ -3,9 +3,11 @@
 import Cover from "@/components/Cover/index.vue"
 // import { useUserStore } from '@/store/user'
 // const userStore = useUserStore()
+import IEpView from "~icons/ep/view.vue"
 </script>
 
 <template>
+  <IEpView />
   <GieJumpCode />
 
   <!-- <Dom2Image title="封面制作" :minute="1" :seconds="30"></Dom2Image> -->
