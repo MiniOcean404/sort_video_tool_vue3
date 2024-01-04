@@ -4,16 +4,19 @@ import { fileURLToPath, URL } from "node:url"
 import fs from "fs"
 import path from "path"
 
-// unplugin-vue-components插件的作用是自动注册Vue组件。它会根据我们在代码中使用的组件标签自动注册相应的组件。这样，我们就不需要在每个页面或组件中手动注册它们了。
+// unplugin-vue-components插 件的作用是自动注册Vue组件。它会根据我们在代码中使用的组件标签自动注册相应的组件。这样，我们就不需要在每个页面或组件中手动注册它们了。
 import Components from "unplugin-vue-components/vite"
-// unplugin-auto-import插件的作用是自动导入第三方库或组件。它会根据我们在代码中使用的标识符自动检测并导入相应的库或组件。这样，我们就不需要手动导入它们了。
+// unplugin-auto-import 插件的作用是自动导入第三方库或组件。它会根据我们在代码中使用的标识符自动检测并导入相应的库或组件。这样，我们就不需要手动导入它们了。
 import AutoImport from "unplugin-auto-import/vite"
-import { ElementPlusResolver } from "unplugin-vue-components/resolvers"
-import viteCompression from "vite-plugin-compression"
-import vueJsx from "@vitejs/plugin-vue-jsx"
-import { createSvgIconsPlugin } from "vite-plugin-svg-icons"
+
 import Icons from "unplugin-icons/vite"
 import IconsResolver from "unplugin-icons/resolver"
+import { createSvgIconsPlugin } from "vite-plugin-svg-icons"
+
+import { ElementPlusResolver } from "unplugin-vue-components/resolvers"
+
+import viteCompression from "vite-plugin-compression"
+import vueJsx from "@vitejs/plugin-vue-jsx"
 import Inspect from "vite-plugin-inspect"
 
 import { GieResolver } from "@giegie/resolver"
@@ -36,47 +39,45 @@ export default defineConfig((config) => ({
     }),
     // 各种各样的 Icon 组件集合
     Icons({
+      autoInstall: true,
       compiler: "vue3",
       defaultStyle: "font-size: 16px;",
+      scale: 1,
+      defaultClass: "",
     }),
     Components({
-      dts: true,
-      include: [
-        /\.[tj]sx?$/, // .ts, .tsx, .js, .jsx
-        /\.vue$/,
-        /\.vue\?vue/, // .vue
-      ],
+      dts: "src/typings/components.d.ts",
+      // 指定自动导入的组件位置，默认是 src/components
+      dirs: ["src/components"],
+      include: [/\.[tj]sx?$/, /\.vue$/, /\.vue\?vue/],
       resolvers: [
         GieResolver(),
+        ElementPlusResolver(), // 自动注册组件
         IconsResolver({
+          // 自动导入必须遵循名称格式 {prefix：默认为i}-{collection：图标集合的名称}-{icon：图标名称}
+          prefix: "i",
           extension: "vue",
-          // enabledCollections: ['ep'],
         }),
-        ElementPlusResolver(), // 自动注册图标组件
       ],
     }),
     AutoImport({
-      dts: true,
-      include: [
-        /\.[tj]sx?$/, // .ts, .tsx, .js, .jsx
-        /\.vue$/,
-        /\.vue\?vue/, // .vue
-      ],
+      dts: "src/typings/auto-imports.d.ts",
+      include: [/\.[tj]sx?$/, /\.vue$/, /\.vue\?vue/],
       // 全局引入插件
       imports: ["vue", "vue-router"],
       resolvers: [
         GieResolver(),
-        // 自动导入必须遵循名称格式 {prefix：默认为i}-{collection：图标集合的名称}-{icon：图标名称}
+        ElementPlusResolver(), // 自动导入图标组件
         IconsResolver({
-          // enabledCollections: ['ep'],
+          // 启用 @iconify-json 中的 element-plus 的图标库
+          enabledCollections: ["ep"],
           extension: "vue",
         }),
-        ElementPlusResolver(), // 自动导入图标组件
       ],
       exclude: config.mode === "development" ? [/vision\/vision_wasm_internal\.js/] : null,
-      // eslint 报错解决方案
+      // 自动导入 vue api 后，在 vue 文件使用中，会报一个 eslint 报错问题
       eslintrc: {
-        enabled: true, // Default `false`
+        enabled: false, // Default `false`,解决报错要改成 true
         filepath: "./.eslintrc-auto-import.json", // Default `./.eslintrc-auto-import.json`
         globalsPropValue: true, // Default `true`, (true | false | 'readonly' | 'readable' | 'writable' | 'writeable')
       },

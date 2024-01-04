@@ -67,9 +67,6 @@
     "watch": true,
     "watchEffect": true,
     "watchPostEffect": true,
-    "watchSyncEffect": true,
-    "GieInput": true,
-    "ElMessage": true,
-    "GieJumpCode": true
+    "watchSyncEffect": true
   }
 }

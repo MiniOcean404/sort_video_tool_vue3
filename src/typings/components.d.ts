@@ -7,9 +7,11 @@ export {}
 
 declare module 'vue' {
   export interface GlobalComponents {
-    Cover: typeof import('./src/components/Cover/index.vue')['default']
-    Dom2Image: typeof import('./src/components/Dom2Image/index.vue')['default']
-    GieInput: typeof import('@giegie/components')['GieInput']
+    Cover: typeof import('./../components/Cover/index.vue')['default']
+    Dom2Image: typeof import('./../components/Dom2Image/index.vue')['default']
+    ElButton: typeof import('element-plus/es')['ElButton']
+    ElInput: typeof import('element-plus/es')['ElInput']
+    ElProgress: typeof import('element-plus/es')['ElProgress']
     GieJumpCode: typeof import('@giegie/components')['GieJumpCode']
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']

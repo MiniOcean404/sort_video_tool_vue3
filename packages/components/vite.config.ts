@@ -3,13 +3,14 @@ import type { UserConfig } from "vite"
 import vue from "@vitejs/plugin-vue"
 import dts from "vite-plugin-dts"
 import ElementPlus from "unplugin-element-plus/vite"
+import Icons from "unplugin-icons/vite"
 
 export default defineConfig(() => {
   return {
     build: {
       rollupOptions: {
         // 将vue模块排除在打包文件之外，使用用这个组件库的项目的vue模块
-        external: ["vue", "element-plus", "@element-plus/icons-vue", /\.scss/],
+        external: ["vue", "element-plus", "@element-plus/icons-vue", "@iconify-json/ep", /\.scss/],
 
         // 输出配置
         output: [
@@ -54,6 +55,13 @@ export default defineConfig(() => {
       ElementPlus({
         // 导入scss而不是css
         useSource: true,
+      }),
+      Icons({
+        autoInstall: true,
+        compiler: "vue3",
+        defaultStyle: "font-size: 16px;",
+        scale: 1,
+        defaultClass: "",
       }),
       dts({
         // 输出目录

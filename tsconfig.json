@@ -3,14 +3,7 @@
     "paths": {
       "@/*": ["src/*"]
     },
-    "typeRoots": [
-      "node_modules/@types", // 默认值
-      "src/types",
-      "./components.d.ts",
-      "./auto-imports.d.ts",
-      "element-plus/global"
-    ],
-
+    "types": ["vite/client", "unplugin-icons/types/vue3"],
     "target": "ESNext",
     "useDefineForClassFields": true,
     "module": "ESNext",
@@ -36,6 +29,5 @@
     "baseUrl": "./"
   },
   "references": [{ "path": "./tsconfig.node.json" }],
-
-  "include": ["src/**/*.ts", "src/**/*.d.ts", "src/**/*.tsx", "src/**/*.vue", "./*.d.ts"]
+  "include": ["src/**/*.ts", "src/**/*.d.ts", "src/**/*.tsx", "src/**/*.vue"]
 }
