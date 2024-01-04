@@ -42,4 +42,5 @@ export const buildStyle = () => {
 export const buildComponent = async () => {
   shell.cd(componentPath)
   shell.exec("vite build")
+  shell.cd(process.cwd())
 }
