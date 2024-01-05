@@ -7,13 +7,15 @@ import type { Plugin } from "vite"
 const isWin = os.type() === "Windows_NT"
 const findStr = isWin ? "findstr" : "grep"
 
-const userName = childProcess.execSync(`git config user.name`, { encoding: "utf-8" })
+let userName
 
 export const RmoveConsole = (): Plugin => {
   return {
     name: "rollup-plugin-remove-ohthers-console",
     enforce: "pre",
     transform: (code, filePath) => {
+      if (!userName) userName = childProcess.execSync(`git config user.name`, { encoding: "utf-8" })
+
       if (!filePath.includes("node_modules") && !filePath.includes("packages") && code.includes(`console.log(`)) {
         const rows = code.split("\n")
 
