@@ -18,6 +18,7 @@ function open(type: string) {
     url = `vscode://file/${props.path}:0:0`
   } else if (type === "WebStorm") {
     // 无效
+    // 可以通过安装 IDE Remote Control 然后链接访问 http://localhost:3000/api/file/文件路径 进行跳转
     url = `webstorm://open?file=${props.path}&line=0&column=0`
   } else {
     const githubAddr = "https://github.com/miniocean404-vue/tool_and_demo_vite_vue3"

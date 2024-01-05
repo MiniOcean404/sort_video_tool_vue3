@@ -28,6 +28,7 @@
     "html-to-image": "^1.11.11",
     "nanoid": "^5.0.4",
     "pinia": "^2.1.7",
+    "pinyin": "3.1.0",
     "socket.io-client": "^4.7.2",
     "vconsole": "^3.15.1",
     "vue": "^3.3.13",
@@ -35,7 +36,6 @@
     "webrtc-adapter": "^8.2.3"
   },
   "devDependencies": {
-    "terser": "^5.26.0",
     "@giegie/resolver": "workspace:*",
     "@giegie/vite-plugin": "workspace:^",
     "@types/chroma-js": "^2.4.3",
@@ -49,6 +49,7 @@
     "postcss-preset-env": "^9.3.0",
     "prettier": "^3.1.1",
     "sass": "^1.69.5",
+    "terser": "^5.26.0",
     "typescript": "^5.3.3",
     "unplugin-auto-import": "^0.17.2",
     "unplugin-icons": "^0.18.1",
