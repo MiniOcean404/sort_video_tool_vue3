@@ -38,8 +38,8 @@ export default defineConfig(() => {
         plugins: [
           copyPlugin({
             targets: [
-              { src: "./src/cert", dest: "./dist" },
-              { src: "./src/mock", dest: "./dist" },
+              { src: "./src/proxy-serve/cert", dest: "./dist" },
+              { src: "./src/proxy-serve/mock", dest: "./dist" },
             ],
           }),
         ],
