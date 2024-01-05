@@ -48,6 +48,7 @@ export default defineConfig(() => {
         entry: "src/index.ts",
         // 模块名
         name: "GIE_COMPONENTS",
+        // fileName: (format, entryName) => `${entryName}.${format}.js`, // 打包后的文件名
       },
     },
     plugins: [

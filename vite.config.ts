@@ -25,12 +25,11 @@ import { ProxyServer, RmoveConsole, filePathInject } from "@giegie/vite-plugin"
 
 // https://vitejs.dev/config/
 export default defineConfig((config) => {
-  const isDev = config.mode === 'development'
+  const isDev = config.mode === "development"
 
   return {
     base: "./", // 开发或生产环境服务的公共基础路径
     plugins: [
-      filePathInject(),
       vue(),
       viteCompression(),
       // 开启 jsx 支持
@@ -87,7 +86,9 @@ export default defineConfig((config) => {
       }),
       // 检查Vite插件的中间状态。对于调试和创作插件很有用。
       Inspect(),
-      // ProxyServer(),
+      isDev && RmoveConsole(),
+      isDev && filePathInject(),
+      isDev && ProxyServer(),
     ],
     resolve: {
       //设置别名
@@ -97,10 +98,10 @@ export default defineConfig((config) => {
       extensions: [".mjs", ".js", ".mts", ".ts", ".jsx", ".tsx", ".json", ".vue"],
     },
     build: {
-      target: ['es2015', 'edge88', 'firefox78', 'chrome58', 'safari14'], // 指定要支持的浏览器原生版本
-      emptyOutDir:true,   // 构建时清空目录
-      outDir:"dist",
-      assetsDir:"assets",
+      target: ["es2015", "edge88", "firefox78", "chrome58", "safari14"], // 指定要支持的浏览器原生版本
+      emptyOutDir: true, // 构建时清空目录
+      outDir: "dist",
+      assetsDir: "assets",
       sourcemap: isDev, // 构建后是否生成 source map 文件。如果为 true，将会创建一个独立的 source map 文件。
       assetsInlineLimit: 4096, // 图片转 base64 编码的阈值
       minify: "terser",

@@ -7,9 +7,7 @@ const url = require("url")
 const context = {
   // 代码运行上下文
   url,
-  handler: () => {
-    console.warn("servers 模块导入异常")
-  },
+  handler: () => console.warn("servers 模块导入异常"),
 }
 vm.createContext(context)
 
@@ -27,17 +25,18 @@ export function ProxyServer(): Plugin {
         next()
       })
 
-      // 将 servers 下文件注册到接口
-      const files = glob.sync("./**/*.js")
-      console.log(files)
-
-      console.log("****注册接口****")
+      // 将 mock 下文件注册到接口
+      const files = glob.sync("../../mock/**/*.js", { cwd: __dirname, absolute: true })
 
       files.map((filePath: string) => {
-        let urlPath = (filePath.match(/(?<=servers).*(?=\.js)/) || [])[0]
+        let urlPath = (filePath.match(/(?<=mock).*(?=\.js)/) || [])[0]
+
         urlPath = urlPath?.replace(/[\\/]+/g, "/")
+
+        // 把全局变量 context 挂载到 vm 上下文中的文件里
         vm.runInContext(fs.readFileSync(filePath, "utf-8"), context)
-        console.log("****注册接口: " + urlPath)
+
+        console.log("****注册接口: " + urlPath, "****")
         server.middlewares.use(urlPath || "", context.handler)
       })
     },

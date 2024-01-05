@@ -3,10 +3,12 @@ import type { UserConfig } from "vite"
 import vue from "@vitejs/plugin-vue"
 import dts from "vite-plugin-dts"
 import copyPlugin from "rollup-plugin-copy"
+import ViteRestart from "vite-plugin-restart"
 
 export default defineConfig(() => {
   return {
     build: {
+      minify: false,
       rollupOptions: {
         // 输出配置
         output: [
@@ -34,20 +36,28 @@ export default defineConfig(() => {
             // 指定保留模块结构的根目录
             preserveModulesRoot: "src",
           },
+          {
+            // 打包成 umd
+            format: "umd",
+            // 重命名
+            entryFileNames: "[name].js",
+            // 打包目录和开发目录对应
+            preserveModules: false,
+            // 输出目录
+            dir: "dist/umd",
+            name: "vitePlugin",
+          },
         ],
         plugins: [
           copyPlugin({
-            targets: [
-              { src: "./src/proxy-serve/cert", dest: "./dist" },
-              { src: "./src/proxy-serve/mock", dest: "./dist" },
-            ],
+            targets: [{ src: "./src/proxy-serve/mock", dest: "./dist" }],
           }),
         ],
       },
       lib: {
         // 指定入口文件
         entry: "./src/index.ts",
-        // 模块名
+        // 暴露的全局变量
         name: "GIE_VITE_PLUGIN",
       },
     },
@@ -62,5 +72,8 @@ export default defineConfig(() => {
         rollupTypes: true,
       }),
     ],
+    server: {
+      port: 4000,
+    },
   } satisfies UserConfig
 })

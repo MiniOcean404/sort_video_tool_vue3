@@ -3,11 +3,9 @@
 import Cover from "@/components/Cover/index.vue"
 // import { useUserStore } from '@/store/user'
 // const userStore = useUserStore()
-import PinYin from '@/demo/pinyin/index.vue'
 </script>
 
 <template>
-  <PinYin></PinYin>
   <GieJumpCode path="__filePath__" />
 
   <!-- <Dom2Image title="封面制作" :minute="1" :seconds="30"></Dom2Image> -->
