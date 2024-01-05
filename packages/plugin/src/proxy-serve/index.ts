@@ -21,7 +21,7 @@ export function ProxyServer(): Plugin {
     // 是用于配置开发服务器的钩子
     configureServer(server) {
       // 添加响应头 COOP、COEP 支持wasm数据隔离
-      server.middlewares.use((req, res, next) => {
+      server.middlewares.use((_, res, next) => {
         res.setHeader("Cross-Origin-Opener-Policy", "same-origin")
         res.setHeader("Cross-Origin-Embedder-Policy", "require-corp")
         next()
