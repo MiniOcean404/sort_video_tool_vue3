@@ -7,7 +7,7 @@ workspace 安装依赖命令：`pnpm add xx -D --filter 包名/后的名字`
 
 ## 待处理
 
-1. vercel.json
+1. vercel.json (没有域名)
 
 ## 已处理
 
