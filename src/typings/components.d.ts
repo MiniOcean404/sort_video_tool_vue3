@@ -13,7 +13,6 @@ declare module 'vue' {
     ElInput: typeof import('element-plus/es')['ElInput']
     ElProgress: typeof import('element-plus/es')['ElProgress']
     ElUpload: typeof import('element-plus/es')['ElUpload']
-    GieInput: typeof import('@giegie/components')['GieInput']
     GieJumpCode: typeof import('@giegie/components')['GieJumpCode']
     PDFJS: typeof import('./../components/PDFJS/index.vue')['default']
     RouterLink: typeof import('vue-router')['RouterLink']

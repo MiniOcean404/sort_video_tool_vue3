@@ -1,4 +1,4 @@
-import { defineConfig, loadEnv } from "vite"
+import { defineConfig, loadEnv, searchForWorkspaceRoot } from "vite"
 import vue from "@vitejs/plugin-vue"
 import { fileURLToPath, URL } from "node:url"
 import fs from "fs"
@@ -12,12 +12,11 @@ import AutoImport from "unplugin-auto-import/vite"
 import Icons from "unplugin-icons/vite"
 import IconsResolver from "unplugin-icons/resolver"
 import { createSvgIconsPlugin } from "vite-plugin-svg-icons"
-
 import { ElementPlusResolver } from "unplugin-vue-components/resolvers"
-
 import viteCompression from "vite-plugin-compression"
 import vueJsx from "@vitejs/plugin-vue-jsx"
 import Inspect from "vite-plugin-inspect"
+import copy from "rollup-plugin-copy"
 
 import { GieResolver } from "@giegie/resolver"
 // 自定义插件
@@ -32,6 +31,7 @@ export default defineConfig((config) => {
     base: "./", // 开发或生产环境服务的公共基础路径
     plugins: [
       vue(),
+      copy({ targets: [{ src: "./node_modules/pdfjs-dist/cmaps/", dest: "./public/" }] }),
       viteCompression(),
       // 开启 jsx 支持
       vueJsx(),

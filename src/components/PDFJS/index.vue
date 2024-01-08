@@ -12,4 +12,18 @@ onMounted(() => {
 })
 </script>
 
-<style lang="scss" scoped></style>
+<style lang="scss" scoped>
+.container {
+  @include media-device("pc") {
+    width: 940px;
+  }
+
+  @include media-device("pad") {
+    width: 750px;
+  }
+
+  @include media-device("phone") {
+    width: 100%;
+  }
+}
+</style>
