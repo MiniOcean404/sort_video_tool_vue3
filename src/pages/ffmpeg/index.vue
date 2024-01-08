@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import FFmpeg from "@/demo/FFmpeg/index.vue"
+import FFmpeg from "@/demo/js/FFmpeg/index.vue"
 import video from "@/assets/video/davinci_web_all.webm"
 </script>
 

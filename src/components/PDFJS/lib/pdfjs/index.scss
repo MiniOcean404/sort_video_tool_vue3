@@ -1,0 +1,23 @@
+.page-box {
+  margin-bottom: 15px;
+
+  position: relative;
+  user-select: text;
+
+  @include media-device("pc") {
+    margin-bottom: 30px;
+  }
+
+  &:last-child {
+    margin-bottom: 0;
+  }
+
+  & > canvas {
+    box-shadow: 0 0 20px rgba(38, 38, 38, 0.2);
+  }
+
+  // 修改选中字体颜色
+  .textLayer ::selection {
+    background-color: rgb(72, 74, 239);
+  }
+}

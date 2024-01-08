@@ -1,9 +1,9 @@
-import type { Plugin as Plugin_2 } from 'vite';
+import type { Plugin } from 'vite';
 
-export declare function filePathInject(): Plugin_2;
+export declare function filePathInject(): Plugin;
 
-export declare function ProxyServer(): Plugin_2;
+export declare function ProxyServer(): Plugin;
 
-export declare const RmoveConsole: () => Plugin_2;
+export declare const RmoveConsole: () => Plugin;
 
 export { }

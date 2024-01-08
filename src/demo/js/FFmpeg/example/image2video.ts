@@ -1,7 +1,7 @@
-import type { DrawProps } from "@/demo/FFmpeg"
+import type { DrawProps } from "@/demo/js/FFmpeg"
 import { fetchFile } from "@ffmpeg/util"
-import FFmpegCommand from "@/demo/FFmpeg/ffmpeg-utils/command.ts"
-import { download } from "@/demo/FFmpeg/utils/download.ts"
+import FFmpegCommand from "@/demo/js/FFmpeg/ffmpeg-utils/command.ts"
+import { download } from "@/demo/js/FFmpeg/utils/download.ts"
 import { FFmpeg } from "@ffmpeg/ffmpeg"
 
 export async function play(e: Event, canvasRef: HTMLCanvasElement | null, ffmpeg: FFmpeg) {

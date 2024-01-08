@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import HiddenImage from "@/demo/HiddenImage/index.vue"
+import HiddenImage from "@/demo/js/HiddenImage/index.vue"
 </script>
 
 <template>

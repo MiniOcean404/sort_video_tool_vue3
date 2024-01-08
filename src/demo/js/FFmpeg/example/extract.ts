@@ -1,9 +1,9 @@
 import { FFmpeg } from "@ffmpeg/ffmpeg"
 import { fetchFile } from "@ffmpeg/util"
 
-import FFmpegCommand from "@/demo/FFmpeg/ffmpeg-utils/command.ts"
-import tool from "@/demo/FFmpeg/ffmpeg-utils/tool.ts"
-import { download } from "@/demo/FFmpeg/utils/download.ts"
+import FFmpegCommand from "@/demo/js/FFmpeg/ffmpeg-utils/command.ts"
+import tool from "@/demo/js/FFmpeg/ffmpeg-utils/tool.ts"
+import { download } from "@/demo/js/FFmpeg/utils/download.ts"
 
 export async function extract(ffmpeg: FFmpeg) {
   await ffmpeg.writeFile("/video/convert.webm", await fetchFile("https://raw.githubusercontent.com/ffmpegwasm/testdata/master/Big_Buck_Bunny_180_10s.webm"))

@@ -3,12 +3,15 @@ import type { UserConfig } from "vite"
 import vue from "@vitejs/plugin-vue"
 import dts from "vite-plugin-dts"
 import copyPlugin from "rollup-plugin-copy"
-import ViteRestart from "vite-plugin-restart"
 
 export default defineConfig(() => {
   return {
     build: {
+      // target: "node12",
       minify: false,
+      commonjsOptions: {
+        transformMixedEsModules: true,
+      },
       rollupOptions: {
         // 输出配置
         output: [
@@ -62,7 +65,6 @@ export default defineConfig(() => {
       },
     },
     plugins: [
-      vue(),
       dts({
         // 输出目录
         outDir: ["types"],
@@ -70,6 +72,7 @@ export default defineConfig(() => {
         staticImport: true,
         // 将所有的类型合并到一个文件中
         rollupTypes: true,
+        tsconfigPath: "./tsconfig.json",
       }),
     ],
     server: {

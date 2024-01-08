@@ -1,7 +1,7 @@
 import { FFmpeg } from "@ffmpeg/ffmpeg"
 import { fetchFile } from "@ffmpeg/util"
-import FFmpegCommand from "@/demo/FFmpeg/ffmpeg-utils/command.ts"
-import { download } from "@/demo/FFmpeg/utils/download.ts"
+import FFmpegCommand from "@/demo/js/FFmpeg/ffmpeg-utils/command.ts"
+import { download } from "@/demo/js/FFmpeg/utils/download.ts"
 import video from "@/assets/video/davinci_web_all.webm"
 
 export async function video_get_frame(ffmpeg: FFmpeg) {

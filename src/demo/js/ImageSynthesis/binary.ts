@@ -1,4 +1,4 @@
-import { createImage, getPixelPrimaryColor } from "@/demo/ImageSynthesis/utils.ts"
+import { createImage, getPixelPrimaryColor } from "@/demo/js/ImageSynthesis/utils.ts"
 import { BlockImageInfo, MinSubImage, PixelBlockInfo, PixelImageInfo } from "./index"
 import { diff } from "color-diff"
 

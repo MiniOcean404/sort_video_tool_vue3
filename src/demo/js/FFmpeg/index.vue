@@ -2,8 +2,8 @@
 // Demo: https://github.com/ffmpegwasm/ffmpeg.wasm/blob/main/apps/vue-vite-app/src/components/FFmpegDemo.vue
 import { onMounted, ref } from "vue"
 
-import FFmpegTool from "@/demo/FFmpeg/ffmpeg-utils/tool.ts"
-import { pause, play } from "@/demo/FFmpeg/example/image2video.ts"
+import FFmpegTool from "@/demo/js/FFmpeg/ffmpeg-utils/tool.ts"
+import { pause, play } from "@/demo/js/FFmpeg/example/image2video.ts"
 import { fetchFile } from "@ffmpeg/util"
 import video from "@/assets/video/davinci_web_all.webm"
 

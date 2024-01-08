@@ -26,6 +26,7 @@ import { ProxyServer, RmoveConsole, filePathInject } from "@giegie/vite-plugin"
 // https://vitejs.dev/config/
 export default defineConfig((config) => {
   const isDev = config.mode === "development"
+  const _ = config.command
 
   return {
     base: "./", // 开发或生产环境服务的公共基础路径
@@ -86,9 +87,9 @@ export default defineConfig((config) => {
       }),
       // 检查Vite插件的中间状态。对于调试和创作插件很有用。
       Inspect(),
-      isDev && RmoveConsole(),
-      isDev && filePathInject(),
-      isDev && ProxyServer(),
+      // isDev && RmoveConsole(),
+      // isDev && filePathInject(),
+      // isDev && ProxyServer(),
     ],
     resolve: {
       //设置别名
@@ -98,6 +99,7 @@ export default defineConfig((config) => {
       extensions: [".mjs", ".js", ".mts", ".ts", ".jsx", ".tsx", ".json", ".vue"],
     },
     build: {
+      reportCompressedSize: false, // 启用/禁用 gzip 压缩大小报告
       target: ["es2015", "edge88", "firefox78", "chrome58", "safari14"], // 指定要支持的浏览器原生版本
       emptyOutDir: true, // 构建时清空目录
       outDir: "dist",
@@ -111,6 +113,13 @@ export default defineConfig((config) => {
         compress: {
           drop_console: true,
           drop_debugger: true,
+        },
+      },
+      rollupOptions: {
+        output: {
+          assetFileNames: `assets/[ext]/[name][extname]`,
+          chunkFileNames: `js/chunks/[name].[hash].js`,
+          entryFileNames: `js/[name].js`,
         },
       },
     },
@@ -147,7 +156,7 @@ export default defineConfig((config) => {
         charset: false,
         scss: {
           /* .scss全局预定义变量，引入多个文件 以;(分号分割)*/
-          // additionalData: `@import "@/xx/global.scss";`,
+          additionalData: `@use "@/css/device/device.mixin.scss" as *;`,
         },
       },
       // 可以查看 CSS 的源码

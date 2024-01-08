@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import ImageSynthesis from "@/demo/ImageSynthesis/index.vue"
+import ImageSynthesis from "@/demo/js/ImageSynthesis/index.vue"
 </script>
 
 <template>

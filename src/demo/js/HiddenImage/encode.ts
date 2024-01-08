@@ -1,4 +1,4 @@
-import { ImageDateWithBinary } from "@/demo/HiddenImage"
+import { ImageDateWithBinary } from "@/demo/js/HiddenImage"
 
 // 将隐写的资源图片数据存到目标图片的二进制最低位中
 export function write_hidden_to_origin(hiddenData: ImageDateWithBinary, targetData: ImageDateWithBinary, width: number, height: number): string {

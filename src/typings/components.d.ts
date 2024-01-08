@@ -15,6 +15,7 @@ declare module 'vue' {
     ElUpload: typeof import('element-plus/es')['ElUpload']
     GieInput: typeof import('@giegie/components')['GieInput']
     GieJumpCode: typeof import('@giegie/components')['GieJumpCode']
+    PDFJS: typeof import('./../components/PDFJS/index.vue')['default']
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']
   }

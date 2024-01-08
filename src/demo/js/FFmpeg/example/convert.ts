@@ -1,6 +1,6 @@
 import { fetchFile } from "@ffmpeg/util"
-import FFmpegCommand from "@/demo/FFmpeg/ffmpeg-utils/command.ts"
-import { download } from "@/demo/FFmpeg/utils/download"
+import FFmpegCommand from "@/demo/js/FFmpeg/ffmpeg-utils/command.ts"
+import { download } from "@/demo/js/FFmpeg/utils/download"
 import { FFmpeg } from "@ffmpeg/ffmpeg"
 
 export async function convert(ffmpeg: FFmpeg) {

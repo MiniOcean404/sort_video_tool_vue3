@@ -1,5 +1,5 @@
-import { ImageDateWithBinary } from "@/demo/HiddenImage"
-import { chunkArray } from "@/demo/HiddenImage/utils"
+import { ImageDateWithBinary } from "@/demo/js/HiddenImage"
+import { chunkArray } from "@/demo/js/HiddenImage/utils"
 
 // 解析图片
 export function decodeImage(decodeData: ImageDateWithBinary, width: number, height: number) {

@@ -25,10 +25,10 @@ import type { UploadInstance, UploadProps } from "element-plus"
 import { ref } from "vue"
 import { fabric } from "fabric"
 
-import { drawLine, drawMainImage, generateImg, initCanvas } from "@/demo/ImageSynthesis/draw.ts"
-import { getImageDate, getMinDiff } from "@/demo/ImageSynthesis/binary.ts"
+import { drawLine, drawMainImage, generateImg, initCanvas } from "@/demo/js/ImageSynthesis/draw.ts"
+import { getImageDate, getMinDiff } from "@/demo/js/ImageSynthesis/binary.ts"
 
-import type { PixelBlockInfo, PixelImageInfo } from "@/demo/ImageSynthesis/index"
+import type { PixelBlockInfo, PixelImageInfo } from "@/demo/js/ImageSynthesis/index"
 
 const uploadRef = ref<UploadInstance>()
 const loading = ref(false)

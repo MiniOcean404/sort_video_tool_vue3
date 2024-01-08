@@ -5,12 +5,12 @@
   </div>
 </template>
 <script setup lang="ts">
-import { write_hidden_to_origin } from "@/demo/HiddenImage/encode"
+import { write_hidden_to_origin } from "@/demo/js/HiddenImage/encode"
 import icon from "@/assets/image/time-icon.png"
 import bg from "@/assets/image/bg.jpg"
 import encodeImg from "@/assets/image/encode.png"
-import { get_image_info } from "@/demo/HiddenImage/utils"
-import { decodeImage } from "@/demo/HiddenImage/decode"
+import { get_image_info } from "@/demo/js/HiddenImage/utils"
+import { decodeImage } from "@/demo/js/HiddenImage/decode"
 // import { fabric } from "fabric"
 
 async function encode() {

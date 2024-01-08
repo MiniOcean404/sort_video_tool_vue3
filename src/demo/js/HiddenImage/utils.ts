@@ -1,4 +1,4 @@
-import { ImageDateWithBinary } from "@/demo/HiddenImage"
+import { ImageDateWithBinary } from "@/demo/js/HiddenImage"
 
 export async function get_image_info(url: string, scale: number = 1): Promise<ImageDateWithBinary | undefined> {
   const canvas = document.createElement("canvas")

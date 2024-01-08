@@ -1,10 +1,10 @@
 <script setup lang="ts">
-// import TakePhone from "@/demo/WebRTC/take-phone.vue"
-// import ShareScreen from "@/demo/WebRTC/share-screen.vue"
-// import VirtualBg from "@/demo/WebRTC/virtual-bg.vue"
-// import P2PVideo from "@/demo/WebRTC/p2p-video.vue"
-// import P2PVideoSignal from "@/demo/WebRTC/p2p-video-signal.vue"
-import P2PFile from "@/demo/WebRTC/p2p-file/index.vue"
+// import TakePhone from "@/demo/js/WebRTC/take-phone.vue"
+// import ShareScreen from "@/demo/js/WebRTC/share-screen.vue"
+// import VirtualBg from "@/demo/js/WebRTC/virtual-bg.vue"
+// import P2PVideo from "@/demo/js/WebRTC/p2p-video.vue"
+// import P2PVideoSignal from "@/demo/js/WebRTC/p2p-video-signal.vue"
+import P2PFile from "@/demo/js/WebRTC/p2p-file/index.vue"
 </script>
 
 <template>

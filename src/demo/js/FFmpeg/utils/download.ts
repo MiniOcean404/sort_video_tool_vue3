@@ -1,4 +1,4 @@
-import type { DownloadProps } from "@/demo/FFmpeg"
+import type { DownloadProps } from "@/demo/js/FFmpeg"
 
 export function download({ fileData, fileName = "", ext = "mp4" }: DownloadProps) {
   // 将输出视频文件保存到本地

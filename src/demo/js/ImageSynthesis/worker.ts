@@ -1,4 +1,4 @@
-import { getBlockData } from "@/demo/ImageSynthesis/binary.ts"
+import { getBlockData } from "@/demo/js/ImageSynthesis/binary.ts"
 
 self.onmessage = function (event) {
   const { imageData, width, height, GrilleSize } = event.data

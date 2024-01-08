@@ -1,0 +1,35 @@
+{
+  "compilerOptions": {
+    "composite": true,
+    "allowSyntheticDefaultImports": true,
+
+    "paths": {
+      "@/*": ["src/*"]
+    },
+    "target": "ESNext",
+    "useDefineForClassFields": true,
+    "module": "CommonJS",
+    "lib": ["ESNext"],
+    "skipLibCheck": true,
+
+    /* Node mode */
+    "moduleResolution": "Node",
+    "allowImportingTsExtensions": false, // 允许导入 tsx 等其他扩展名
+    "emitDeclarationOnly": false, // 输出 .d.ts 不输出 js 文件
+    "noEmit": false, // 不输出文件
+    "resolveJsonModule": true,
+    "isolatedModules": true,
+
+    /* Linting */
+    "strict": false,
+    "noUnusedLocals": false,
+    "noUnusedParameters": false,
+    "noFallthroughCasesInSwitch": false,
+
+    "allowJs": true,
+    "sourceMap": true,
+    "esModuleInterop": true,
+    "baseUrl": "./"
+  },
+  "include": ["./src/**/*.ts"]
+}

@@ -1,0 +1,43 @@
+$device: (
+  "phone": (
+    0px,
+    767px,
+  ),
+  "pad": (
+    768px,
+    1023px,
+  ),
+  "pc": 1024px,
+);
+
+// 添加不同设备下的
+@mixin media-device($deviceType) {
+  // 根据设备类型 deviceType 获取 device 的变量值
+  $size: map-get(
+    $map: $device,
+    $key: $deviceType,
+  );
+
+  // 判断是否为数组类型 sass 中 list 是 js 中数组
+  @if type-of($value: $size) == "list" {
+    // 获取数组中第一项
+    $min: nth(
+      $list: $size,
+      $n: 1,
+    );
+
+    $max: nth(
+      $list: $size,
+      $n: 2,
+    );
+
+    @media screen and (min-width: $min) and (max-width: $max) {
+      @content;
+    }
+  } @else {
+    // 适配不是数组类型而是字符串类型的数据
+    @media screen and (min-width: $size) {
+      @content;
+    }
+  }
+}
