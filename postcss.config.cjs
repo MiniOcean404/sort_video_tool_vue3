@@ -15,7 +15,6 @@ const postcssPresetEnv = require("postcss-preset-env")
 // postcss-flexbugs-fixes：修复 Flexbox 布局的一些 bug。
 //
 
-
 // package.json中添加,来让 babel postcss 识别浏览器版本;
 // "browserslist": {
 //   "production": [
@@ -32,5 +31,12 @@ const postcssPresetEnv = require("postcss-preset-env")
 // }
 
 module.exports = {
-  plugins: [postcssPresetEnv({})],
+  plugins: [
+    postcssPresetEnv({
+      // 解决 PDFjs 中的 css4 :is() 选择器的报错
+      features: {
+        "is-pseudo-class": false,
+      },
+    }),
+  ],
 }

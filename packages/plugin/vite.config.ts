@@ -1,18 +1,16 @@
 import { defineConfig } from "vite"
 import type { UserConfig } from "vite"
-import vue from "@vitejs/plugin-vue"
+import { builtinModules } from "module"
 import dts from "vite-plugin-dts"
 import copyPlugin from "rollup-plugin-copy"
 
 export default defineConfig(() => {
   return {
     build: {
-      // target: "node12",
       minify: false,
-      commonjsOptions: {
-        transformMixedEsModules: true,
-      },
       rollupOptions: {
+        // 解决打包 node 时候 import 无法导入
+        external: [...builtinModules, /^node:/],
         // 输出配置
         output: [
           {
@@ -75,8 +73,5 @@ export default defineConfig(() => {
         tsconfigPath: "./tsconfig.json",
       }),
     ],
-    server: {
-      port: 4000,
-    },
   } satisfies UserConfig
 })

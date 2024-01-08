@@ -1,8 +1,8 @@
 import type { Plugin } from "vite"
-const glob = require("glob")
-const fs = require("fs")
-const vm = require("node:vm")
-const url = require("url")
+import * as glob from "glob"
+import fs from "fs"
+import vm from "vm"
+import url from "url"
 
 const context = {
   // 代码运行上下文
