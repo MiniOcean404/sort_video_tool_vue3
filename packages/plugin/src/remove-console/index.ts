@@ -23,7 +23,13 @@ export const RmoveConsole = (): Plugin => {
 
         const removeLine = includesLines.filter((line) => {
           if (line) {
-            const authorInfo = childProcess.execSync(`git blame -L ${line + 1},${line + 1} --porcelain ${filePath} | ${findStr} "^author "`, {
+            const isCommit = childProcess.execSync(`git status --porcelain ${filePath}`, {
+              encoding: "utf-8",
+            })
+
+            if (isCommit.startsWith("??")) return
+
+            const authorInfo = childProcess.execSync(`git blame -L ${line + 1},${line + 1} --porcelain ${filePath} | ${findStr} "^author"`, {
               encoding: "utf-8",
             })
 
