@@ -3,6 +3,8 @@ import type { UserConfig } from "vite"
 import { builtinModules } from "module"
 import dts from "vite-plugin-dts"
 import copyPlugin from "rollup-plugin-copy"
+import nodeExternals from "rollup-plugin-node-externals"
+import { dependencies } from "./package.json"
 
 export default defineConfig(() => {
   return {
@@ -10,7 +12,7 @@ export default defineConfig(() => {
       minify: false,
       rollupOptions: {
         // 解决打包 node 时候 import 无法导入
-        external: [...builtinModules, /^node:/],
+        external: [...builtinModules, /^node:/, ...Object.keys(dependencies)],
         // 输出配置
         output: [
           {
@@ -53,6 +55,7 @@ export default defineConfig(() => {
           copyPlugin({
             targets: [{ src: "./src/proxy-serve/mock", dest: "./dist" }],
           }),
+          nodeExternals(),
         ],
       },
       lib: {

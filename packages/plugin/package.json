@@ -18,8 +18,10 @@
   "keywords": [],
   "author": "",
   "license": "ISC",
+  "dependencies": {
+    "glob": "^10.3.10"
+  },
   "devDependencies": {
-    "glob": "^10.3.10",
     "rollup-plugin-copy": "^3.5.0",
     "rollup-plugin-node-externals": "^6.1.2"
   },
