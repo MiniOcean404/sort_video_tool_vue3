@@ -164,13 +164,15 @@ async function pickDirsHandle() {
   imgs.map(async (img) => {
     const file = img.file
 
-    let tinyFile = await imageTiny(file, quality.value)
+    setTimeout(async () => {
+      let tinyFile = await imageTiny(file, quality.value)
 
-    img.status = "完成"
-    img.after = formartFileSize(tinyFile.size)
-    img.rate = ((((file.size - tinyFile.size) * 100) / file.size) | 0) + "%"
-    img.file = tinyFile
-    img.compress = true
+      img.status = "完成"
+      img.after = formartFileSize(tinyFile.size)
+      img.rate = ((((file.size - tinyFile.size) * 100) / file.size) | 0) + "%"
+      img.file = tinyFile
+      img.compress = true
+    }, 500)
   })
 }
 

@@ -167,7 +167,7 @@ export default defineConfig((config) => {
       // 而有时候我们想要修改依赖模块的代码，做一些测试或者打个补丁，这时候就要用到强制依赖预构建。
       // 除了这个方法，我们还可以通过删除 .vite 文件夹或运行 npx vite --force 来强制进行依赖预构建。
       force: false, // 强制进行依赖预构建
-      exclude: ["@ffmpeg/ffmpeg", "@ffmpeg/util"],
+      exclude: ["@ffmpeg/ffmpeg", "@ffmpeg/util", "@jsquash/avif", "@jsquash/jpeg", "@jsquash/jxl", "@jsquash/png", "@jsquash/webp"],
     },
     // 热更新时，清空控制台
     clearScreen: true,
