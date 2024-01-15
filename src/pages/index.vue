@@ -2,7 +2,7 @@
 // import Dom2Image from "@/components/Dom2Image/index.vue"
 // import Cover from "@/components/Cover/index.vue"
 // import PDFJS from "@/components/PDFJS/index.vue"
-import ImageCompress from "@/components/ImageCompress/index.vue"
+
 // import { useUserStore } from '@/store/user'
 // const userStore = useUserStore()
 </script>
@@ -13,8 +13,6 @@ import ImageCompress from "@/components/ImageCompress/index.vue"
   <!-- <Dom2Image title="封面制作" :minute="1" :seconds="30"></Dom2Image> -->
   <!-- <Cover type="web" title="局部放大的妙用" desc="剪映 v 1.3.0 版本" :minute="1" :seconds="30"></Cover>
   <GieInput></GieInput> -->
-
-  <ImageCompress></ImageCompress>
 </template>
 
 <style scope lang="scss">

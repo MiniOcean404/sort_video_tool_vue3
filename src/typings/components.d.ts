@@ -9,9 +9,13 @@ declare module 'vue' {
   export interface GlobalComponents {
     Cover: typeof import('./../components/Cover/index.vue')['default']
     Dom2Image: typeof import('./../components/Dom2Image/index.vue')['default']
+    ElButton: typeof import('element-plus/es')['ElButton']
     ImageCompress: typeof import('./../components/ImageCompress/index.vue')['default']
     PDFJS: typeof import('./../components/PDFJS/index.vue')['default']
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']
+  }
+  export interface ComponentCustomProperties {
+    vLoading: typeof import('element-plus/es')['ElLoadingDirective']
   }
 }
