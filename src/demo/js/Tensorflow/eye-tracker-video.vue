@@ -17,7 +17,6 @@ let drawingUtils: vision.DrawingUtils
 let runningMode: "IMAGE" | "VIDEO" = "VIDEO"
 
 let faceLandmarkerResult: FaceLandmarkerResult
-const faceLandmarks = ref<Category[]>([])
 
 const loading = ref(false)
 
