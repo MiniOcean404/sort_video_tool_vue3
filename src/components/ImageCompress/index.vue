@@ -63,7 +63,7 @@
   </div>
 </template>
 
-<script setup lang="ts">
+<script setup lang="ts" name="ImageCompress">
 // 源地址：https://github.com/mxismean/image-tiny-tauri?tab=readme-ov-file
 // wasm 使用的是：libimagequant 是 png24 压缩成 png8 的库，压缩效果很好。libpng 是读取 png 以及生成 png 的库。libjpeg 是读取以及压缩 jpg 的库。gifsicle 是读取以及压缩 gif 的库。
 // 编译地址：https://github.com/skyfish-qc/pngtiny
