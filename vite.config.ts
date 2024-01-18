@@ -147,12 +147,16 @@ export default defineConfig((config) => {
         },
         mozjpeg: {
           // jpeg
-          quality: 20, // 压缩质量，范围从0(最差)到100(最佳)。
+          quality: 65, // 压缩质量，范围从0(最差)到100(最佳)。
         },
         pngquant: {
           // png
-          quality: [0.8, 0.9], // Min和max是介于0(最差)到1(最佳)之间的数字，类似于JPEG。达到或超过最高质量所需的最少量的颜色。如果转换导致质量低于最低质量，图像将不会被保存。
+          quality: [0.65, 0.8], // Min和max是介于0(最差)到1(最佳)之间的数字，类似于JPEG。达到或超过最高质量所需的最少量的颜色。如果转换导致质量低于最低质量，图像将不会被保存。
           speed: 4, // 压缩速度，1(强力)到11(最快)
+        },
+        // 开启 webp，会把 jpg 和 png 图片压缩为 webp 格式
+        webp: {
+          quality: 75,
         },
         svgo: {
           // svg压缩
