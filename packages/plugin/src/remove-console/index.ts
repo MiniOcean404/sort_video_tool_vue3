@@ -33,7 +33,9 @@ export const RmoveConsole = (): Plugin => {
               encoding: "utf-8",
             })
 
-            const author = authorInfo.slice(authorInfo.indexOf(`author `) + 7)
+            const reg = /author (?<author>.*)/
+            const author = reg.exec(authorInfo).groups.author
+
             return ![userName, `Not Committed Yet`].includes(author)
           }
         })

@@ -128,7 +128,7 @@ export default defineConfig((config) => {
           },
         ],
       }),
-      copy({ targets: [{ src: "./node_modules/pdfjs-dist/cmaps/", dest: "./public/" }] }),
+      // copy({ targets: [{ src: "./node_modules/pdfjs-dist/cmaps/", dest: "./public/" }] }),
       viteCompression({
         disable: isServe,
         algorithm: "gzip",
@@ -194,9 +194,10 @@ export default defineConfig((config) => {
       isServe && ProxyServer(),
     ],
     resolve: {
-      dedupe: [], // 未知 强制 Vite 始终将列出的依赖项解析为同一副本
-      conditions: [], // 未知 解决程序包中 情景导出 时的其他允许条件
-      mainFields: [], // 未知 解析包入口点尝试的字段列表
+      // !未知
+      // dedupe: [], // 未知 强制 Vite 始终将列出的依赖项解析为同一副本
+      // conditions: [], // 未知 解决程序包中 情景导出 时的其他允许条件
+      // mainFields: [], // 未知 解析包入口点尝试的字段列表
       //设置别名
       alias: {
         "@": fileURLToPath(new URL("./src", import.meta.url)),
@@ -206,16 +207,11 @@ export default defineConfig((config) => {
 
     server: {
       open: false,
-      force: false, // 强制使依赖预构建
       host: "127.0.0.1", // 指定服务器应该监听哪个 IP 地址
       strictPort: false, // 若端口已被占用则会直接退出
       port: 3000, //启动端口
       cors: true, // 配置 CORS 跨域
       middlewareMode: false, // 以中间件模式创建 Vite 服务器
-      // 传递给 chokidar 的文件系统监听器选项
-      watch: {
-        cwd: process.cwd(),
-      },
       hmr: {
         host: "127.0.0.1",
         port: 3000,
@@ -236,12 +232,12 @@ export default defineConfig((config) => {
           rewrite: (pathStr) => pathStr.replace(/^\/api/, ""),
         },
       },
-      fs: {
-        strict: true, // 限制为工作区 root 路径以外的文件的访问
-        allow: [], // 限制哪些文件可以通过 /@fs/ 路径提供服务
-        deny: [".env", ".env.*", "*.{pem,crt}"], // 用于限制 Vite 开发服务器提供敏感文件的黑名单
-      },
-      origin: "http://127.0.0.1:8080/", // 用于定义开发调试阶段生成资源的 origin
+      // fs: {
+      //   strict: true, // 限制为工作区 root 路径以外的文件的访问
+      //   allow: [], // 限制哪些文件可以通过 /@fs/ 路径提供服务
+      //   deny: [".env", ".env.*", "*.{pem,crt}"], // 用于限制 Vite 开发服务器提供敏感文件的黑名单
+      // },
+      origin: "http://127.0.0.1:8080", // 用于定义开发调试阶段生成资源的 origin
     },
     // minify 指定为 esbuild 时可用
     esbuild: {
@@ -260,7 +256,7 @@ export default defineConfig((config) => {
       emptyOutDir: true, // 构建时清空目录
       chunkSizeWarningLimit: 500,
       assetsInlineLimit: 4096, // 图片转 base64 编码的阈值
-      polyfillModulePreload: true, // 是否自动注入 module preload 的 polyfill
+      modulePreload: { polyfill: true }, // 是否自动注入 module preload 的 polyfill
       reportCompressedSize: false, // 启用/禁用 gzip 压缩大小报告
       sourcemap: isServe, // 构建后是否生成 source map 文件。如果为 true，将会创建一个独立的 source map 文件。
       manifest: false, // 当设置为 true，构建后将会生成 manifest.json 文件

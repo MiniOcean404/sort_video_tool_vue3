@@ -1,5 +1,5 @@
 <template>
-  <div class="main" @dragenter="dragenterEvent" @dragover="dragoverEvent" @dragleave="dragleaveEvent" @drop="dropEvent">
+  <div class="main" @dragenter="dragenterEvent" @dragover="dragoverEvent" @dragleave="dragleaveEvent" @drop="dropDirEvent">
     <!-- 头部 -->
     <div class="header">
       <div>名称</div>
@@ -108,61 +108,76 @@ function dragleaveEvent(event: Event) {
   console.log("leave:事件在拖动的元素或选中的文本离开一个有效的放置目标时被触发")
 }
 
-// 开始压缩
+// 选择图片文件
 async function dropEvent(event: DragEvent) {
   event.preventDefault()
   console.log("drop:事件在元素或文本选择被[放置]到有效的放置目标上时触发")
-  console.log(2)
 
   const files = event.dataTransfer!.files
 
   for (let i = 0; i < files.length; i++) {
     const file = files.item(i)
 
-    if (file && file.type.includes("image")) {
-      imgs.push({
-        name: file.name,
-        path: file.name,
-        before: formartFileSize(file!.size),
-        status: "压缩中...",
-        file: file,
-        compress: false,
-      })
-    }
+    file && joinImages(file, file?.name)
   }
 
-  imgs.map(async (img) => {
-    const file = img.file
-
-    let tinyFile = await imageTiny(file, quality.value)
-
-    img.status = "完成"
-    img.after = formartFileSize(tinyFile.size)
-    img.rate = ((((file.size - tinyFile.size) * 100) / file.size) | 0) + "%"
-    img.file = tinyFile
-    img.compress = true
-  })
+  startCompress()
 }
 
+// 拖拽选择文件夹的时候的处理
+async function dropDirEvent(event: DragEvent) {
+  event.preventDefault()
+  console.log("drop:事件在元素或文本选择被[放置]到有效的放置目标上时触发")
+
+  let items = event.dataTransfer?.items || []
+
+  for (let i = 0; i <= items.length - 1; i++) {
+    let item = items[i]
+
+    let handle = (await item.getAsFileSystemHandle()) as FileSystemDirectoryHandle
+
+    if (handle.kind === "directory") {
+      const { files } = await pickDirs(handle)
+
+      await Promise.all(
+        files.map(async (f) => {
+          const file = (await f.handle.getFile(f.handle.name)) as File
+          joinImages(file, f.path || "")
+          startCompress()
+        }),
+      )
+    }
+  }
+}
+
+// 手动选择文件夹
 async function pickDirsHandle() {
-  const { files } = await pickDirs()
+  const dir = await showDirectoryPicker({ mode: "read" })
+  const { files } = await pickDirs(dir)
+
   await Promise.all(
     files.map(async (f) => {
-      const file = await f.handle.getFile(f.handle.name)
-
-      if (file instanceof File) {
-        imgs.push({
-          name: file.name,
-          path: f.path || "",
-          file,
-          before: formartFileSize(file!.size),
-          status: "压缩中...",
-          compress: false,
-        })
-      }
+      const file = (await f.handle.getFile(f.handle.name)) as File
+      joinImages(file, f.path || "")
+      startCompress()
     }),
   )
+}
 
+function joinImages(file: File, path: string) {
+  if (file instanceof File && file.type.includes("image")) {
+    imgs.push({
+      name: file.name,
+      path: path,
+      file,
+      before: formartFileSize(file!.size),
+      status: "压缩中...",
+      compress: false,
+    })
+  }
+}
+
+function startCompress() {
   imgs.map(async (img) => {
     const file = img.file
 

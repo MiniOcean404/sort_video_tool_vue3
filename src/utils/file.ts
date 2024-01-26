@@ -1,4 +1,4 @@
-interface FileTreeStruct {
+export interface FileTreeStruct {
   handle: FileSystemDirectoryHandle | FileSystemFileHandle
   path?: string
   dir?: string
@@ -6,8 +6,7 @@ interface FileTreeStruct {
 }
 
 // 获取目录结构
-export async function pickDirs(): Promise<{ tree: FileTreeStruct | undefined; files: FileTreeStruct[] }> {
-  const dir = await showDirectoryPicker({ mode: "read" })
+export async function pickDirs(dir: FileSystemDirectoryHandle): Promise<{ tree: FileTreeStruct | undefined; files: FileTreeStruct[] }> {
   const files: FileTreeStruct[] = []
 
   const processHandle = async (handle: FileSystemDirectoryHandle | FileSystemFileHandle, parentPath: string = ".") => {
