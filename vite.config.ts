@@ -19,11 +19,12 @@ import { viteCommonjs } from "@originjs/vite-plugin-commonjs"
 import envInject from "vite-plugin-env-compatible"
 import copy from "rollup-plugin-copy"
 
-import Inspect from "vite-plugin-inspect"
 import viteCompression from "vite-plugin-compression"
 import viteImagemin from "vite-plugin-imagemin"
 import { Plugin as importToCDN } from "vite-plugin-cdn-import"
+import Inspect from "vite-plugin-inspect"
 import ViteRestart from "vite-plugin-restart"
+import { CodeInspectorPlugin } from "code-inspector-plugin"
 
 import { visualizer } from "rollup-plugin-visualizer"
 
@@ -114,6 +115,7 @@ export default defineConfig((config) => {
       viteCommonjs(),
       // vite将 env 暴露给import.meta.env.PREFIX_XXX，但不会像 vue-cli 或 create-react-app 那样加载到 process.env
       envInject({}),
+      CodeInspectorPlugin({ bundler: "vite" }),
       // 修改文件自动重启服务
       ViteRestart({
         restart: [".env.*", "vite.config.[jt]s"],
