@@ -239,7 +239,7 @@ export default defineConfig((config) => {
       //   allow: [], // 限制哪些文件可以通过 /@fs/ 路径提供服务
       //   deny: [".env", ".env.*", "*.{pem,crt}"], // 用于限制 Vite 开发服务器提供敏感文件的黑名单
       // },
-      origin: "http://127.0.0.1:8080", // 用于定义开发调试阶段生成资源的 origin
+      // origin: "http://127.0.0.1:8080", // 用于定义开发调试阶段 导入资源的文件地址 包括 @ 导入的 origin
     },
     // minify 指定为 esbuild 时可用
     esbuild: {
