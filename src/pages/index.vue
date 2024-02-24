@@ -2,10 +2,12 @@
 // import Dom2Image from "@/components/Dom2Image/index.vue"
 // import Cover from "@/components/Cover/index.vue"
 // import PDFJS from "@/components/PDFJS/index.vue"
-import TransitionsAPI from "@/demo/js/TransitionsAPI/index.vue"
+// import TransitionsAPI from "@/demo/js/TransitionsAPI/index.vue"
 
 // import { useUserStore } from '@/store/user'
 // const userStore = useUserStore()
+
+import WebmDuration from "@/demo/js/WebmDuration/index.vue"
 </script>
 
 <template>
@@ -15,7 +17,9 @@ import TransitionsAPI from "@/demo/js/TransitionsAPI/index.vue"
   <!-- <Cover type="web" title="局部放大的妙用" desc="剪映 v 1.3.0 版本" :minute="1" :seconds="30"></Cover>
   <GieInput></GieInput> -->
 
-  <TransitionsAPI></TransitionsAPI>
+  <!-- <TransitionsAPI></TransitionsAPI> -->
+
+  <WebmDuration></WebmDuration>
 </template>
 
 <style scope lang="scss">
