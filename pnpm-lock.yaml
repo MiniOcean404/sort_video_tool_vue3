@@ -92,6 +92,9 @@ importers:
       gsap:
         specifier: ^3.12.5
         version: 3.12.5
+      gsap-trial:
+        specifier: ^3.12.5
+        version: 3.12.5
       html-to-image:
         specifier: ^1.11.11
         version: 1.11.11
@@ -110,6 +113,9 @@ importers:
       pinyin:
         specifier: 3.1.0
         version: 3.1.0
+      scrolly-video:
+        specifier: ^0.0.16
+        version: 0.0.16
       socket.io-client:
         specifier: ^4.7.2
         version: 4.7.2
@@ -5338,6 +5344,10 @@ packages:
   /graceful-fs@4.2.11:
     resolution: {integrity: sha512-RbJ5/jmFcNNCcDV5o9eTnBLJ/HszWV0P73bc+Ff4nS/rJj+YaS6IGyiOL0VoBYX+l1Wrl3k63h/KrH+nhJ0XvQ==}
 
+  /gsap-trial@3.12.5:
+    resolution: {integrity: sha512-Mdq2sLBq6rt9qje/MoF/hRa/xKfvKOUdllPouU2Fhz1K6mpCk0SOGBDhxCrOrJXZ4O7YFFRFVADKIJVeHdKA8A==}
+    dev: false
+
   /gsap@3.12.5:
     resolution: {integrity: sha512-srBfnk4n+Oe/ZnMIOXt3gT605BX9x5+rh/prT2F1SsNJsU1XuMiP0E2aptW481OnonOGACZWBqseH5Z7csHxhQ==}
     dev: false
@@ -6732,6 +6742,10 @@ packages:
       bin-build: 3.0.0
       bin-wrapper: 4.1.0
     dev: true
+
+  /mp4box@0.4.9:
+    resolution: {integrity: sha512-APZb4ZaCBBXdyxA9nXF5lVb/xc2OPRWbnxwlHOn7tXxiBVchpLUl+nZMF52MLLv0oESnZBSy5qnDj9sRE9LCoQ==}
+    dev: false
 
   /mrmime@2.0.0:
     resolution: {integrity: sha512-eu38+hdgojoyq63s+yTpN4XMBdt5l8HhMhc4VKLO9KM5caLIBvUm4thi7fFaxyTmCKeNnXZ5pAlBwCUnhA09uw==}
@@ -8314,6 +8328,13 @@ packages:
       xmlchars: 2.2.0
     dev: false
     optional: true
+
+  /scrolly-video@0.0.16:
+    resolution: {integrity: sha512-3NE+V0z8HbMuafyWcqPHbg/5+rzwrmqS8+mAYUTb7Cgiea8EALFadaYvlRLrEVR8Fg7Rn6Q8M9tqWib++WfQ0A==}
+    dependencies:
+      mp4box: 0.4.9
+      ua-parser-js: 1.0.37
+    dev: false
 
   /scule@1.2.0:
     resolution: {integrity: sha512-CRCmi5zHQnSoeCik9565PONMg0kfkvYmcSqrbOJY4txFfy1wvVULV4FDaiXhUblUgahdqz3F2NwHZ8i4eBTwUw==}

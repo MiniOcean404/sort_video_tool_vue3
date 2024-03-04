@@ -115,7 +115,7 @@ export default defineConfig((config) => {
       viteCommonjs(),
       // vite将 env 暴露给import.meta.env.PREFIX_XXX，但不会像 vue-cli 或 create-react-app 那样加载到 process.env
       envInject({}),
-      CodeInspectorPlugin({ bundler: "vite" }),
+      // CodeInspectorPlugin({ bundler: "vite" }),
       // 修改文件自动重启服务
       ViteRestart({
         restart: [".env.*", "vite.config.[jt]s"],
@@ -225,7 +225,8 @@ export default defineConfig((config) => {
       headers: {
         // 如果需要用到ffmpeg合并视频，需要将 COEP 和 COOP 打开，来确保 ShareArrayBuffer 能够正常使用
         "Cross-Origin-Embedder-Policy": "require-corp",
-        "Cross-Origin-Opener-Policy": "same-origin",
+        // "Cross-Origin-Opener-Policy": "same-origin",
+        "Cross-Origin-Opener-Policy": "cross-origin",
       },
       proxy: {
         "/api": {
