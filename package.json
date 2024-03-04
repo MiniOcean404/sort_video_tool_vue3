@@ -38,6 +38,7 @@
     "dayjs": "^1.11.10",
     "element-plus": "^2.4.4",
     "fabric": "5.3.0",
+    "gsap": "^3.12.5",
     "html-to-image": "^1.11.11",
     "jszip": "^3.10.1",
     "nanoid": "^5.0.4",
@@ -82,9 +83,9 @@
     "vite-plugin-compression": "^0.5.1",
     "vite-plugin-dts": "^3.6.4",
     "vite-plugin-env-compatible": "^2.0.1",
+    "vite-plugin-imagemin": "^0.6.1",
     "vite-plugin-inspect": "^0.8.1",
     "vite-plugin-restart": "^0.4.0",
-    "vite-plugin-imagemin": "^0.6.1",
     "vite-plugin-svg-icons": "^2.0.1",
     "vue-tsc": "^1.8.26"
   },

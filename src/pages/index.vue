@@ -3,11 +3,10 @@
 // import Cover from "@/components/Cover/index.vue"
 // import PDFJS from "@/components/PDFJS/index.vue"
 // import TransitionsAPI from "@/demo/js/TransitionsAPI/index.vue"
+import GsapScroll from "@/demo/js/GsapScroll/index.vue"
 
 // import { useUserStore } from '@/store/user'
 // const userStore = useUserStore()
-
-import WebmDuration from "@/demo/js/WebmDuration/index.vue"
 </script>
 
 <template>
@@ -18,8 +17,7 @@ import WebmDuration from "@/demo/js/WebmDuration/index.vue"
   <GieInput></GieInput> -->
 
   <!-- <TransitionsAPI></TransitionsAPI> -->
-
-  <WebmDuration></WebmDuration>
+  <GsapScroll></GsapScroll>
 </template>
 
 <style scope lang="scss">
