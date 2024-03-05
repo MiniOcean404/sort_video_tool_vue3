@@ -1,5 +1,6 @@
 <template>
   <div class="video-player-box">
+    <video @loadedmetadata="load" class="macpro_video" :src="link" style="width: 100%" muted></video>
     <!-- <video
       @loadedmetadata="load"
       class="macpro_video"
@@ -7,13 +8,13 @@
       style="width: 100%"
       muted
     ></video> -->
-    <video
+    <!-- <video
       @loadedmetadata="load"
       class="macpro_video"
       src="http://nice.zuo11.com/5-airpods-pro-play-video-on-scroll/demo-1-devstories/devstories.webm"
       style="width: 100%"
       muted
-    ></video>
+    ></video> -->
   </div>
 </template>
 
@@ -21,13 +22,21 @@
 import { gsap } from "gsap"
 // import ScrollyVideo from "scrolly-video/dist/ScrollyVideo.vue"
 
+const link = ref("")
+
+onMounted(async () => {
+  const res = await fetch("https://www.apple.com/media/us/mac-pro/2013/16C1b6b5-1d91-4fef-891e-ff2fc1c1bb58/videos/macpro_main_desktop.mp4", {})
+
+  link.value = URL.createObjectURL(await res.blob())
+})
+
 // 加载完后才能加载别的 gsap
 function load() {
   let videoEl = document.querySelector(".macpro_video") as HTMLVideoElement
   const pixelsPerFrame = 20 // 每滚动20像素切换一帧视频
 
   const duration = videoEl.duration // 视频总时长
-  const frameCount = duration * 10 // 视频的总帧数
+  const frameCount = duration * 1 // 视频的总帧数
   const distance = frameCount * pixelsPerFrame // 计算总的滚动距离
 
   gsap.timeline({
