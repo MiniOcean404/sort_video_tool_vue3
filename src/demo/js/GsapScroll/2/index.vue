@@ -1,9 +1,16 @@
 <template>
   <div class="video-player-box">
+    <!-- <video
+      @loadedmetadata="load"
+      class="macpro_video"
+      src="http://nice.zuo11.com/5-airpods-pro-play-video-on-scroll/airpods-pro.webm"
+      style="width: 100%"
+      muted
+    ></video> -->
     <video
       @loadedmetadata="load"
       class="macpro_video"
-      src="https://www.apple.com/media/us/mac-pro/2013/16C1b6b5-1d91-4fef-891e-ff2fc1c1bb58/videos/macpro_main_desktop.mp4"
+      src="http://nice.zuo11.com/5-airpods-pro-play-video-on-scroll/demo-1-devstories/devstories.webm"
       style="width: 100%"
       muted
     ></video>
@@ -34,6 +41,8 @@ function load() {
       end: `+=${distance}`,
       scrub: 0,
       onUpdate: (self) => {
+        console.log(videoEl.buffered.end(0))
+
         // 获取当前滚动位置
         const scrollY = self.progress * distance
 

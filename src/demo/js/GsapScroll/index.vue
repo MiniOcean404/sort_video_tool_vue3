@@ -1,12 +1,12 @@
 <template>
   <div class="container">
     <SwitchPhone></SwitchPhone>
+    <!-- <AirPodsImagePlayer></AirPodsImagePlayer> -->
 
     <section class="wapper">
       <MacbookProChip></MacbookProChip>
       <MacProVideoPlayer></MacProVideoPlayer>
 
-      <!-- <AirPodsImagePlayer></AirPodsImagePlayer> -->
       <GsapBaseDemo></GsapBaseDemo>
     </section>
   </div>

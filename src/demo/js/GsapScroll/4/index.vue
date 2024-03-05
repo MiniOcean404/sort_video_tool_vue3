@@ -7,10 +7,10 @@
 <script setup lang="ts">
 onMounted(() => {
   const html = document.documentElement
-  const canvas = document.getElementById("hero-lightpass")
+  const canvas = document.getElementById("hero-lightpass")! as HTMLCanvasElement
   const context = canvas.getContext("2d")
   const frameCount = 148
-  const currentFrame = (index) => {
+  const currentFrame = (index: number) => {
     console.log(index, index.toString(), index.toString().padStart(4, "0"))
     // 1 '1' '0001'
     // 13 '13' '0013'
@@ -32,12 +32,12 @@ onMounted(() => {
   canvas.width = 1158
   canvas.height = 770
   img.onload = function () {
-    context.drawImage(img, 0, 0)
+    context?.drawImage(img, 0, 0)
   }
 
-  const updateImage = (index) => {
+  const updateImage = (index: number) => {
     img.src = currentFrame(index)
-    context.drawImage(img, 0, 0)
+    context?.drawImage(img, 0, 0)
   }
 
   window.addEventListener("scroll", () => {
