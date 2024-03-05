@@ -1,8 +1,12 @@
 <template>
   <div class="video-player-box">
-    <!-- src="https://www.apple.com/media/us/mac-pro/2013/16C1b6b5-1d91-4fef-891e-ff2fc1c1bb58/videos/macpro_main_desktop.mp4" -->
-    <!-- <ScrollyVideo :src="video_url" debug="true" :full="false" /> -->
-    <video @loadedmetadata="load" class="macpro_video" src="./goldengate.mp4" style="width: 100%" muted></video>
+    <video
+      @loadedmetadata="load"
+      class="macpro_video"
+      src="https://www.apple.com/media/us/mac-pro/2013/16C1b6b5-1d91-4fef-891e-ff2fc1c1bb58/videos/macpro_main_desktop.mp4"
+      style="width: 100%"
+      muted
+    ></video>
   </div>
 </template>
 

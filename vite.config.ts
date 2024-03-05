@@ -192,8 +192,8 @@ export default defineConfig((config) => {
       // 检查Vite插件的中间状态。对于调试和创作插件很有用。
       Inspect(),
       // isServe && RmoveConsole(),
-      isServe && filePathInject(),
-      isServe && ProxyServer(),
+      // isServe && filePathInject(),
+      // isServe && ProxyServer(),
     ],
     resolve: {
       // !未知
@@ -223,10 +223,10 @@ export default defineConfig((config) => {
       //   cert: fs.readFileSync(`${__dirname}/config/https/pem/mkcert.pem`),
       // },
       headers: {
-        // 如果需要用到ffmpeg合并视频，需要将 COEP 和 COOP 打开，来确保 ShareArrayBuffer 能够正常使用
-        "Cross-Origin-Embedder-Policy": "require-corp",
+        // 如果需要用到 ffmpeg 合并视频，需要将 COEP 和 COOP 打开，来确保 ShareArrayBuffer 能够正常使用
+        // 但是这会影响跨域资源视频、图片的使用
+        // "Cross-Origin-Embedder-Policy": "require-corp",
         // "Cross-Origin-Opener-Policy": "same-origin",
-        "Cross-Origin-Opener-Policy": "cross-origin",
       },
       proxy: {
         "/api": {
