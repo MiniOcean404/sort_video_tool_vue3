@@ -218,10 +218,10 @@ export default defineConfig((config) => {
         host: "127.0.0.1",
         port: 3000,
       },
-      https: {
-        key: fs.readFileSync(`${__dirname}/config/https/pem/mkcert-key.pem`),
-        cert: fs.readFileSync(`${__dirname}/config/https/pem/mkcert.pem`),
-      },
+      // https: {
+      //   key: fs.readFileSync(`${__dirname}/config/https/pem/mkcert-key.pem`),
+      //   cert: fs.readFileSync(`${__dirname}/config/https/pem/mkcert.pem`),
+      // },
       headers: {
         // 如果需要用到ffmpeg合并视频，需要将 COEP 和 COOP 打开，来确保 ShareArrayBuffer 能够正常使用
         "Cross-Origin-Embedder-Policy": "require-corp",
