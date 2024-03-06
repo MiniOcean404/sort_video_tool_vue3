@@ -1,8 +1,8 @@
 <template>
   <div class="find_x3_box">
     <!-- <p style="padding: 0 40px 85px 10px">Part5: 包装</p> -->
-    <section @mousemove="mouseShake" class="section-5">
-      <img class="bg" src="./assets/section-5-bg.jpg" />
+    <section @mousemove="mouseShake" class="shake_box">
+      <img class="shake_bg" src="./assets/section-5-bg.jpg" />
       <div class="wrap-main">
         <img src="./assets/section-5-1.png" />
         <img src="./assets/section-5-2.png" />
@@ -190,17 +190,16 @@ function mouseShake(e) {
 }
 
 onMounted(() => {
-  bgEl = document.querySelector(".bg")
+  bgEl = document.querySelector(".shake_bg")
   img1 = document.querySelector(".wrap-main img:nth-child(1)")
   img2 = document.querySelector(".wrap-main img:nth-child(2)")
   img3 = document.querySelector(".wrap-main img:nth-child(3)")
   img4 = document.querySelector(".wrap-main img:nth-child(4)")
 
-  gsap.registerPlugin(ScrollTrigger)
-  gsap.to(".section-5", {
+  gsap.to(".shake_box", {
     opacity: 1,
     scrollTrigger: {
-      trigger: ".section-5",
+      trigger: ".shake_box",
       toggleClass: "active", // 滚动时上下动画
       end: "+30",
       scrub: true, // 表示动画可以重复执行改成false表示只执行一次
@@ -208,19 +207,6 @@ onMounted(() => {
       // pin: false, // 动画执行期间，页面不进行滚动，动画执行结束后
     },
   })
-
-  // 时间轴测试
-  //   let tl = gsap.timeline({
-  //     scrollTrigger: {
-  //       trigger: ".section-6-2",
-  //       start: "top 200px",
-  //       end: "+150",
-  //       scrub: true,
-  //       markers: true,
-  //     },
-  //   });
-  //   tl.to(".bg-mask", { opacity: 1 });
-  //   tl.to(".section-6-2-main", { opacity: 1 }); // scrollTrigger 已指定，怎么让这个动画修改对象的属性
 
   // section-6 第二个盖住第三个，核心是，第二个 margin-top: -100vh;
   // fix 在 .gb-mask 结束遮罩 onLeave 钩子中 gsap.to 使用 pin 时，动画回放后再次执行 pin 位置异常问题
@@ -233,7 +219,7 @@ onMounted(() => {
     pin: ".section-6-2",
   })
 
-  gsap.to(".bg-mask", {
+  gsap.to(".shake_bg-mask", {
     opacity: 1,
     scrollTrigger: {
       trigger: ".section-6-2",
@@ -356,26 +342,30 @@ onMounted(() => {
   overflow-x: hidden;
 }
 
-.bg {
-  z-index: 0;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  transform: scale(1.2);
-}
-.section-5 img {
-  position: absolute;
-}
-.section-5 {
+.shake_box {
   position: relative;
   width: 100%;
   min-width: 1000px;
   height: 800px;
   overflow: hidden;
+
+  .shake_bg {
+    z-index: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transform: scale(1.2);
+  }
+
+  img {
+    position: absolute;
+  }
+
+  &.active .wrap-main {
+    transform: translate(-50%, -50%);
+  }
 }
-.section-5.active .wrap-main {
-  transform: translate(-50%, -50%);
-}
+
 .wrap-main {
   top: 50%;
   left: 50%;
