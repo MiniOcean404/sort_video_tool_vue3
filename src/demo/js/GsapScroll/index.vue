@@ -1,11 +1,12 @@
 <template>
   <div class="container">
+    <OppoFindX3></OppoFindX3>
+    <!--
     <SwitchPhone></SwitchPhone>
 
     <MacbookProChip></MacbookProChip>
     <MacProVideoPlayer></MacProVideoPlayer>
-
-    <GsapBaseDemo></GsapBaseDemo>
+    <GsapBaseDemo></GsapBaseDemo> -->
   </div>
 </template>
 
@@ -18,6 +19,7 @@
 import SwitchPhone from "./1/index.vue"
 import MacProVideoPlayer from "./2/index.vue"
 import GsapBaseDemo from "./3/index.vue"
+import OppoFindX3 from "./4/index.vue"
 import MacbookProChip from "./5/index.vue"
 
 import { gsap } from "gsap"
