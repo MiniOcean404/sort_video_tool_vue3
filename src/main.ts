@@ -6,7 +6,7 @@ import store from "@/store"
 import { isMobile } from "@/utils/ua"
 import eruda from "eruda"
 
-if (process.env.NODE_ENV === "development" && isMobile()) eruda.init({ defaults: { theme: "Monokai Pro", displaySize: 50 } })
+if (process.env.NODE_ENV === "development" && isMobile()) eruda.init({ defaults: { theme: "Atom One Dark", displaySize: 100 } })
 
 // 创建vue实例
 const app = createApp(App)

@@ -1,14 +1,11 @@
 <template>
   <div class="container">
     <SwitchPhone></SwitchPhone>
-    <!-- <AirPodsImagePlayer></AirPodsImagePlayer> -->
 
-    <section class="wapper">
-      <MacbookProChip></MacbookProChip>
-      <MacProVideoPlayer></MacProVideoPlayer>
+    <MacbookProChip></MacbookProChip>
+    <MacProVideoPlayer></MacProVideoPlayer>
 
-      <GsapBaseDemo></GsapBaseDemo>
-    </section>
+    <GsapBaseDemo></GsapBaseDemo>
   </div>
 </template>
 
@@ -20,7 +17,6 @@
 
 import SwitchPhone from "./1/index.vue"
 import MacProVideoPlayer from "./2/index.vue"
-import AirPodsImagePlayer from "./4/index.vue"
 import GsapBaseDemo from "./3/index.vue"
 import MacbookProChip from "./5/index.vue"
 
