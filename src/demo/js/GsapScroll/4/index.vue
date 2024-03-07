@@ -12,8 +12,8 @@
     </section>
 
     <!-- Part6 - 第一个场景 -->
-    <section id="section-6-1" style="margin-top: 80px">
-      <div class="g--container">
+    <section id="linear-phone" style="margin-top: 80px">
+      <div>
         <div class="comp-inner">
           <div class="title comp-angle-block-fade-in fade-in">全面了解色彩影像旗舰</div>
           <div class="detail comp-angle-block-fade-in fade-in">
@@ -32,9 +32,9 @@
     </section>
 
     <!-- Part6: 第二个场景 -->
-    <section class="section-6-2" style="position: relative; margin-top: -620px; height: 100vh; min-height: 500px">
+    <section class="new_word" style="position: relative; margin-top: -620px; height: 100vh; min-height: 500px">
       <!-- 背景遮罩上一层，图片，先隐藏，等 1 结束后，再显示  -->
-      <div class="section-6-2-main" style="opacity: 0; z-index: 2; position: relative">
+      <div class="new_word-main" style="opacity: 0; z-index: 2; position: relative">
         <!-- 文本区域-->
         <div
           class="comp-border-text text-block"
@@ -53,7 +53,7 @@
           </div>
         </div>
         <!-- <div class="mask" style="opacity: 1"></div> -->
-        <img class="section-6-2-bg" src="./assets/section-6-2.jpg" />
+        <img class="new_word-bg" src="./assets/section-6-2.jpg" />
       </div>
 
       <!-- 背景遮罩 -->
@@ -70,8 +70,8 @@
         </div>
       </div>
 
-      <div class="section-63">
-        <div class="section-63-a">
+      <div class="area-3-4-box">
+        <div class="phone-camera">
           <div class="s63-a-btns">
             <div class="active">超广角</div>
             <div>显微镜</div>
@@ -110,7 +110,7 @@
           </div>
           <img class="sec-bg" src="./assets/section6-3-1-camera.png" />
         </div>
-        <div class="section-63-b">
+        <div class="phone-params">
           <div class="text-view">
             <div class="title comp-angle-block-fade-in-left fade-in">10 亿色臻彩屏，</div>
             <div class="title comp-angle-block-fade-in-left fade-in">震撼色彩，流畅奔涌</div>
@@ -144,8 +144,6 @@
           </div>
           <img class="sec-bg" src="./assets/section6-3-2-hvga.png" />
         </div>
-        <div class="section-63-c"></div>
-        <div class="section-63-d"></div>
       </div>
     </section>
   </div>
@@ -156,55 +154,26 @@
 import gsap from "gsap"
 import ScrollTrigger from "gsap/ScrollTrigger"
 
-let bgEl
-let img1
-let img2
-let img3
-let img4
-
-function mouseShake(e) {
-  // 鼠标相对页面的位置
-  let x = e.pageX
-  let y = e.pageY
-  // section-2 容器相对视口位置
-  let parentX = bgEl.offsetLeft
-  let parentY = bgEl.offsetTop
-  let isYOut = y < parentY || y > parentY + bgEl.clientHeight
-  let isXOut = x < parentX || x > parentX + bgEl.clientWidth
-  if (isXOut || isYOut) {
-    // console.log("移出去了");
-    return
-  }
-  console.log(x - parentX, y - parentY)
-  // 鼠标从左到右 x 偏移 20px => -20px，鼠标位置(x) 0 => 视口宽度(w)，得出公式：20 - (40*(x/w))
-  // 鼠标从上到下 y 偏移 2px => -2px, 鼠标位置(y) 0 => 视口高度(h)，得出公式：2 - (4*(y/h))
-  let mouseX = x - parentX
-  let mouseY = y - parentY
-  img1.style.transform = `translate(${20 - 40 * (mouseX / screen.width)}px,${4 - 8 * (mouseY / screen.height)}px)`
-  img2.style.transform = `translate(${28 - 56 * (mouseX / screen.width)}px,${6 - 12 * (mouseY / screen.height)}px)`
-  img3.style.transform = `translateX(${30 - 60 * (mouseX / screen.width)}px`
-  // 鼠标从左到右， -14px => 14px，鼠标位置(x) 0 => 视口宽度(w)，-14 + (28*(x/w))
-  // 鼠标从上到下 y 偏移 -2px => 2px, 鼠标位置(y) 0 => 视口高度(h)，得出公式：-2 + (4*(y/h))
-  img4.style.transform = `translate(${-30 + 60 * (mouseX / screen.width)}px,${-6 + 12 * (mouseY / screen.height)}px)`
-  bgEl.style.transform = `scale(1.2) translate(${-8 + 16 * (mouseX / screen.width)}px,${-2 + 4 * (mouseY / screen.height)}px)`
-}
+let shake_bg_el: HTMLDivElement | null
+let img1: HTMLDivElement | null
+let img2: HTMLDivElement | null
+let img3: HTMLDivElement | null
+let img4: HTMLDivElement | null
 
 onMounted(() => {
-  bgEl = document.querySelector(".shake_bg")
+  shake_bg_el = document.querySelector(".shake_bg")
   img1 = document.querySelector(".wrap-main img:nth-child(1)")
   img2 = document.querySelector(".wrap-main img:nth-child(2)")
   img3 = document.querySelector(".wrap-main img:nth-child(3)")
   img4 = document.querySelector(".wrap-main img:nth-child(4)")
 
+  // 添加来回滚动的激活动画
   gsap.to(".shake_box", {
-    opacity: 1,
     scrollTrigger: {
       trigger: ".shake_box",
       toggleClass: "active", // 滚动时上下动画
       end: "+30",
       scrub: true, // 表示动画可以重复执行改成false表示只执行一次
-      // markers: true, // 绘制开始位置和结束位置的线条
-      // pin: false, // 动画执行期间，页面不进行滚动，动画执行结束后
     },
   })
 
@@ -213,27 +182,26 @@ onMounted(() => {
   // 参考：https://codepen.io/GreenSock/pen/YzXdbQo
 
   ScrollTrigger.create({
-    trigger: ".section-6-2",
+    trigger: ".new_word",
     start: "top top",
-    end: "bottom top", // 200px past the start
-    pin: ".section-6-2",
+    end: "bottom top",
+    pin: ".new_word",
+    pinType: "fixed",
   })
 
-  gsap.to(".shake_bg-mask", {
+  gsap.to(".bg-mask", {
     opacity: 1,
     scrollTrigger: {
-      trigger: ".section-6-2",
+      trigger: ".new_word",
       start: "top 200px",
-      markers: true,
       end: "+200 top",
       scrub: true, // 表示动画可以重复执行改成false表示只执行一次
-      //   markers: true, // 绘制开始位置和结束位置的线条
       onEnterBack() {},
       onLeave() {
-        gsap.to(".section-6-2-main", {
+        gsap.to(".new_word-main", {
           opacity: 1,
           scrollTrigger: {
-            trigger: ".section-6-2",
+            trigger: ".new_word",
             start: "top top",
             scrub: true, // 表示动画可以重复执行改成false表示只执行一次
             // markers: true, // 绘制开始位置和结束位置的线条
@@ -260,7 +228,7 @@ onMounted(() => {
       el.style.transform = `translateX(-102px) rotate(${(i + 1) * 1.5}deg)`
       fragment.appendChild(el)
     }
-    let parentEl = document.querySelector(`.s63-a-sec${type} .sec-circle-scale`)
+    let parentEl = document.querySelector(`.s63-a-sec${type} .sec-circle-scale`) as HTMLDivElement
     parentEl.append(fragment)
   }
   gsap.to(".section-6-3", {
@@ -283,8 +251,8 @@ onMounted(() => {
     },
   })
 
-  const cameraABtn = document.querySelector(".s63-a-btns div:nth-child(1)")
-  const cameraBBtn = document.querySelector(".s63-a-btns div:nth-child(2)")
+  const cameraABtn = document.querySelector(".s63-a-btns div:nth-child(1)") as HTMLDivElement
+  const cameraBBtn = document.querySelector(".s63-a-btns div:nth-child(2)") as HTMLDivElement
   cameraABtn.addEventListener("click", (e) => {
     // 切换 active
     document.querySelectorAll(".s63-a-btns div").forEach((item) => item.classList.remove("active"))
@@ -307,7 +275,7 @@ onMounted(() => {
   })
 
   /* 场景切换 gsap 固定页面 + clip-path */
-  gsap.to(".section-63-b", {
+  gsap.to(".phone-params", {
     // duration: 10,
     // gsap.to 设置 clip-path 属性变更
     // https://greensock.com/forums/topic/32322-clip-path-to-gsap-animation/
@@ -315,21 +283,50 @@ onMounted(() => {
     "--clip": "0", //clip-path(100% 0 0) => clip-path(0 0 0)
     scale: 1,
     scrollTrigger: {
-      trigger: ".section-63",
+      trigger: ".area-3-4-box",
       start: "top top",
       end: "+800",
       //   markers: true,
       scrub: true,
       pin: true,
       onEnterBack() {
-        document.querySelector(".section-63-b .text-view").classList.remove("active")
+        document.querySelector(".phone-params .text-view").classList.remove("active")
       },
       onLeave() {
-        document.querySelector(".section-63-b .text-view").classList.add("active")
+        document.querySelector(".phone-params .text-view").classList.add("active")
       },
     },
   })
 })
+
+function mouseShake(e: MouseEvent) {
+  if (shake_bg_el && img1 && img2 && img3 && img4) {
+    // 鼠标相对页面的位置
+    let x = e.pageX
+    let y = e.pageY
+    // section-2 容器相对视口位置
+    let parentX = shake_bg_el.offsetLeft
+    let parentY = shake_bg_el.offsetTop
+    let isYOut = y < parentY || y > parentY + shake_bg_el.clientHeight
+    let isXOut = x < parentX || x > parentX + shake_bg_el.clientWidth
+    if (isXOut || isYOut) {
+      // console.log("移出去了");
+      return
+    }
+    console.log(x - parentX, y - parentY)
+    // 鼠标从左到右 x 偏移 20px => -20px，鼠标位置(x) 0 => 视口宽度(w)，得出公式：20 - (40*(x/w))
+    // 鼠标从上到下 y 偏移 2px => -2px, 鼠标位置(y) 0 => 视口高度(h)，得出公式：2 - (4*(y/h))
+    let mouseX = x - parentX
+    let mouseY = y - parentY
+    img1.style.transform = `translate(${20 - 40 * (mouseX / screen.width)}px,${4 - 8 * (mouseY / screen.height)}px)`
+    img2.style.transform = `translate(${28 - 56 * (mouseX / screen.width)}px,${6 - 12 * (mouseY / screen.height)}px)`
+    img3.style.transform = `translateX(${30 - 60 * (mouseX / screen.width)}px`
+    // 鼠标从左到右， -14px => 14px，鼠标位置(x) 0 => 视口宽度(w)，-14 + (28*(x/w))
+    // 鼠标从上到下 y 偏移 -2px => 2px, 鼠标位置(y) 0 => 视口高度(h)，得出公式：-2 + (4*(y/h))
+    img4.style.transform = `translate(${-30 + 60 * (mouseX / screen.width)}px,${-6 + 12 * (mouseY / screen.height)}px)`
+    shake_bg_el.style.transform = `scale(1.2) translate(${-8 + 16 * (mouseX / screen.width)}px,${-2 + 4 * (mouseY / screen.height)}px)`
+  }
+}
 </script>
 
 <style scoped lang="scss">
@@ -340,249 +337,297 @@ onMounted(() => {
   background: #0e0e0e;
   color: white;
   overflow-x: hidden;
-}
 
-.shake_box {
-  position: relative;
-  width: 100%;
-  min-width: 1000px;
-  height: 800px;
-  overflow: hidden;
-
-  .shake_bg {
-    z-index: 0;
+  .shake_box {
+    position: relative;
     width: 100%;
-    height: 100%;
-    object-fit: cover;
-    transform: scale(1.2);
+    min-width: 1000px;
+    height: 800px;
+    overflow: hidden;
+
+    .shake_bg {
+      z-index: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transform: scale(1.2);
+    }
+
+    img {
+      position: absolute;
+    }
+
+    &.active .wrap-main {
+      transform: translate(-50%, -50%);
+    }
   }
 
-  img {
+  .wrap-main {
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -40%);
+    height: 600px;
+    width: 950px;
     position: absolute;
+    transition: all 1s;
+
+    img {
+      position: absolute;
+      height: 263px;
+    }
+
+    img:nth-child(1) {
+      top: 0;
+      left: 21px;
+      z-index: 4;
+    }
+    img:nth-child(2) {
+      top: 70px;
+      left: 140px;
+      z-index: 3;
+    }
+
+    img:nth-child(3) {
+      top: 189px;
+      left: 336px;
+      z-index: 2;
+    }
+
+    img:nth-child(4) {
+      top: 350px;
+      left: 595px;
+      z-index: 1;
+    }
   }
 
-  &.active .wrap-main {
-    transform: translate(-50%, -50%);
+  /*第二*/
+  #linear-phone {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 90px;
+    text-align: center;
+
+    .phone {
+      margin: 80px auto 0;
+      width: 380px;
+      height: 380px;
+    }
+
+    .comp-inner .title {
+      font-size: 35px;
+      line-height: 46px;
+    }
+
+    .comp-inner .detail {
+      margin: 25px auto 0;
+      font-size: 15px;
+      line-height: 23px;
+    }
+  }
+
+  .new_word {
+    pointer-events: none;
+
+    .comp-inner .title {
+      font-size: 35px;
+      line-height: 46px;
+    }
+
+    .comp-inner .detail {
+      margin: 25px auto 0;
+      font-size: 15px;
+      line-height: 23px;
+    }
+
+    .new_word-bg {
+      width: 100%;
+      height: 100vh;
+      object-fit: cover;
+    }
   }
 }
 
-.wrap-main {
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -40%);
-  height: 600px;
-  width: 950px;
-  position: absolute;
-  transition: all 1s;
-}
-.wrap-main img {
-  position: absolute;
-  height: 263px;
-}
-.wrap-main img:nth-child(1) {
-  top: 0;
-  left: 21px;
-  z-index: 4;
-}
-.wrap-main img:nth-child(2) {
-  top: 70px;
-  left: 140px;
-  z-index: 3;
-}
-.wrap-main img:nth-child(3) {
-  top: 189px;
-  left: 336px;
-  z-index: 2;
-}
-.wrap-main img:nth-child(4) {
-  top: 350px;
-  left: 595px;
-  z-index: 1;
-}
-
-/*第二*/
-#section-6-1 {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  padding: 90px;
-  text-align: center;
-}
-.comp-inner .title {
-  font-size: 35px;
-  line-height: 46px;
-}
-.comp-inner .detail {
-  margin: 25px auto 0;
-  font-size: 15px;
-  line-height: 23px;
-}
-#section-6-1 .phone {
-  margin: 80px auto 0;
-  width: 380px;
-  height: 380px;
-}
-.section-6-2-bg {
-  width: 100%;
-  height: 100vh;
-  object-fit: cover;
-}
-
-/**第三 */
-.section-63-a,
-.section-63-b {
-  position: absolute;
-  top: 0;
-  bottom: 0;
-  width: 100%;
-  display: flex;
-  justify-content: space-between;
-  height: 100vh;
-  min-height: 800px;
-}
-.section-63-b {
-  z-index: 10;
-}
-.sec-circle {
-  position: absolute;
-  z-index: 1;
-  right: 489px;
-  top: 106px;
-  width: 216px;
-  transition: all 1s;
-}
-.s63-a-sec2 .sec-circle {
-  right: 686px;
-  top: 249px;
-  transform: scale(0.92);
-}
-.s63-a-sec.s63-a-sec2.active .sec-circle {
-  right: 686px;
-  top: 249px;
-  transform: scale(0.92) rotate(180deg);
-}
-/* 加上 active 后，圆圈旋转 180° */
-.s63-a-sec.active .sec-circle {
-  transform: rotate(180deg);
-}
-.sec-bg {
-  width: 999px;
-  height: 888px;
-}
-.sec-circle-scale .line {
-  position: absolute;
-  height: 1px;
-  width: 7px;
-  top: 213px;
-  right: 590px;
-  background: #fff;
-  transform-origin: 102px 0;
-}
-.s63-a-sec2 .sec-circle-scale .line {
-  top: 358px;
-  right: 779px;
-  transform-origin: 94px 0;
-}
-.sec-line {
-  width: 533px;
-  height: 1px;
-  background: rgba(255, 255, 255, 0.5);
-  -webkit-transform-origin: 100% 0;
-  transform-origin: 100% 0;
-  position: absolute;
-  right: -367px;
-  top: 110px;
-}
-.s63-a-sec2 .sec-line {
-  width: 315px;
-  right: -184px;
-}
-.text-view {
-  position: absolute;
-  right: 1074px;
-  top: 106px;
-}
-/* 文字利用 clip path 隐藏*/
-.text-view p {
-  clip-path: inset(0 100% 0 0);
-  transition: clip-path 0.7s; /* 0.7 秒完成 */
-}
-.text-view p:nth-child(2) {
-  transition: clip-path 1.5s;
-}
-.text-view p:nth-child(3) {
-  transition: clip-path 2s;
-}
-/* active 后，文字显示，*/
-.s63-a-sec.active .text-view p {
-  clip-path: inset(0 0 0 0);
-}
-.s63-a-sec2 .text-view {
-  right: 1075px;
-  top: 231px;
-}
-.text-view p {
-  text-align: left;
-}
-.s63-a-btns {
-  position: absolute;
-  right: 1200px;
-  font-size: 20px;
-}
-.s63-a-btns div {
-  padding: 10px 20px;
-  margin-bottom: 10px;
-  cursor: pointer;
-}
-.s63-a-btns div.active {
-  border: 1px solid #666;
-  border-radius: 5px;
-}
-.section-63 {
+.area-3-4-box {
   position: relative;
-}
-.section-63-b {
-  --clip: 100%;
-  transform: scale(1.15);
-  clip-path: inset(var(--clip) 0 0);
-}
-.section-63-b .sec-bg {
-  width: 100%;
-  height: 100%;
-}
-.section-63-b .text-view {
-  right: 900px;
-  top: 220px;
-}
-.section-63-b .text-view .title {
-  font-size: 35px;
-  line-height: 54px;
-  text-align: left;
-}
-.section-63-b .text-view .name {
-  font-size: 25px;
-  line-height: 36px;
-}
-.section-63-b .text-view .info {
-  font-size: 13px;
-  color: rgba(255, 255, 255, 0.7);
-}
-.text-view .spots {
-  display: flex;
-  flex-wrap: wrap;
-  width: 357px;
-  padding-top: 30px;
-}
-.text-view .spots .item {
-  text-align: left;
-  width: 49%;
-  margin-top: 25px;
-}
-.section-63-b .text-view > div {
-  clip-path: inset(0 50% 0 50%);
-  transition: clip-path 0.7s;
-}
-.section-63-b .text-view.active > div {
-  clip-path: inset(0 0 0 0);
+
+  /**第三 */
+  .phone-camera {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    height: 100vh;
+    min-height: 800px;
+
+    .sec-circle {
+      position: absolute;
+      z-index: 1;
+      right: 489px;
+      top: 106px;
+      width: 216px;
+      transition: all 1s;
+    }
+    .s63-a-sec2 .sec-circle {
+      right: 686px;
+      top: 249px;
+      transform: scale(0.92);
+    }
+    .s63-a-sec.s63-a-sec2.active .sec-circle {
+      right: 686px;
+      top: 249px;
+      transform: scale(0.92) rotate(180deg);
+    }
+    /* 加上 active 后，圆圈旋转 180° */
+    .s63-a-sec.active .sec-circle {
+      transform: rotate(180deg);
+    }
+
+    /* active 后，文字显示，*/
+    .s63-a-sec.active .text-view p {
+      clip-path: inset(0 0 0 0);
+    }
+
+    .sec-bg {
+      width: 999px;
+      height: 888px;
+    }
+    .sec-circle-scale .line {
+      position: absolute;
+      height: 1px;
+      width: 7px;
+      top: 213px;
+      right: 590px;
+      background: #fff;
+      transform-origin: 102px 0;
+    }
+    .s63-a-sec2 .sec-circle-scale .line {
+      top: 358px;
+      right: 779px;
+      transform-origin: 94px 0;
+    }
+    .sec-line {
+      width: 533px;
+      height: 1px;
+      background: rgba(255, 255, 255, 0.5);
+      -webkit-transform-origin: 100% 0;
+      transform-origin: 100% 0;
+      position: absolute;
+      right: -367px;
+      top: 110px;
+    }
+    .s63-a-sec2 .sec-line {
+      width: 315px;
+      right: -184px;
+    }
+
+    .s63-a-sec2 .text-view {
+      right: 1075px;
+      top: 231px;
+    }
+
+    .s63-a-btns {
+      position: absolute;
+      right: 1200px;
+      font-size: 20px;
+    }
+    .s63-a-btns div {
+      padding: 10px 20px;
+      margin-bottom: 10px;
+      cursor: pointer;
+    }
+    .s63-a-btns div.active {
+      border: 1px solid #666;
+      border-radius: 5px;
+    }
+  }
+
+  // 第四
+  .phone-params {
+    --clip: 100%;
+    transform: scale(1.15);
+    clip-path: inset(var(--clip) 0 0);
+    z-index: 10;
+
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    height: 100vh;
+    min-height: 800px;
+
+    .sec-bg {
+      width: 100%;
+      height: 100%;
+    }
+
+    .text-view {
+      right: 900px;
+      top: 220px;
+
+      .title {
+        font-size: 35px;
+        line-height: 54px;
+        text-align: left;
+      }
+
+      .name {
+        font-size: 25px;
+        line-height: 36px;
+      }
+
+      .info {
+        font-size: 13px;
+        color: rgba(255, 255, 255, 0.7);
+      }
+
+      & > div {
+        clip-path: inset(0 50% 0 50%);
+        transition: clip-path 0.7s;
+      }
+
+      &.active > div {
+        clip-path: inset(0 0 0 0);
+      }
+    }
+  }
+
+  .text-view {
+    position: absolute;
+    right: 1074px;
+    top: 106px;
+  }
+  /* 文字利用 clip path 隐藏*/
+  .text-view p {
+    clip-path: inset(0 100% 0 0);
+    transition: clip-path 0.7s; /* 0.7 秒完成 */
+  }
+  .text-view p:nth-child(2) {
+    transition: clip-path 1.5s;
+  }
+  .text-view p:nth-child(3) {
+    transition: clip-path 2s;
+  }
+
+  .text-view p {
+    text-align: left;
+  }
+
+  .text-view .spots {
+    display: flex;
+    flex-wrap: wrap;
+    width: 357px;
+    padding-top: 30px;
+  }
+
+  .text-view .spots .item {
+    text-align: left;
+    width: 49%;
+    margin-top: 25px;
+  }
 }
 </style>
