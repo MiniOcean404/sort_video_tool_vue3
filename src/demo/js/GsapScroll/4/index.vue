@@ -58,7 +58,7 @@
       </div>
 
       <!-- 背景遮罩 -->
-      <div class="bg-mask" style="opacity: 0; position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: #000; z-index: 1"></div>
+      <div class="bg-mask"></div>
     </section>
 
     <!-- 第 四、五 个场景 -->
@@ -435,6 +435,14 @@ function microscope_click(e: MouseEvent) {
       width: 100%;
       height: 100vh;
       object-fit: cover;
+    }
+
+    .bg-mask {
+      opacity: 0;
+      position: absolute;
+      inset: 0;
+      background: #000;
+      z-index: 1;
     }
   }
 
