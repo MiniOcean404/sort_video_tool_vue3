@@ -1,6 +1,6 @@
 <template>
   <div class="find_x3_box">
-    <!-- <p style="padding: 0 40px 85px 10px">Part5: 包装</p> -->
+    <!-- 第一个场景 -->
     <section @mousemove="mouseShake" class="shake_box">
       <img class="shake_bg" src="./assets/section-5-bg.jpg" />
       <div class="wrap-main">
@@ -11,27 +11,28 @@
       </div>
     </section>
 
-    <!-- 第一个场景 -->
-    <section id="linear-phone" style="margin-top: 80px">
-      <div>
+    <!-- 第二个场景 -->
+    <section id="linear-phone">
+      <div class="translucent">
         <div class="comp-inner">
-          <div class="title comp-angle-block-fade-in fade-in">全面了解色彩影像旗舰</div>
-          <div class="detail comp-angle-block-fade-in fade-in">
+          <div class="title">全面了解色彩影像旗舰</div>
+          <div class="detail">
             从捕捉、储存到显示全程 10 亿色²，隔着屏幕都能感受照片里的喜怒哀乐。
-            <br class="g--pt-hidden" />
+            <br />
             色彩唤醒感动，满满创新，等你慢慢揭开。
           </div>
         </div>
-        <div class="buttons fade-in" style="margin: 50px auto 0">
+
+        <div class="buttons" style="margin: 50px auto 0">
           <div class="comp-angle-block small">
             <div class="comp-inner">探索更多 Find X3 系列</div>
           </div>
         </div>
-        <img class="phone loaded fade-in" src="./assets/section-6-phone.png" />
+        <img class="phone loaded" src="./assets/section-6-phone.png" />
       </div>
     </section>
 
-    <!-- 第二个场景 -->
+    <!-- 第三个场景 -->
     <section class="new_word" style="position: relative; margin-top: -620px; height: 100vh; min-height: 500px">
       <!-- 背景遮罩上一层，图片，先隐藏，等 1 结束后，再显示  -->
       <div class="new_word-main" style="opacity: 0; z-index: 2; position: relative">
@@ -60,7 +61,7 @@
       <div class="bg-mask" style="opacity: 0; position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: #000; z-index: 1"></div>
     </section>
 
-    <!-- 第 三、四 个场景 -->
+    <!-- 第 四、五 个场景 -->
     <section class="part-3-4-box" style="text-align: center">
       <div class="comp-inner" style="padding: 150px 0">
         <div class="title">旗舰四摄，致敬探索，记录此刻</div>
@@ -222,8 +223,7 @@ onMounted(() => {
     scrollTrigger: {
       trigger: ".part-3-4-box",
       start: "top 100px",
-      end: "+800",
-      //   markers: true,
+      end: "+800 top",
       scrub: true,
       toggleClass: {
         targets: ".phone-camera-desc",
@@ -254,6 +254,7 @@ onMounted(() => {
       fragment.appendChild(el)
     }
     let parentEl = document.querySelector(`.s63-a-sec${type} .sec-circle-scale`) as HTMLDivElement
+
     parentEl.append(fragment)
   }
 
@@ -268,10 +269,12 @@ onMounted(() => {
     scrollTrigger: {
       trigger: ".area-3-4-box",
       start: "top top",
-      end: "+800",
+      end: "+800 top",
       //   markers: true,
       scrub: true,
       pin: true,
+      pinType: "fixed",
+
       onEnterBack() {
         const text = document.querySelector(".phone-params .text-view") as HTMLDivElement
         text.classList.remove("active")
@@ -345,18 +348,16 @@ function microscope_click(e: MouseEvent) {
 <style scoped lang="scss">
 /*第一 */
 .find_x3_box {
-  margin: 0;
-  height: 7000px;
+  --clip: 100%;
+
   background: #0e0e0e;
   color: white;
   overflow-x: hidden;
 
   .shake_box {
     position: relative;
-    width: 100%;
-    min-width: 1000px;
-    height: 800px;
     overflow: hidden;
+    height: 800px;
 
     .shake_bg {
       z-index: 0;
@@ -415,9 +416,8 @@ function microscope_click(e: MouseEvent) {
 
   /*第二*/
   #linear-phone {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+    margin-top: 80px;
+
     padding: 90px;
     text-align: center;
 
@@ -438,198 +438,210 @@ function microscope_click(e: MouseEvent) {
     }
   }
 
-  .area-3-4-box {
-    position: relative;
+  .part-3-4-box {
+    height: calc(100vh + 1600px);
 
-    /**第三 */
-    .phone-camera {
-      position: absolute;
-      top: 0;
-      bottom: 0;
-      width: 100%;
-      display: flex;
-      justify-content: space-between;
-      height: 100vh;
-      min-height: 800px;
+    .area-3-4-box {
+      position: relative;
+      pointer-events: none;
 
-      .sec-circle {
+      /**第三 */
+      .phone-camera {
         position: absolute;
-        z-index: 1;
-        right: 489px;
-        top: 106px;
-        width: 216px;
-        transition: all 1s;
-      }
-      .s63-a-sec2 .sec-circle {
-        right: 686px;
-        top: 249px;
-        transform: scale(0.92);
-      }
-      .s63-a-sec.s63-a-sec2.active .sec-circle {
-        right: 686px;
-        top: 249px;
-        transform: scale(0.92) rotate(180deg);
-      }
-      /* 加上 active 后，圆圈旋转 180° */
-      .s63-a-sec.active .sec-circle {
-        transform: rotate(180deg);
-      }
-
-      /* active 后，文字显示，*/
-      .s63-a-sec.active .text-view p {
-        clip-path: inset(0 0 0 0);
-      }
-
-      .sec-bg {
-        width: 999px;
-        height: 888px;
-      }
-      .sec-circle-scale .line {
-        position: absolute;
-        height: 1px;
-        width: 7px;
-        top: 213px;
-        right: 590px;
-        background: #fff;
-        transform-origin: 102px 0;
-      }
-      .s63-a-sec2 .sec-circle-scale .line {
-        top: 358px;
-        right: 779px;
-        transform-origin: 94px 0;
-      }
-      .sec-line {
-        width: 533px;
-        height: 1px;
-        background: rgba(255, 255, 255, 0.5);
-        -webkit-transform-origin: 100% 0;
-        transform-origin: 100% 0;
-        position: absolute;
-        right: -367px;
-        top: 110px;
-      }
-      .s63-a-sec2 .sec-line {
-        width: 315px;
-        right: -184px;
-      }
-
-      .s63-a-sec2 .text-view {
-        right: 1075px;
-        top: 231px;
-      }
-
-      .camera-toggle-btn {
-        position: absolute;
-        right: 1200px;
-        font-size: 20px;
-      }
-      .camera-toggle-btn div {
-        padding: 10px 20px;
-        margin-bottom: 10px;
-        cursor: pointer;
-      }
-      .camera-toggle-btn div.active {
-        border: 1px solid #666;
-        border-radius: 5px;
-      }
-    }
-
-    // 第四
-    .phone-params {
-      --clip: 100%;
-      transform: scale(1.15);
-      clip-path: inset(var(--clip) 0 0);
-      z-index: 10;
-
-      position: absolute;
-      top: 0;
-      bottom: 0;
-      width: 100%;
-      display: flex;
-      justify-content: space-between;
-      height: 100vh;
-      min-height: 800px;
-
-      .sec-bg {
+        top: 0;
+        bottom: 0;
         width: 100%;
-        height: 100%;
+        display: flex;
+        justify-content: space-between;
+        height: 100vh;
+        min-height: 800px;
+
+        .sec-circle {
+          position: absolute;
+          z-index: 1;
+          right: 489px;
+          top: 106px;
+          width: 216px;
+          transition: all 1s;
+        }
+        .s63-a-sec2 .sec-circle {
+          right: 686px;
+          top: 249px;
+          transform: scale(0.92);
+        }
+
+        .s63-a-sec.s63-a-sec2.active .sec-circle {
+          right: 686px;
+          top: 249px;
+          transform: scale(0.92) rotate(180deg);
+        }
+
+        /* 加上 active 后，圆圈旋转 180° */
+        .s63-a-sec.active .sec-circle {
+          transform: rotate(180deg);
+        }
+
+        /* active 后，文字显示，*/
+        .s63-a-sec.active .text-view p {
+          clip-path: inset(0 0 0 0);
+        }
+
+        .text-view {
+          p {
+            margin: 1em 0;
+          }
+        }
+
+        .sec-bg {
+          width: 999px;
+          height: 888px;
+        }
+        .sec-circle-scale .line {
+          position: absolute;
+          height: 1px;
+          width: 7px;
+          top: 213px;
+          right: 590px;
+          background: #fff;
+          transform-origin: 102px 0;
+        }
+        .s63-a-sec2 .sec-circle-scale .line {
+          top: 358px;
+          right: 779px;
+          transform-origin: 94px 0;
+        }
+        .sec-line {
+          width: 533px;
+          height: 1px;
+          background: rgba(255, 255, 255, 0.5);
+          -webkit-transform-origin: 100% 0;
+          transform-origin: 100% 0;
+          position: absolute;
+          right: -367px;
+          top: 110px;
+        }
+        .s63-a-sec2 .sec-line {
+          width: 315px;
+          right: -184px;
+        }
+
+        .s63-a-sec2 .text-view {
+          right: 1075px;
+          top: 231px;
+        }
+
+        .camera-toggle-btn {
+          position: absolute;
+          right: 1200px;
+          font-size: 20px;
+        }
+        .camera-toggle-btn div {
+          padding: 10px 20px;
+          margin-bottom: 10px;
+          cursor: pointer;
+        }
+        .camera-toggle-btn div.active {
+          border: 1px solid #666;
+          border-radius: 5px;
+        }
+      }
+
+      // 第四
+      .phone-params {
+        transform: scale(1.15);
+        clip-path: inset(var(--clip) 0 0);
+        z-index: 10;
+
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        width: 100%;
+        display: flex;
+        justify-content: space-between;
+        height: 100vh;
+        min-height: 800px;
+
+        .sec-bg {
+          width: 100%;
+          height: 100%;
+        }
+
+        .text-view {
+          right: 900px;
+          top: 220px;
+
+          .title {
+            font-size: 35px;
+            line-height: 54px;
+            text-align: left;
+          }
+
+          .name {
+            font-size: 25px;
+            line-height: 36px;
+          }
+
+          .info {
+            font-size: 13px;
+            color: rgba(255, 255, 255, 0.7);
+          }
+
+          & > div {
+            clip-path: inset(0 50% 0 50%);
+            transition: clip-path 0.7s;
+          }
+
+          &.active > div {
+            clip-path: inset(0 0 0 0);
+          }
+        }
       }
 
       .text-view {
-        right: 900px;
-        top: 220px;
+        position: absolute;
+        right: 1074px;
+        top: 106px;
 
-        .title {
-          font-size: 35px;
-          line-height: 54px;
+        p {
+          clip-path: inset(0 100% 0 0);
+          transition: clip-path 0.7s; /* 0.7 秒完成 */
           text-align: left;
         }
 
-        .name {
-          font-size: 25px;
-          line-height: 36px;
+        p:nth-child(2) {
+          transition: clip-path 1.5s;
         }
 
-        .info {
-          font-size: 13px;
-          color: rgba(255, 255, 255, 0.7);
+        p:nth-child(3) {
+          transition: clip-path 2s;
         }
 
-        & > div {
-          clip-path: inset(0 50% 0 50%);
-          transition: clip-path 0.7s;
-        }
+        .spots {
+          display: flex;
+          flex-wrap: wrap;
+          width: 357px;
+          padding-top: 30px;
 
-        &.active > div {
-          clip-path: inset(0 0 0 0);
+          .item {
+            text-align: left;
+            width: 49%;
+            margin-top: 25px;
+          }
         }
       }
     }
-
-    .text-view {
-      position: absolute;
-      right: 1074px;
-      top: 106px;
-    }
-    /* 文字利用 clip path 隐藏*/
-    .text-view p {
-      clip-path: inset(0 100% 0 0);
-      transition: clip-path 0.7s; /* 0.7 秒完成 */
-    }
-    .text-view p:nth-child(2) {
-      transition: clip-path 1.5s;
-    }
-    .text-view p:nth-child(3) {
-      transition: clip-path 2s;
-    }
-
-    .text-view p {
-      text-align: left;
-    }
-
-    .text-view .spots {
-      display: flex;
-      flex-wrap: wrap;
-      width: 357px;
-      padding-top: 30px;
-    }
-
-    .text-view .spots .item {
-      text-align: left;
-      width: 49%;
-      margin-top: 25px;
-    }
   }
 
-  .comp-inner .title {
-    font-size: 35px;
-    line-height: 46px;
-  }
-
-  .comp-inner .detail {
-    margin: 25px auto 0;
-    font-size: 15px;
-    line-height: 23px;
+  .comp-inner {
+    .title {
+      font-size: 35px;
+      line-height: 46px;
+    }
+    .detail {
+      margin: 25px auto 0;
+      font-size: 15px;
+      line-height: 23px;
+    }
   }
 }
 </style>

@@ -1,6 +1,7 @@
 <template>
   <div class="container">
     <OppoFindX3></OppoFindX3>
+
     <!--
     <SwitchPhone></SwitchPhone>
 
@@ -30,7 +31,7 @@ gsap.registerPlugin(ScrollTrigger)
 
 ScrollTrigger.defaults({
   toggleActions: "restart pause resume pause",
-  scroller: ".container",
+  // scroller: ".container",
 })
 onMounted(() => {})
 </script>
@@ -38,7 +39,6 @@ onMounted(() => {})
 <style scoped lang="scss">
 .container {
   width: 100%;
-  height: 100vh;
-  overflow-y: scroll;
+  overflow-x: hidden;
 }
 </style>
