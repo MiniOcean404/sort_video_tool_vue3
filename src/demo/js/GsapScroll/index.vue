@@ -17,11 +17,11 @@
 // https://github.com/dev-zuo/nice-func
 // 参考地址：https://cookthevibe.com/
 
-import SwitchPhone from "./1/index.vue"
-import MacProVideoPlayer from "./2/index.vue"
-import GsapBaseDemo from "./3/index.vue"
-import OppoFindX3 from "./4/index.vue"
-import MacbookProChip from "./5/index.vue"
+import SwitchPhone from "./demo/1/index.vue"
+import MacProVideoPlayer from "./demo/2/index.vue"
+import GsapBaseDemo from "./demo/3/index.vue"
+import OppoFindX3 from "./oppo/index.vue"
+import MacbookProChip from "./demo/5/index.vue"
 
 import { gsap } from "gsap"
 import ScrollTrigger from "gsap/ScrollTrigger"
@@ -42,3 +42,4 @@ onMounted(() => {})
   overflow-x: hidden;
 }
 </style>
+./oppo/index.vue
