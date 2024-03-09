@@ -314,7 +314,7 @@ html {
   // 默认 auto 在Windows系统下是17px;
   // thin 在Windows系统下是8px;
   // none 宽度为0,但是内容依然可以滚动。
-  scrollbar-width: thin;
+  scrollbar-width: auto;
 
   // 默认 auto
   // 两个值为 滑竿颜色 轨道颜色(鼠标悬浮才显示)

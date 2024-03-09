@@ -1,6 +1,4 @@
 <script setup lang="ts">
-// import Dom2Image from "@/components/Dom2Image/index.vue"
-// import Cover from "@/components/Cover/index.vue"
 // import PDFJS from "@/components/PDFJS/index.vue"
 // import TransitionsAPI from "@/demo/js/TransitionsAPI/index.vue"
 import GsapScroll from "@/demo/js/GsapScroll/index.vue"
@@ -11,9 +9,7 @@ import GsapScroll from "@/demo/js/GsapScroll/index.vue"
 <template>
   <!-- <GieJumpCode path="__filePath__" /> -->
 
-  <!-- <Dom2Image title="封面制作" :minute="1" :seconds="30"></Dom2Image> -->
-  <!-- <Cover type="web" title="局部放大的妙用" desc="剪映 v 1.3.0 版本" :minute="1" :seconds="30"></Cover>
-  <GieInput></GieInput> -->
+  <!-- <GieInput></GieInput> -->
 
   <!-- <TransitionsAPI></TransitionsAPI> -->
   <GsapScroll></GsapScroll>
