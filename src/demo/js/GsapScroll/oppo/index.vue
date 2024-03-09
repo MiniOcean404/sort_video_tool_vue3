@@ -5,7 +5,7 @@
     <ThreeScreen></ThreeScreen>
 
     <!-- 第 四、五 个场景 -->
-    <section class="part-3-4-box" style="text-align: center">
+    <section class="part-3-4-box">
       <div class="area-3-4-box">
         <FoureScreen></FoureScreen>
         <FiveScreen></FiveScreen>
@@ -40,6 +40,7 @@ onMounted(() => {
   overflow-x: hidden;
 
   .part-3-4-box {
+    text-align: center;
     height: calc(100vh + 1600px);
 
     .area-3-4-box {

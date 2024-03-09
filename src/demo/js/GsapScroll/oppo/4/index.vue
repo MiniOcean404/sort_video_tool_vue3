@@ -1,53 +1,55 @@
 <template>
-  <!-- 第三部分 -->
-  <div class="phone-camera">
-    <!-- <div class="comp-inner" style="padding: 150px 0">
-            <div class="title">旗舰四摄，致敬探索，记录此刻</div>
-            <div class="detail">
-              两颗 10 亿色 5000 万像素旗舰主摄，场面再大，画面也出色。
-              <br />
-              60 倍显微镜，带你探索微观世界里的奇观。1300 万像素长焦，轻松拉近远方美好。
-            </div>
-          </div> -->
-
-    <div class="camera-toggle-btn">
-      <div class="active" @click="super_wide_angle_click">超广角</div>
-      <div @click="microscope_click">显微镜</div>
+  <div class="phone-camera-box">
+    <div class="desc-text">
+      <div class="title">旗舰四摄，致敬探索，记录此刻</div>
+      <div class="detail">
+        两颗 10 亿色 5000 万像素旗舰主摄，场面再大，画面也出色。
+        <br />
+        60 倍显微镜，带你探索微观世界里的奇观。1300 万像素长焦，轻松拉近远方美好。
+      </div>
     </div>
 
-    <div class="s63-a-sec phone-camera-desc">
-      <div class="text-view">
-        <p style="font-size: 36px; line-height: 52px; padding-bottom: 20px">超广角</p>
-        <div class="sec-line"></div>
-        <div>
-          <p>5000 万像素超广角</p>
-          <p>Sony IMX766 传感器</p>
-          <p>1/1.56" 感光面积</p>
-        </div>
+    <!-- 第三部分 -->
+    <!-- <div class="phone-camera">
+      <div class="camera-toggle-btn">
+        <div class="active" @click="super_wide_angle_click">超广角</div>
+        <div @click="microscope_click">显微镜</div>
       </div>
-      <div class="sec-circle-scale"></div>
-      <img class="sec-circle" src="../assets/section-6-3-1-camera-circle-outer.svg" />
-    </div>
-    <div class="s63-a-sec s63-a-sec2" style="opacity: 0">
-      <div class="text-view">
-        <p style="font-size: 36px; line-height: 52px; padding-bottom: 20px">显微镜</p>
-        <div class="sec-line"></div>
-        <div>
-          <p>300 万像素显微镜</p>
-          <p>f/3.0 光圈</p>
-          <p>
-            60 倍放大
-            <sup>
-              3
-              <sup></sup>
-            </sup>
-          </p>
+
+      <div class="s63-a-sec phone-camera-desc">
+        <div class="text-view">
+          <p style="font-size: 36px; line-height: 52px; padding-bottom: 20px">超广角</p>
+          <div class="sec-line"></div>
+          <div>
+            <p>5000 万像素超广角</p>
+            <p>Sony IMX766 传感器</p>
+            <p>1/1.56" 感光面积</p>
+          </div>
         </div>
+        <div class="sec-circle-scale"></div>
+        <img class="sec-circle" src="../assets/section-6-3-1-camera-circle-outer.svg" />
       </div>
-      <div class="sec-circle-scale"></div>
-      <img class="sec-circle" src="../assets/section-6-3-1-camera-circle-outer.svg" />
-    </div>
-    <img class="sec-bg" src="../assets/section6-3-1-camera.png" />
+      <div class="s63-a-sec s63-a-sec2" style="opacity: 0">
+        <div class="text-view">
+          <p style="font-size: 36px; line-height: 52px; padding-bottom: 20px">显微镜</p>
+          <div class="sec-line"></div>
+          <div>
+            <p>300 万像素显微镜</p>
+            <p>f/3.0 光圈</p>
+            <p>
+              60 倍放大
+              <sup>
+                3
+                <sup></sup>
+              </sup>
+            </p>
+          </div>
+        </div>
+        <div class="sec-circle-scale"></div>
+        <img class="sec-circle" src="../assets/section-6-3-1-camera-circle-outer.svg" />
+      </div>
+      <img class="sec-bg" src="../assets/section6-3-1-camera.png" />
+    </div> -->
   </div>
 </template>
 
@@ -126,104 +128,121 @@ function microscope_click(e: MouseEvent) {
 </script>
 
 <style lang="scss" scoped>
-/**第三 */
-.phone-camera {
+.phone-camera-box {
   position: absolute;
   top: 0;
   bottom: 0;
-  width: 100%;
-  display: flex;
-  justify-content: space-between;
-  height: 100vh;
-  min-height: 800px;
 
-  .sec-circle {
-    position: absolute;
-    z-index: 1;
-    right: 489px;
-    top: 106px;
-    width: 216px;
-    transition: all 1s;
-  }
-  .s63-a-sec2 .sec-circle {
-    right: 686px;
-    top: 249px;
-    transform: scale(0.92);
-  }
+  .desc-text {
+    padding: 150px 0;
 
-  .s63-a-sec.s63-a-sec2.active .sec-circle {
-    right: 686px;
-    top: 249px;
-    transform: scale(0.92) rotate(180deg);
-  }
-
-  /* 加上 active 后，圆圈旋转 180° */
-  .s63-a-sec.active .sec-circle {
-    transform: rotate(180deg);
-  }
-
-  /* active 后，文字显示，*/
-  .s63-a-sec.active .text-view p {
-    clip-path: inset(0 0 0 0);
-  }
-
-  .text-view {
-    p {
-      margin: 1em 0;
+    .title {
+      font-size: 35px;
+      line-height: 46px;
+    }
+    .detail {
+      margin: 25px auto 0;
+      font-size: 15px;
+      line-height: 23px;
     }
   }
 
-  .sec-bg {
-    width: 999px;
-    height: 888px;
-  }
-  .sec-circle-scale .line {
-    position: absolute;
-    height: 1px;
-    width: 7px;
-    top: 213px;
-    right: 590px;
-    background: #fff;
-    transform-origin: 102px 0;
-  }
-  .s63-a-sec2 .sec-circle-scale .line {
-    top: 358px;
-    right: 779px;
-    transform-origin: 94px 0;
-  }
-  .sec-line {
-    width: 533px;
-    height: 1px;
-    background: rgba(255, 255, 255, 0.5);
-    -webkit-transform-origin: 100% 0;
-    transform-origin: 100% 0;
-    position: absolute;
-    right: -367px;
-    top: 110px;
-  }
-  .s63-a-sec2 .sec-line {
-    width: 315px;
-    right: -184px;
-  }
+  /**第三 */
+  .phone-camera {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    height: 100vh;
+    min-height: 800px;
 
-  .s63-a-sec2 .text-view {
-    right: 1075px;
-    top: 231px;
-  }
+    .sec-circle {
+      position: absolute;
+      z-index: 1;
+      right: 489px;
+      top: 106px;
+      width: 216px;
+      transition: all 1s;
+    }
+    .s63-a-sec2 .sec-circle {
+      right: 686px;
+      top: 249px;
+      transform: scale(0.92);
+    }
 
-  .camera-toggle-btn {
-    position: absolute;
-    right: 1200px;
-    font-size: 20px;
-  }
-  .camera-toggle-btn div {
-    padding: 10px 20px;
-    margin-bottom: 10px;
-    cursor: pointer;
-  }
-  .camera-toggle-btn div.active {
-    border: 1px solid #666;
-    border-radius: 5px;
+    .s63-a-sec.s63-a-sec2.active .sec-circle {
+      right: 686px;
+      top: 249px;
+      transform: scale(0.92) rotate(180deg);
+    }
+
+    /* 加上 active 后，圆圈旋转 180° */
+    .s63-a-sec.active .sec-circle {
+      transform: rotate(180deg);
+    }
+
+    /* active 后，文字显示，*/
+    .s63-a-sec.active .text-view p {
+      clip-path: inset(0 0 0 0);
+    }
+
+    .text-view {
+      p {
+        margin: 1em 0;
+      }
+    }
+
+    .sec-bg {
+      width: 999px;
+      height: 888px;
+    }
+    .sec-circle-scale .line {
+      position: absolute;
+      height: 1px;
+      width: 7px;
+      top: 213px;
+      right: 590px;
+      background: #fff;
+      transform-origin: 102px 0;
+    }
+    .s63-a-sec2 .sec-circle-scale .line {
+      top: 358px;
+      right: 779px;
+      transform-origin: 94px 0;
+    }
+    .sec-line {
+      width: 533px;
+      height: 1px;
+      background: rgba(255, 255, 255, 0.5);
+      -webkit-transform-origin: 100% 0;
+      transform-origin: 100% 0;
+      position: absolute;
+      right: -367px;
+      top: 110px;
+    }
+    .s63-a-sec2 .sec-line {
+      width: 315px;
+      right: -184px;
+    }
+
+    .s63-a-sec2 .text-view {
+      right: 1075px;
+      top: 231px;
+    }
+
+    .camera-toggle-btn {
+      position: absolute;
+      right: 1200px;
+      font-size: 20px;
+    }
+    .camera-toggle-btn div {
+      padding: 10px 20px;
+      margin-bottom: 10px;
+      cursor: pointer;
+    }
+    .camera-toggle-btn div.active {
+      border: 1px solid #666;
+      border-radius: 5px;
+    }
   }
 }
 </style>
