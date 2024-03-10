@@ -4,20 +4,8 @@
     <TwoScreen></TwoScreen>
     <ThreeScreen></ThreeScreen>
 
-    <!-- 第 四、五 个场景 -->
-    <div class="desc-text">
-      <div class="title">旗舰四摄，致敬探索，记录此刻</div>
-      <div class="detail">
-        两颗 10 亿色 5000 万像素旗舰主摄，场面再大，画面也出色。
-        <br />
-        60 倍显微镜，带你探索微观世界里的奇观。1300 万像素长焦，轻松拉近远方美好。
-      </div>
-    </div>
-
-    <section class="area-3-4-box">
-      <FoureScreen></FoureScreen>
-      <FiveScreen></FiveScreen>
-    </section>
+    <FoureScreen></FoureScreen>
+    <FiveScreen></FiveScreen>
   </div>
 </template>
 
@@ -72,13 +60,15 @@ onMounted(() => {
     },
   })
 
-  t1.to(".area-3-4-box", {
+  t1.to(".phone-camera", {
     opacity: 1,
     scrollTrigger: {
-      trigger: ".area-3-4-box",
+      trigger: ".phone-camera",
       start: "top top",
       end: "bottom top",
       scrub: true,
+      pin: true,
+      pinType: "fixed",
       markers: true,
       toggleClass: {
         targets: ".phone-camera-desc",
@@ -95,10 +85,10 @@ onMounted(() => {
     clipPath: "inset(0% 0% 0%)", //clip-path(100% 0 0) => clip-path(0 0 0)
     scale: 1,
     scrollTrigger: {
-      trigger: ".area-3-4-box",
+      trigger: ".phone-params",
       start: "top top",
-      end: "+800 top",
-      //   markers: true,
+      end: "bottom top",
+      markers: { indent: 30 },
       scrub: true,
       pin: true,
       pinType: "fixed",
@@ -122,17 +112,13 @@ function generateLineDom(type: string) {
 
   for (let i = 0; i < len; i++) {
     let el = document.createElement("div")
-    //   console.log("el", el, el.classList);
     el.classList.add(`id-${i}`)
     el.classList.add(`line`)
-    // 0 => 239
-    // 1.5deg  => 360deg
-    // -102
     el.style.transform = `translateX(-102px) rotate(${(i + 1) * 1.5}deg)`
     fragment.appendChild(el)
   }
-  let parentEl = document.querySelector(`.s63-a-sec${type} .sec-circle-scale`) as HTMLDivElement
 
+  let parentEl = document.querySelector(`.camera${type} .sec-circle-scale`) as HTMLDivElement
   parentEl.append(fragment)
 }
 </script>
@@ -142,7 +128,6 @@ function generateLineDom(type: string) {
 .find_x3_box {
   background: #000;
   color: white;
-  overflow-x: hidden;
 
   .desc-text {
     text-align: center;
@@ -159,39 +144,35 @@ function generateLineDom(type: string) {
     }
   }
 
-  .area-3-4-box {
-    height: 100vh;
+  .text-view {
+    position: absolute;
+    right: 1074px;
+    top: 106px;
 
-    .text-view {
-      position: absolute;
-      right: 1074px;
-      top: 106px;
+    p {
+      clip-path: inset(0 100% 0 0);
+      transition: clip-path 0.7s; /* 0.7 秒完成 */
+      text-align: left;
+    }
 
-      p {
-        clip-path: inset(0 100% 0 0);
-        transition: clip-path 0.7s; /* 0.7 秒完成 */
+    p:nth-child(2) {
+      transition: clip-path 1.5s;
+    }
+
+    p:nth-child(3) {
+      transition: clip-path 2s;
+    }
+
+    .spots {
+      display: flex;
+      flex-wrap: wrap;
+      width: 357px;
+      padding-top: 30px;
+
+      .item {
         text-align: left;
-      }
-
-      p:nth-child(2) {
-        transition: clip-path 1.5s;
-      }
-
-      p:nth-child(3) {
-        transition: clip-path 2s;
-      }
-
-      .spots {
-        display: flex;
-        flex-wrap: wrap;
-        width: 357px;
-        padding-top: 30px;
-
-        .item {
-          text-align: left;
-          width: 49%;
-          margin-top: 25px;
-        }
+        width: 49%;
+        margin-top: 25px;
       }
     }
   }

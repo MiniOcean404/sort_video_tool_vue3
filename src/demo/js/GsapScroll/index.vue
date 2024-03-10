@@ -34,7 +34,7 @@ onMounted(() => {})
 <style scoped lang="scss">
 .container {
   width: 100%;
-  overflow-x: hidden;
+  overflow: hidden;
 }
 </style>
 ./oppo/index.vue

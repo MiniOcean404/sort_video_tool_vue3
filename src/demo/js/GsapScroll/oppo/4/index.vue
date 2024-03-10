@@ -1,5 +1,14 @@
 <template>
   <div class="phone-camera-box">
+    <div class="desc-text">
+      <div class="title">旗舰四摄，致敬探索，记录此刻</div>
+      <div class="detail">
+        两颗 10 亿色 5000 万像素旗舰主摄，场面再大，画面也出色。
+        <br />
+        60 倍显微镜，带你探索微观世界里的奇观。1300 万像素长焦，轻松拉近远方美好。
+      </div>
+    </div>
+
     <!-- 第三部分 -->
     <div class="phone-camera">
       <div class="camera-toggle-btn">
@@ -7,7 +16,7 @@
         <div @click="microscope_click">显微镜</div>
       </div>
 
-      <div class="s63-a-sec phone-camera-desc">
+      <div class="camera1 phone-camera-desc">
         <div class="text-view">
           <p style="font-size: 36px; line-height: 52px; padding-bottom: 20px">超广角</p>
           <div class="sec-line"></div>
@@ -20,7 +29,8 @@
         <div class="sec-circle-scale"></div>
         <img class="sec-circle" src="../assets/section-6-3-1-camera-circle-outer.svg" />
       </div>
-      <div class="s63-a-sec s63-a-sec2" style="opacity: 0">
+
+      <div class="camera2" style="opacity: 0">
         <div class="text-view">
           <p style="font-size: 36px; line-height: 52px; padding-bottom: 20px">显微镜</p>
           <div class="sec-line"></div>
@@ -39,6 +49,7 @@
         <div class="sec-circle-scale"></div>
         <img class="sec-circle" src="../assets/section-6-3-1-camera-circle-outer.svg" />
       </div>
+
       <img class="sec-bg" src="../assets/section6-3-1-camera.png" />
     </div>
   </div>
@@ -57,8 +68,8 @@ function super_wide_angle_click(e: MouseEvent) {
   // 切换文案区域
   document.querySelector(".phone-camera-desc").style.opacity = "1"
   document.querySelector(".phone-camera-desc").classList.add("active")
-  document.querySelector(".s63-a-sec2").style.opacity = "0"
-  document.querySelector(".s63-a-sec2").classList.remove("active")
+  document.querySelector(".camera2").style.opacity = "0"
+  document.querySelector(".camera2").classList.remove("active")
 }
 
 function microscope_click(e: MouseEvent) {
@@ -71,22 +82,19 @@ function microscope_click(e: MouseEvent) {
   // 切换文案区域
   document.querySelector(".phone-camera-desc").style.opacity = "0"
   document.querySelector(".phone-camera-desc").classList.remove("active")
-  document.querySelector(".s63-a-sec2").style.opacity = "1"
-  document.querySelector(".s63-a-sec2").classList.add("active")
+  document.querySelector(".camera2").style.opacity = "1"
+  document.querySelector(".camera2").classList.add("active")
 }
 </script>
 
 <style lang="scss" scoped>
 .phone-camera-box {
-  position: absolute;
-  top: 0;
-  bottom: 0;
-  width: 100%;
-
   /**第三 */
   .phone-camera {
-    pointer-events: unset;
+    position: relative;
     width: 100%;
+    height: 100vh;
+    overflow: hidden;
     display: flex;
     justify-content: space-between;
     height: 100vh;
@@ -101,26 +109,37 @@ function microscope_click(e: MouseEvent) {
       transition: all 1s;
     }
 
-    .s63-a-sec2 .sec-circle {
-      right: 686px;
-      top: 249px;
-      transform: scale(0.92);
+    /* 加上 active 后，圆圈旋转 180° */
+    .camera1.active {
+      .sec-circle {
+        transform: rotate(180deg);
+      }
+
+      .text-view p {
+        clip-path: inset(0 0 0 0);
+      }
     }
 
-    .s63-a-sec.s63-a-sec2.active .sec-circle {
+    .camera2.active {
+      .sec-circle {
+        transform: rotate(180deg);
+      }
+
+      .text-view p {
+        clip-path: inset(0 0 0 0);
+      }
+    }
+
+    .camera2.active .sec-circle {
       right: 686px;
       top: 249px;
       transform: scale(0.92) rotate(180deg);
     }
 
-    /* 加上 active 后，圆圈旋转 180° */
-    .s63-a-sec.active .sec-circle {
-      transform: rotate(180deg);
-    }
-
-    /* active 后，文字显示，*/
-    .s63-a-sec.active .text-view p {
-      clip-path: inset(0 0 0 0);
+    .camera2 .sec-circle {
+      right: 686px;
+      top: 249px;
+      transform: scale(0.92);
     }
 
     .text-view {
@@ -129,10 +148,44 @@ function microscope_click(e: MouseEvent) {
       }
     }
 
+    .text-view {
+      position: absolute;
+      right: 1074px;
+      top: 106px;
+
+      p {
+        clip-path: inset(0 100% 0 0);
+        transition: clip-path 0.7s; /* 0.7 秒完成 */
+        text-align: left;
+      }
+
+      p:nth-child(2) {
+        transition: clip-path 1.5s;
+      }
+
+      p:nth-child(3) {
+        transition: clip-path 2s;
+      }
+
+      .spots {
+        display: flex;
+        flex-wrap: wrap;
+        width: 357px;
+        padding-top: 30px;
+
+        .item {
+          text-align: left;
+          width: 49%;
+          margin-top: 25px;
+        }
+      }
+    }
+
     .sec-bg {
       width: 999px;
       height: 888px;
     }
+
     .sec-circle-scale .line {
       position: absolute;
       height: 1px;
@@ -142,11 +195,13 @@ function microscope_click(e: MouseEvent) {
       background: #fff;
       transform-origin: 102px 0;
     }
-    .s63-a-sec2 .sec-circle-scale .line {
+
+    .camera2 .sec-circle-scale .line {
       top: 358px;
       right: 779px;
       transform-origin: 94px 0;
     }
+
     .sec-line {
       width: 533px;
       height: 1px;
@@ -157,12 +212,12 @@ function microscope_click(e: MouseEvent) {
       right: -367px;
       top: 110px;
     }
-    .s63-a-sec2 .sec-line {
+    .camera2 .sec-line {
       width: 315px;
       right: -184px;
     }
 
-    .s63-a-sec2 .text-view {
+    .camera2 .text-view {
       right: 1075px;
       top: 231px;
     }

@@ -2,8 +2,9 @@
   <!-- 第四部分 -->
   <div class="phone-params">
     <div class="text-view">
-      <div class="title comp-angle-block-fade-in-left fade-in">10 亿色臻彩屏，</div>
-      <div class="title comp-angle-block-fade-in-left fade-in">震撼色彩，流畅奔涌</div>
+      <div class="title">10 亿色臻彩屏，</div>
+      <div class="title">震撼色彩，流畅奔涌</div>
+
       <div class="spots">
         <div class="item">
           <div class="name">10.7 亿色</div>
@@ -32,34 +33,27 @@
         </div>
       </div>
     </div>
-    <img class="sec-bg" src="../assets/section6-3-2-hvga.png" />
   </div>
 </template>
 
-<script setup lang="ts">
-onMounted(() => {})
-</script>
+<script setup lang="ts"></script>
 
 <style lang="scss" scoped>
 // 第四
 .phone-params {
+  margin-top: -220vh;
+  height: 100vh;
+  overflow: hidden;
+
   transform: scale(1.15);
   clip-path: inset(100% 0 0);
-  z-index: 10;
+  z-index: 2;
 
-  position: absolute;
-  top: 0;
-  bottom: 0;
-  width: 100%;
+  background-image: url("../assets/section6-3-2-hvga.png");
+  background-size: 100% 100%;
+
   display: flex;
   justify-content: space-between;
-  height: 100vh;
-  min-height: 800px;
-
-  .sec-bg {
-    width: 100%;
-    height: 100%;
-  }
 
   .text-view {
     right: 900px;
