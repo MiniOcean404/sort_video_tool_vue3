@@ -218,10 +218,10 @@ export default defineConfig((config) => {
         host: "127.0.0.1",
         port: 3000,
       },
-      // https: {
-      //   key: fs.readFileSync(`${__dirname}/config/https/pem/mkcert-key.pem`),
-      //   cert: fs.readFileSync(`${__dirname}/config/https/pem/mkcert.pem`),
-      // },
+      https: {
+        key: fs.readFileSync(`${__dirname}/config/https/pem/mkcert-key.pem`),
+        cert: fs.readFileSync(`${__dirname}/config/https/pem/mkcert.pem`),
+      },
       headers: {
         // 如果需要用到 ffmpeg 合并视频，需要将 COEP 和 COOP 打开，来确保 ShareArrayBuffer 能够正常使用
         // 但是这会影响跨域资源视频、图片的使用

@@ -37,44 +37,14 @@
 </template>
 
 <script setup lang="ts">
-import gsap from "gsap"
-
-onMounted(() => {
-  /* 场景切换 gsap 固定页面 + clip-path */
-  gsap.to(".phone-params", {
-    // duration: 10,
-    // gsap.to 设置 clip-path 属性变更
-    // https://greensock.com/forums/topic/32322-clip-path-to-gsap-animation/
-    // 变更 css 变量
-    "--clip": "0", //clip-path(100% 0 0) => clip-path(0 0 0)
-    scale: 1,
-    scrollTrigger: {
-      trigger: ".area-3-4-box",
-      start: "top top",
-      end: "+800 top",
-      //   markers: true,
-      scrub: true,
-      pin: true,
-      pinType: "fixed",
-
-      onEnterBack() {
-        const text = document.querySelector(".phone-params .text-view") as HTMLDivElement
-        text.classList.remove("active")
-      },
-      onLeave() {
-        const text = document.querySelector(".phone-params .text-view") as HTMLDivElement
-        text.classList.add("active")
-      },
-    },
-  })
-})
+onMounted(() => {})
 </script>
 
 <style lang="scss" scoped>
 // 第四
 .phone-params {
   transform: scale(1.15);
-  clip-path: inset(var(--clip) 0 0);
+  clip-path: inset(100% 0 0);
   z-index: 10;
 
   position: absolute;

@@ -12,11 +12,6 @@
 </template>
 
 <script setup lang="ts">
-// 文章：https://juejin.cn/post/7195850600504262714?searchId=20240304141146CED8434363DDAD11CC57
-// 文章：https://juejin.cn/post/7167273586607161375
-// https://github.com/dev-zuo/nice-func
-// 参考地址：https://cookthevibe.com/
-
 import SwitchPhone from "./demo/1/index.vue"
 import MacProVideoPlayer from "./demo/2/index.vue"
 import GsapBaseDemo from "./demo/3/index.vue"

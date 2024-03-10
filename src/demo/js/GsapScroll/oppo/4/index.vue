@@ -1,16 +1,7 @@
 <template>
   <div class="phone-camera-box">
-    <div class="desc-text">
-      <div class="title">旗舰四摄，致敬探索，记录此刻</div>
-      <div class="detail">
-        两颗 10 亿色 5000 万像素旗舰主摄，场面再大，画面也出色。
-        <br />
-        60 倍显微镜，带你探索微观世界里的奇观。1300 万像素长焦，轻松拉近远方美好。
-      </div>
-    </div>
-
     <!-- 第三部分 -->
-    <!-- <div class="phone-camera">
+    <div class="phone-camera">
       <div class="camera-toggle-btn">
         <div class="active" @click="super_wide_angle_click">超广角</div>
         <div @click="microscope_click">显微镜</div>
@@ -49,54 +40,12 @@
         <img class="sec-circle" src="../assets/section-6-3-1-camera-circle-outer.svg" />
       </div>
       <img class="sec-bg" src="../assets/section6-3-1-camera.png" />
-    </div> -->
+    </div>
   </div>
 </template>
 
 <script setup lang="ts">
-import gsap from "gsap"
-
-onMounted(() => {
-  gsap.to(".part-3-4-box", {
-    opacity: 1,
-    scrollTrigger: {
-      trigger: ".part-3-4-box",
-      start: "top 100px",
-      end: "+800 top",
-      scrub: true,
-      toggleClass: {
-        targets: ".phone-camera-desc",
-        className: "active",
-      },
-      onEnter() {
-        generateLineDom("1") // 第一个摄像头刻度
-        generateLineDom("2") // 第2个摄像头刻度
-      },
-    },
-  })
-
-  // 生成摄像头周围刻度 dom
-  // type 第几个摄像头，默认为 1
-  function generateLineDom(type: string) {
-    let len = 240
-    let fragment = document.createDocumentFragment()
-
-    for (let i = 0; i < len; i++) {
-      let el = document.createElement("div")
-      //   console.log("el", el, el.classList);
-      el.classList.add(`id-${i}`)
-      el.classList.add(`line`)
-      // 0 => 239
-      // 1.5deg  => 360deg
-      // -102
-      el.style.transform = `translateX(-102px) rotate(${(i + 1) * 1.5}deg)`
-      fragment.appendChild(el)
-    }
-    let parentEl = document.querySelector(`.s63-a-sec${type} .sec-circle-scale`) as HTMLDivElement
-
-    parentEl.append(fragment)
-  }
-})
+onMounted(() => {})
 
 function super_wide_angle_click(e: MouseEvent) {
   const target = e.target as HTMLDivElement
@@ -132,23 +81,11 @@ function microscope_click(e: MouseEvent) {
   position: absolute;
   top: 0;
   bottom: 0;
-
-  .desc-text {
-    padding: 150px 0;
-
-    .title {
-      font-size: 35px;
-      line-height: 46px;
-    }
-    .detail {
-      margin: 25px auto 0;
-      font-size: 15px;
-      line-height: 23px;
-    }
-  }
+  width: 100%;
 
   /**第三 */
   .phone-camera {
+    pointer-events: unset;
     width: 100%;
     display: flex;
     justify-content: space-between;
@@ -163,6 +100,7 @@ function microscope_click(e: MouseEvent) {
       width: 216px;
       transition: all 1s;
     }
+
     .s63-a-sec2 .sec-circle {
       right: 686px;
       top: 249px;
