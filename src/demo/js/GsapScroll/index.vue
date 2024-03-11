@@ -38,9 +38,9 @@ ScrollTrigger.defaults({
 gsap.registerEffect({
   name: "rainbow",
   extendTimeline: true, // extendTimeline设置为true,可以直接在任何GSAP时间线上调用效果
-  effect: (target: HTMLDivElement, config: Object) => {
+  effect: (target: HTMLDivElement, config: any) => {
     let split = new SplitText(target, { type: "chars,words,lines" })
-    return gsap.from(split.chars, { opacity: 0, y: -100, stagger: 0.05 }, config.label)
+    return gsap.from(split.chars, { opacity: 0, y: -100, stagger: 0.05 })
   },
 })
 

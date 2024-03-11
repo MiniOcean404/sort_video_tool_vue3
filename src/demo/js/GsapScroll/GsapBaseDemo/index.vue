@@ -87,11 +87,11 @@ function load() {
     {
       duration: 1,
       stagger: 0.1,
-      delay: 0.5,
-      yoyo: true,
-      reversed: false,
-      repeat: -1,
-      startAt: { y: 0 },
+      // delay: 0.5,
+      // yoyo: true,
+      // reversed: false,
+      // repeat: -1,
+      // startAt: { y: 0 },
       keyframes: {
         "0%": { color: "#4c4c4c" },
         "25%": { color: "#4c4c4c" },
@@ -105,7 +105,7 @@ function load() {
     "sync",
   )
 
-  t1.rainbow(".h1", { label: "sync" })
+  t1.rainbow(".h1", {}, "sync")
 
   t1.to(
     ".rect",
