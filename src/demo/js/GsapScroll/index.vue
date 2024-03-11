@@ -14,11 +14,11 @@
 </template>
 
 <script setup lang="ts">
-import SwitchPhone from "./demo/1/index.vue"
-import MacProVideoPlayer from "./demo/2/index.vue"
-import GsapBaseDemo from "./demo/3/index.vue"
+import SwitchPhone from "./SwitchPhone/index.vue"
+import MacProVideoPlayer from "./MacProVideoPlayer/index.vue"
+import GsapBaseDemo from "./GsapBaseDemo/index.vue"
 import OppoFindX3 from "./oppo/index.vue"
-import MacbookProChip from "./demo/5/index.vue"
+import MacbookProChip from "./MacbookProChip/index.vue"
 import Honor from "./honor/index.vue"
 
 import { SplitText } from "gsap-trial/SplitText"
