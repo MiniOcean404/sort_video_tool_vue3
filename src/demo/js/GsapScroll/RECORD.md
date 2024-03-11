@@ -1,5 +1,6 @@
 ## 参考项目地址
 
+荣耀 demo: https://juejin.cn/post/7221409486697840701?share_token=083d7e9b-1cb3-4859-bb4b-18e6220b77a7
 成品项目：https://cookthevibe.com/
 Oppo Demo 地址：http://nice.zuo11.com/3-find-x3-mars/section-5-6.html
 oppo 官方地址：https://www.oppo.com/cn/smartphones/series-find-x/find-x3-pro-mars/

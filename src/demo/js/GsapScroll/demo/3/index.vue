@@ -1,8 +1,6 @@
 <template>
-  <!-- 第一屏 -->
-
-  <div class="animation-box">
-    <div class="box1"></div>
+  <div class="gsap-box">
+    <div class="rect"></div>
 
     <div class="text">
       <div class="text_line">我是文字文字</div>
@@ -12,13 +10,13 @@
       <div class="text_line">我是文字文字</div>
       <div class="text_line">我是文字文字</div>
     </div>
-  </div>
 
-  <div class="box2"></div>
+    <h1 class="h1">我是文字文字</h1>
+  </div>
 </template>
 
 <script setup lang="ts">
-import { gsap } from "gsap"
+import gsap from "gsap"
 
 onMounted(() => {
   load()
@@ -28,7 +26,7 @@ function load() {
   let t1 = gsap.timeline({
     scrollTrigger: {
       // 触发滚动的容器
-      trigger: ".animation-box",
+      trigger: ".gsap-box",
       // 辅助查看
       markers: true,
       // 滚动触发容器的结尾
@@ -52,12 +50,12 @@ function load() {
       // start: "top center", // trigger 元素的位置，滚动到时候的 参数2 位置时开始动画
       // end: "bottom bottom", // 在滚动 500 px后结束
       start: "0% 0%",
-      end: "+=1680 0%",
+      end: "bottom+=6400 0%",
       scrub: 0, // 触发器1秒后跟上滚动条, true | 0 将动画的进度直接链接到 ScrollTrigger 的进度 false 只执行一次，不反向执行
       // refreshPriority: 1,
       snap: {
-        snapTo: "labels",
-        duration: 1,
+        snapTo: 0.01,
+        duration: { min: 0.2, max: 3 },
         delay: 0,
         ease: "power1.inOut",
       },
@@ -87,8 +85,13 @@ function load() {
   t1.to(
     ".text_line",
     {
+      duration: 1,
       stagger: 0.1,
-      y: -40,
+      delay: 0.5,
+      yoyo: true,
+      reversed: false,
+      repeat: -1,
+      startAt: { y: 0 },
       keyframes: {
         "0%": { color: "#4c4c4c" },
         "25%": { color: "#4c4c4c" },
@@ -96,72 +99,37 @@ function load() {
         "75%": { color: "#4c4c4c" },
         "100%": { color: "#4c4c4c" },
       },
+
+      y: -40,
     },
     "sync",
   )
 
+  t1.rainbow(".h1", { label: "sync" })
+
   t1.to(
-    ".box1",
+    ".rect",
     {
+      duration: 0.5,
+
       rotation: 360,
       scale: 2,
       x: 300,
       opacity: 1,
       transformOrigin: "50% 50%",
       backgroundColor: "green",
-      // x: document.documentElement.clientWidth,
-      // x(index, target, targets) {
-      //   return document.documentElement.clientWidth - target.clientWidth * 2
-      // },
-      // y: 300,
     },
     "sync",
   )
-
-  let t2 = gsap.timeline({
-    scrollTrigger: {
-      trigger: ".box2",
-      // markers: true,
-      // endTrigger: "",
-      pin: true, // 在执行时固定触发器元素
-      start: "0% 60%",
-      end: "bottom+=700 0%",
-      scrub: 0,
-      snap: {
-        snapTo: "labels",
-        duration: 4,
-        delay: 0,
-        ease: "power1.inOut",
-      },
-    },
-  })
-
-  t2.to(".box2", {
-    rotation: 360,
-    scale: 2,
-    x: 300,
-    opacity: 1,
-    transformOrigin: "50% 50%",
-    backgroundColor: "green",
-    // x: document.documentElement.clientWidth,
-    // x(index, target, targets) {
-    //   return document.documentElement.clientWidth - target.clientWidth * 2
-    // },
-    // y: 300,
-  })
 }
 </script>
 
 <style lang="scss" scoped>
-.box1 {
-  background-color: red;
-  width: 100px;
-  height: 100px;
-}
-
-.box2 {
-  background-color: blue;
-  width: 100px;
-  height: 100px;
+.gsap-box {
+  .rect {
+    background-color: red;
+    width: 100px;
+    height: 100px;
+  }
 }
 </style>
