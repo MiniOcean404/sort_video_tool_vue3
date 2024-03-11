@@ -85,7 +85,7 @@ onMounted(() => {
     clipPath: "inset(0% 0% 0%)", //clip-path(100% 0 0) => clip-path(0 0 0)
     scale: 1,
     scrollTrigger: {
-      trigger: ".phone-params",
+      trigger: ".phone-params-box",
       start: "top top",
       end: "bottom top",
       markers: { indent: 30 },
@@ -118,7 +118,7 @@ function generateLineDom(type: string) {
     fragment.appendChild(el)
   }
 
-  let parentEl = document.querySelector(`.camera${type} .sec-circle-scale`) as HTMLDivElement
+  let parentEl = document.querySelector(`.camera${type} .camera-circle`) as HTMLDivElement
   parentEl.append(fragment)
 }
 </script>
