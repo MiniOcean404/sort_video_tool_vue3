@@ -1,7 +1,20 @@
 <template>
   <!-- 第一屏 -->
-  <div class="box1"></div>
-  <!-- <div class="box2"></div> -->
+
+  <div class="animation-box">
+    <div class="box1"></div>
+
+    <div class="text">
+      <div class="text_line">我是文字文字</div>
+      <div class="text_line">我是文字文字</div>
+      <div class="text_line">我是文字文字</div>
+      <div class="text_line">我是文字文字</div>
+      <div class="text_line">我是文字文字</div>
+      <div class="text_line">我是文字文字</div>
+    </div>
+  </div>
+
+  <div class="box2"></div>
 </template>
 
 <script setup lang="ts">
@@ -15,7 +28,7 @@ function load() {
   let t1 = gsap.timeline({
     scrollTrigger: {
       // 触发滚动的容器
-      trigger: ".box1",
+      trigger: ".animation-box",
       // 辅助查看
       markers: true,
       // 滚动触发容器的结尾
@@ -69,19 +82,41 @@ function load() {
     },
   })
 
-  t1.to(".box1", {
-    rotation: 360,
-    scale: 2,
-    x: 300,
-    opacity: 1,
-    transformOrigin: "50% 50%",
-    backgroundColor: "green",
-    // x: document.documentElement.clientWidth,
-    // x(index, target, targets) {
-    //   return document.documentElement.clientWidth - target.clientWidth * 2
-    // },
-    // y: 300,
-  })
+  t1.addLabel("sync")
+
+  t1.to(
+    ".text_line",
+    {
+      stagger: 0.1,
+      y: -40,
+      keyframes: {
+        "0%": { color: "#4c4c4c" },
+        "25%": { color: "#4c4c4c" },
+        "50%": { color: "#ffffff" },
+        "75%": { color: "#4c4c4c" },
+        "100%": { color: "#4c4c4c" },
+      },
+    },
+    "sync",
+  )
+
+  t1.to(
+    ".box1",
+    {
+      rotation: 360,
+      scale: 2,
+      x: 300,
+      opacity: 1,
+      transformOrigin: "50% 50%",
+      backgroundColor: "green",
+      // x: document.documentElement.clientWidth,
+      // x(index, target, targets) {
+      //   return document.documentElement.clientWidth - target.clientWidth * 2
+      // },
+      // y: 300,
+    },
+    "sync",
+  )
 
   let t2 = gsap.timeline({
     scrollTrigger: {
