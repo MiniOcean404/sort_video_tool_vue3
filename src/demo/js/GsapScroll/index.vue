@@ -2,12 +2,12 @@
   <div class="container">
     <!-- <OppoFindX3></OppoFindX3> -->
 
-    <!--
-    <SwitchPhone></SwitchPhone>
+    <!-- <SwitchPhone></SwitchPhone>
 
     <MacbookProChip></MacbookProChip>
-    <MacProVideoPlayer></MacProVideoPlayer>
-    <GsapBaseDemo></GsapBaseDemo> -->
+    <MacProVideoPlayer></MacProVideoPlayer> -->
+
+    <GsapBaseDemo></GsapBaseDemo>
   </div>
 </template>
 
@@ -26,7 +26,7 @@ gsap.registerPlugin(ScrollTrigger)
 
 ScrollTrigger.defaults({
   toggleActions: "restart pause resume pause",
-  // scroller: ".container",
+  // scroller: ".container", // 滚动根容器
 })
 onMounted(() => {})
 </script>

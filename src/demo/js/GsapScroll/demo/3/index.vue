@@ -1,9 +1,7 @@
 <template>
-  <div class="gsap-base-box">
-    <!-- 第一屏 -->
-    <div class="box1"></div>
-    <div class="box2"></div>
-  </div>
+  <!-- 第一屏 -->
+  <div class="box1"></div>
+  <!-- <div class="box2"></div> -->
 </template>
 
 <script setup lang="ts">
@@ -16,10 +14,11 @@ onMounted(() => {
 function load() {
   let t1 = gsap.timeline({
     scrollTrigger: {
-      // 设置可股滚动的根容器
-      scroller: document.querySelector(".container"),
-      trigger: ".gsap-base-box .box1",
-      markers: true, // 辅助查看
+      // 触发滚动的容器
+      trigger: ".box1",
+      // 辅助查看
+      markers: true,
+      // 滚动触发容器的结尾
       // endTrigger: "",
       pin: true, // 在执行时固定触发器元素
       /*
@@ -39,8 +38,8 @@ function load() {
        */
       // start: "top center", // trigger 元素的位置，滚动到时候的 参数2 位置时开始动画
       // end: "bottom bottom", // 在滚动 500 px后结束
-      start: "0% 20%",
-      end: "bottom 0%",
+      start: "0% 0%",
+      end: "+=1680 0%",
       scrub: 0, // 触发器1秒后跟上滚动条, true | 0 将动画的进度直接链接到 ScrollTrigger 的进度 false 只执行一次，不反向执行
       // refreshPriority: 1,
       snap: {
@@ -70,7 +69,7 @@ function load() {
     },
   })
 
-  t1.to(".gsap-base-box .box1", {
+  t1.to(".box1", {
     rotation: 360,
     scale: 2,
     x: 300,
@@ -86,13 +85,12 @@ function load() {
 
   let t2 = gsap.timeline({
     scrollTrigger: {
-      scroller: document.querySelector(".container"),
-      trigger: ".gsap-base-box .box2",
+      trigger: ".box2",
       // markers: true,
       // endTrigger: "",
       pin: true, // 在执行时固定触发器元素
       start: "0% 60%",
-      end: "bottom 0%",
+      end: "bottom+=700 0%",
       scrub: 0,
       snap: {
         snapTo: "labels",
@@ -103,7 +101,7 @@ function load() {
     },
   })
 
-  t2.to(".gsap-base-box .box2", {
+  t2.to(".box2", {
     rotation: 360,
     scale: 2,
     x: 300,
@@ -116,25 +114,17 @@ function load() {
     // },
     // y: 300,
   })
-
-  // setTimeout(() => {
-  //   t1.refresh()
-  // }, 3000)
 }
 </script>
 
 <style lang="scss" scoped>
 .box1 {
-  margin-top: 200px;
-
   background-color: red;
   width: 100px;
   height: 100px;
 }
 
 .box2 {
-  margin-top: 700px;
-
   background-color: blue;
   width: 100px;
   height: 100px;

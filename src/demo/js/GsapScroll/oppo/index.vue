@@ -17,7 +17,6 @@ import FoureScreen from "./4/index.vue"
 import FiveScreen from "./5/index.vue"
 
 import gsap from "gsap"
-import ScrollTrigger from "gsap/ScrollTrigger"
 
 onMounted(() => {
   // section-6 第二个盖住第三个，核心是，第二个 margin-top: -100vh;
