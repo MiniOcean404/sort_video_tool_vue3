@@ -1,6 +1,6 @@
 <template>
   <div class="container">
-    <OppoFindX3></OppoFindX3>
+    <!-- <OppoFindX3></OppoFindX3> -->
 
     <!--
     <SwitchPhone></SwitchPhone>
@@ -37,4 +37,3 @@ onMounted(() => {})
   overflow: hidden;
 }
 </style>
-./oppo/index.vue

@@ -103,7 +103,6 @@ onMounted(() => {
 </script>
 
 <style lang="scss">
-/*第一 */
 .find_x3_box {
   background: #000;
   color: white;
