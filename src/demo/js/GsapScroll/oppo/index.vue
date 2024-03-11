@@ -17,6 +17,7 @@ import FoureScreen from "./4/index.vue"
 import FiveScreen from "./5/index.vue"
 
 import gsap from "gsap"
+import ScrollTrigger from "gsap/ScrollTrigger"
 
 onMounted(() => {
   // section-6 第二个盖住第三个，核心是，第二个 margin-top: -100vh;
@@ -69,26 +70,22 @@ onMounted(() => {
       scrub: true,
       pin: true,
       pinType: "fixed",
-      markers: true,
+      // markers: true,
       toggleClass: {
         targets: ".phone-camera-desc",
         className: "active",
-      },
-      onEnter() {
-        generateLineDom("1") // 第一个摄像头刻度
-        generateLineDom("2") // 第2个摄像头刻度
       },
     },
   })
 
   t1.to(".phone-params", {
-    clipPath: "inset(0% 0% 0%)", //clip-path(100% 0 0) => clip-path(0 0 0)
+    clipPath: "inset(0% 0% 0%)", // clip-path(100% 0 0) => clip-path(0 0 0)
     scale: 1,
     scrollTrigger: {
       trigger: ".phone-params-box",
       start: "top top",
       end: "bottom top",
-      markers: { indent: 30 },
+      // markers: { indent: 30 },
       scrub: true,
       pin: true,
       pinType: "fixed",
@@ -103,24 +100,6 @@ onMounted(() => {
     },
   })
 })
-
-// 生成摄像头周围刻度 dom
-// type 第几个摄像头，默认为 1
-function generateLineDom(type: string) {
-  let len = 240
-  let fragment = document.createDocumentFragment()
-
-  for (let i = 0; i < len; i++) {
-    let el = document.createElement("div")
-    el.classList.add(`id-${i}`)
-    el.classList.add(`line`)
-    el.style.transform = `translateX(-102px) rotate(${(i + 1) * 1.5}deg)`
-    fragment.appendChild(el)
-  }
-
-  let parentEl = document.querySelector(`.camera${type} .camera-circle`) as HTMLDivElement
-  parentEl.append(fragment)
-}
 </script>
 
 <style lang="scss">

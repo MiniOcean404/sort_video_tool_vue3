@@ -46,13 +46,12 @@
   overflow: hidden;
   height: 100vh;
   margin-top: -200vh;
+  pointer-events: none;
 
   .phone-params {
     height: inherit;
     transform: scale(1.15);
     clip-path: inset(100% 0 0);
-
-    z-index: 2;
 
     background-image: url("../assets/section6-3-2-hvga.png");
     background-size: 100% 100%;
