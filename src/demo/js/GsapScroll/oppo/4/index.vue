@@ -25,9 +25,8 @@
             <p>1/1.56" 感光面积</p>
           </div>
         </div>
-        <div class="camera-circle"></div>
 
-        <div class="sec-line"></div>
+        <div class="sec_line_common sec-line"></div>
         <img class="sec_circle_common sec-circle" src="../assets/section-6-3-1-camera-circle-outer.svg" />
       </div>
 
@@ -46,9 +45,8 @@
             </p>
           </div>
         </div>
-        <div class="camera-circle"></div>
 
-        <div class="sec-line"></div>
+        <div class="sec_line_common sec-line"></div>
         <img class="sec_circle_common sec-circle" src="../assets/section-6-3-1-camera-circle-outer.svg" />
       </div>
     </div>
@@ -107,14 +105,6 @@ function microscope_click(e: MouseEvent) {
     width: 888px;
     height: 905px;
 
-    .sec_circle_common {
-      position: absolute;
-      z-index: 1;
-
-      width: 216px;
-      transition: all 1s;
-    }
-
     /* 加上 active 后，圆圈旋转 180° */
     .camera1 {
       position: absolute;
@@ -165,12 +155,6 @@ function microscope_click(e: MouseEvent) {
         transform: scale(0.92);
       }
 
-      .camera-circle .line {
-        top: 358px;
-        right: 779px;
-        transform-origin: 94px 0;
-      }
-
       .sec-line {
         width: 315px;
         right: 806px;
@@ -183,17 +167,15 @@ function microscope_click(e: MouseEvent) {
       }
     }
 
-    .camera-circle .line {
+    .sec_circle_common {
       position: absolute;
-      height: 1px;
-      width: 7px;
-      top: 213px;
-      right: 590px;
-      background: #fff;
-      transform-origin: 102px 0;
+      z-index: 1;
+
+      width: 216px;
+      transition: all 1s;
     }
 
-    .sec-line {
+    .sec_line_common {
       width: 533px;
       height: 1px;
       background: rgba(255, 255, 255, 0.5);
@@ -203,36 +185,36 @@ function microscope_click(e: MouseEvent) {
       position: absolute;
       top: 180px;
     }
-  }
 
-  .common_text_style {
-    width: 300px;
+    .common_text_style {
+      width: 300px;
 
-    p {
-      clip-path: inset(0 100% 0 0);
-      transition: clip-path 0.7s; /* 0.7 秒完成 */
-      text-align: left;
-      margin: 1em 0;
-
-      &:nth-child(2) {
-        transition: clip-path 1.5s;
-      }
-
-      &:nth-child(3) {
-        transition: clip-path 2s;
-      }
-    }
-
-    .spots {
-      display: flex;
-      flex-wrap: wrap;
-      width: 357px;
-      padding-top: 30px;
-
-      .item {
+      p {
+        clip-path: inset(0 100% 0 0);
+        transition: clip-path 0.7s; /* 0.7 秒完成 */
         text-align: left;
-        width: 49%;
-        margin-top: 25px;
+        margin: 1em 0;
+
+        &:nth-child(2) {
+          transition: clip-path 1.5s;
+        }
+
+        &:nth-child(3) {
+          transition: clip-path 2s;
+        }
+      }
+
+      .spots {
+        display: flex;
+        flex-wrap: wrap;
+        width: 357px;
+        padding-top: 30px;
+
+        .item {
+          text-align: left;
+          width: 49%;
+          margin-top: 25px;
+        }
       }
     }
   }
