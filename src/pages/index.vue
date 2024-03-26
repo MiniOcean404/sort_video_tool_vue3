@@ -1,7 +1,8 @@
 <script setup lang="ts">
 // import PDFJS from "@/components/PDFJS/index.vue"
 // import TransitionsAPI from "@/demo/js/TransitionsAPI/index.vue"
-import GsapScroll from "@/demo/js/GsapScroll/index.vue"
+// import GsapScroll from "@/demo/js/GsapScroll/index.vue"
+import RxJs from "@/demo/js/RxJs/index.vue"
 // import { useUserStore } from '@/store/user'
 // const userStore = useUserStore()
 </script>
@@ -12,7 +13,9 @@ import GsapScroll from "@/demo/js/GsapScroll/index.vue"
   <!-- <GieInput></GieInput> -->
 
   <!-- <TransitionsAPI></TransitionsAPI> -->
-  <GsapScroll></GsapScroll>
+  <!-- <GsapScroll></GsapScroll> -->
+
+  <RxJs></RxJs>
 </template>
 
 <style scope lang="scss">
