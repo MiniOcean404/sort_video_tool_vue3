@@ -96,7 +96,7 @@ export default defineConfig((config) => {
         dts: "src/typings/auto-imports.d.ts",
         include: [/\.[tj]sx?$/, /\.vue$/, /\.vue\?vue/],
         // 全局引入插件
-        imports: ["vue", "vue-router"],
+        imports: ["vue", "vue-router", "vue/macros"],
         resolvers: [
           GieResolver(),
           ElementPlusResolver(), // 自动导入图标组件,只有进入使用界面的时候才会添加到声明文件中

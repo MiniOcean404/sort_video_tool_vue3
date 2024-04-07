@@ -3,7 +3,13 @@
     "paths": {
       "@/*": ["src/*"]
     },
-    "types": ["vite/client", "unplugin-icons/types/vue3", "node", "@types/wicg-file-system-access"],
+    "types": [
+      "vite/client",
+      "unplugin-icons/types/vue3",
+      "node",
+      "@types/wicg-file-system-access",
+      "@vue-macros/reactivity-transform/macros-global"
+    ],
     "target": "ESNext",
     "useDefineForClassFields": true,
     "module": "ESNext",
