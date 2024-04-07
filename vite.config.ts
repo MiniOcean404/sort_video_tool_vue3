@@ -10,6 +10,7 @@ import vueJsx from "@vitejs/plugin-vue-jsx"
 import Components from "unplugin-vue-components/vite"
 // unplugin-auto-import 插件的作用是自动导入第三方库或组件。它会根据我们在代码中使用的标识符自动检测并导入相应的库或组件。这样，我们就不需要手动导入它们了。
 import AutoImport from "unplugin-auto-import/vite"
+import ReactivityTransform from "@vue-macros/reactivity-transform/vite"
 
 import Icons from "unplugin-icons/vite"
 import IconsResolver from "unplugin-icons/resolver"
@@ -61,6 +62,8 @@ export default defineConfig((config) => {
       }),
       // 开启 jsx 支持
       vueJsx(),
+      // 使用 $ref 取消 .value 宏
+      ReactivityTransform(),
       // 生成 svg 雪碧图
       createSvgIconsPlugin({
         iconDirs: [path.resolve(process.cwd(), "src/assets/svg")],
@@ -313,7 +316,15 @@ export default defineConfig((config) => {
       // 而有时候我们想要修改依赖模块的代码，做一些测试或者打个补丁，这时候就要用到强制依赖预构建。
       // 除了这个方法，我们还可以通过删除 .vite 文件夹或运行 npx vite --force 来强制进行依赖预构建。
       force: false, // 强制进行依赖预构建
-      exclude: ["@ffmpeg/ffmpeg", "@ffmpeg/util", "@jsquash/avif", "@jsquash/jpeg", "@jsquash/jxl", "@jsquash/png", "@jsquash/webp"],
+      exclude: [
+        "@ffmpeg/ffmpeg",
+        "@ffmpeg/util",
+        "@jsquash/avif",
+        "@jsquash/jpeg",
+        "@jsquash/jxl",
+        "@jsquash/png",
+        "@jsquash/webp",
+      ],
     },
     assetsInclude: ["**/*.gltf"], // 指定额外的 picomatch 模式 作为静态资源处理
     css: {
