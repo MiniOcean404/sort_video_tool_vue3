@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { ref, onMounted } from "vue"
+import { onMounted } from "vue"
 import TimeIcon from "@/assets/svg/time-icon.svg"
 import { toPng } from "html-to-image"
 
@@ -27,22 +27,25 @@ const props = withDefaults(defineProps<Dom2ImageProp>(), {
   boxWidth: "960px",
 })
 
-const color = ref()
-const base64 = ref<string>("")
-const coverDom = ref<HTMLElement>()
-const isShowBorder = ref(true)
+let color = $ref("")
+let base64 = $ref<string>()
+let coverDom = $ref<HTMLElement>()
+let isShowBorder = $ref(true)
 
 onMounted(() => {
-  color.value = randomColor()
+  color = randomColor()
 })
 
 const randomColor = () => `#${Math.floor(Math.random() * 0xffffff).toString(16)}`
 
 const start = async () => {
-  if (coverDom.value) {
-    isShowBorder.value = false
-    base64.value = await toPng(coverDom.value, { quality: 1, pixelRatio: window.devicePixelRatio * props.scale })
-    isShowBorder.value = true
+  if (coverDom) {
+    isShowBorder = false
+    base64 = await toPng(coverDom, {
+      quality: 1,
+      pixelRatio: window.devicePixelRatio * props.scale,
+    })
+    isShowBorder = true
   }
 }
 
