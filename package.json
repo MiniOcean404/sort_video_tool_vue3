@@ -54,7 +54,6 @@
     "ua-parser-js": "^1.0.37",
     "vue": "^3.4.12",
     "vue-router": "^4.2.5",
-    "wasm-compress": "./src/wasm/compress",
     "webrtc-adapter": "^8.2.3"
   },
   "devDependencies": {
