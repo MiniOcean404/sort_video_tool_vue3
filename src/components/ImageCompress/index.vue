@@ -1,5 +1,11 @@
 <template>
-  <div class="main" @dragenter="dragenterEvent" @dragover="dragoverEvent" @dragleave="dragleaveEvent" @drop="dropDirEvent">
+  <div
+    class="main"
+    @dragenter="dragenterEvent"
+    @dragover="dragoverEvent"
+    @dragleave="dragleaveEvent"
+    @drop="dropDirEvent"
+  >
     <!-- 头部 -->
     <div class="header">
       <div>名称</div>
@@ -71,6 +77,7 @@
 import JSZip from "jszip"
 // @ts-ignore
 import imageTiny from "@mxsir/image-tiny"
+
 import { reactive } from "vue"
 import { formartFileSize } from "@/utils/formart"
 import dayjs from "dayjs"
@@ -100,7 +107,9 @@ function dragenterEvent(event: Event) {
 async function dragoverEvent(event: Event) {
   event.preventDefault()
 
-  console.log("over:事件在可拖动的元素或者被选择的文本被[拖进]一个有效的放置目标时（每几百毫秒）触发。")
+  console.log(
+    "over:事件在可拖动的元素或者被选择的文本被[拖进]一个有效的放置目标时（每几百毫秒）触发。",
+  )
 }
 function dragleaveEvent(event: Event) {
   event.preventDefault()
@@ -221,7 +230,10 @@ function handleDownloadAll() {
   zipFiles(files)
 }
 
-function zipFiles(files: { file: File; path?: string }[], fileName: string = `${dayjs(Date.now()).format("YYYY-MM-DD HH:mm:ss")}.zip`) {
+function zipFiles(
+  files: { file: File; path?: string }[],
+  fileName: string = `${dayjs(Date.now()).format("YYYY-MM-DD HH:mm:ss")}.zip`,
+) {
   const zip = new JSZip()
 
   files.forEach((data) => zip.file(data.path || "", data.file))

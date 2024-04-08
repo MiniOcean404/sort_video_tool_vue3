@@ -27,6 +27,9 @@ import Inspect from "vite-plugin-inspect"
 import ViteRestart from "vite-plugin-restart"
 import { CodeInspectorPlugin } from "code-inspector-plugin"
 
+import wasm from "vite-plugin-wasm"
+import topLevelAwait from "vite-plugin-top-level-await"
+
 import { visualizer } from "rollup-plugin-visualizer"
 
 import { GieResolver } from "@giegie/resolver"
@@ -37,6 +40,7 @@ import { ProxyServer, RmoveConsole, filePathInject } from "@giegie/vite-plugin"
 // const variablePath = normalizePath(path.resolve("./src/css/device/device.mixin.scss"))
 
 // https://vitejs.dev/config/
+// vite 支持在 package.json 中使用 "wasm-compress": "./src/wasm/compress" 加载库，需要 pnpm i
 export default defineConfig((config) => {
   const isDev = config.mode === "development"
   const isProd = config.mode === "production"
@@ -123,6 +127,11 @@ export default defineConfig((config) => {
       ViteRestart({
         restart: [".env.*", "vite.config.[jt]s"],
       }),
+
+      // 用于加载 wasm 文件，支持 rust wasm-pack 生成的，需要有 package.json 文件去加载胶水文件
+      // wasm(),
+      // topLevelAwait(),
+
       importToCDN({
         // 需要 CDN 加速的模块
         modules: [
