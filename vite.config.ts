@@ -52,6 +52,9 @@ export default defineConfig((config) => {
 
   return {
     base: "./", // 开发或生产环境服务的公共基础路径
+    define: {
+      "process.env": loadEnv(config.mode, process.cwd()),
+    },
     publicDir: fileURLToPath(new URL("./public", import.meta.url)),
     cacheDir: "node_modules/.vite", // 存储缓存文件的目录
     logLevel: "info", // 调整控制台输出的级别 'info' | 'warn' | 'error' | 'silent'
