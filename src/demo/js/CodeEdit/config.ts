@@ -54,7 +54,7 @@ export const config: editor.IStandaloneEditorConstructionOptions = {
   },
 
   overviewRulerBorder: true, // 是否应围绕概览标尺绘制边框
-  renderLineHighlight: "all", // 当前行突出显示方式
+  renderLineHighlight: "all", // 高亮行
   scrollBeyondLastLine: false, // 是否到了最后一行之后依然可以滚动一屏，关闭后就不会了
   lineNumbers: "on",
   lineNumbersMinChars: 0,

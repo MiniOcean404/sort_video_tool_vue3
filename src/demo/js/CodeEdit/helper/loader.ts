@@ -1,28 +1,30 @@
-self.MonacoEnvironment = {
-  getWorker: function (workerId, label) {
-    const getWorkerModule = (moduleUrl, label) => {
-      return new Worker(self.MonacoEnvironment.getWorkerUrl(moduleUrl), {
-        name: label,
-        type: "module",
-      })
-    }
+// import * as monaco from "monaco-editor/esm/vs/editor/editor.main"
+import editorWorker from "monaco-editor/esm/vs/editor/editor.worker?worker"
+import jsonWorker from "monaco-editor/esm/vs/language/json/json.worker?worker"
+import cssWorker from "monaco-editor/esm/vs/language/css/css.worker?worker"
+import htmlWorker from "monaco-editor/esm/vs/language/html/html.worker?worker"
+import tsWorker from "monaco-editor/esm/vs/language/typescript/ts.worker?worker"
 
+// 解决 monaco-editor webworker 加载错误问题，重写他的方法
+// https://juejin.cn/post/7273126566460948541#heading-4
+self.MonacoEnvironment = {
+  getWorker(_, label) {
     switch (label) {
       case "json":
-        return getWorkerModule("/monaco-editor/esm/vs/language/json/json.worker?worker", label)
+        return new jsonWorker()
       case "css":
       case "scss":
       case "less":
-        return getWorkerModule("/monaco-editor/esm/vs/language/css/css.worker?worker", label)
+        return new cssWorker()
       case "html":
       case "handlebars":
       case "razor":
-        return getWorkerModule("/monaco-editor/esm/vs/language/html/html.worker?worker", label)
+        return new htmlWorker()
       case "typescript":
       case "javascript":
-        return getWorkerModule("/monaco-editor/esm/vs/language/typescript/ts.worker?worker", label)
+        return new tsWorker()
       default:
-        return getWorkerModule("/monaco-editor/esm/vs/editor/editor.worker?worker", label)
+        return new editorWorker()
     }
   },
 }

@@ -4,6 +4,7 @@
 
 <script setup lang="ts">
 import { from, map, toArray, of, reduce, fromEventPattern } from "rxjs"
+import "./test"
 
 onMounted(() => {
   const source = from([{ id: 1 }, { id: 2 }, { id: 3 }])

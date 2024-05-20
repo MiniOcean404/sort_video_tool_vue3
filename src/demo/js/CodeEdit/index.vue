@@ -6,9 +6,8 @@
 // https://juejin.cn/post/7329353489678680103?searchId=20240520110630F79B0643745C503D34B7
 // 各个功能：https://zhuanlan.zhihu.com/p/590230766
 import * as monaco from "monaco-editor"
-// import * as monaco from "monaco-editor/esm/vs/editor/editor.main"
-
 import type { editor } from "monaco-editor"
+import "./helper/loader"
 
 //设置语言包
 // import { setLocaleData } from "monaco-editor-nls"
@@ -16,39 +15,6 @@ import type { editor } from "monaco-editor"
 
 import { config } from "./config"
 import { addCommand } from "@/demo/js/CodeEdit/helper/editor/command"
-
-// 解决 js编辑 报错提示 EditorSimpleWorker.loadForeignModule 问题
-// https://juejin.cn/post/7273126566460948541#heading-4
-self.MonacoEnvironment = {
-  getWorker(_, label) {
-    const getWorkerModule = (url: string, label: string) => {
-      // @ts-ignore
-      const sciprt = MonacoEnvironment?.getWorkerUrl(url, label)
-      return new Worker(sciprt || "", {
-        name: label,
-        type: "module",
-      })
-    }
-
-    switch (label) {
-      case "json":
-        return getWorkerModule("/monaco-editor/esm/vs/language/json/json.worker?worker", label)
-      case "css":
-      case "scss":
-      case "less":
-        return getWorkerModule("/monaco-editor/esm/vs/language/css/css.worker?worker", label)
-      case "html":
-      case "handlebars":
-      case "razor":
-        return getWorkerModule("/monaco-editor/esm/vs/language/html/html.worker?worker", label)
-      case "typescript":
-      case "javascript":
-        return getWorkerModule("/monaco-editor/esm/vs/language/typescript/ts.worker?worker", label)
-      default:
-        return getWorkerModule("/monaco-editor/esm/vs/editor/editor.worker?worker", label)
-    }
-  },
-}
 
 // monaco.languages.typescript.typescriptDefaults.setEagerModelSync(true)
 
@@ -64,7 +30,7 @@ interface EditorEmits {
 
 const props = withDefaults(defineProps<CodeEditProps>(), {
   code: ``,
-  language: "javascript",
+  language: "typescript",
   theme: "vs-dark",
 })
 

@@ -39,13 +39,7 @@ export function addCommand(editorIns: editor.IStandaloneCodeEditor) {
   })
 
   // Ctrl + S -- 格式化代码（未实现保存）
-  // editorIns.addCommand(monaco.KeyMod.CtrlCmd | monaco.KeyCode.KeyS, () => {
-  //   editorIns?.getAction("editor.action.formatDocument")?.run()
-  // })
-
-  editorIns.addCommand(monaco.KeyMod.CtrlCmd | monaco.KeyCode.KeyJ, () => {
-    console.log(editorIns)
-
+  editorIns.addCommand(monaco.KeyMod.CtrlCmd | monaco.KeyCode.KeyS, () => {
     editorIns?.getAction("editor.action.formatDocument")?.run()
   })
 
