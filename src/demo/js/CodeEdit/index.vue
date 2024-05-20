@@ -65,8 +65,6 @@ function init() {
     ...config,
   })
 
-  console.log(editorIns)
-
   // 监听编辑器内容变化
   editorIns?.onDidChangeModelContent(() => {
     const code = toRaw(editorIns)?.getValue()
