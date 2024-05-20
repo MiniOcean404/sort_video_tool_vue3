@@ -113,6 +113,9 @@ importers:
       monaco-editor:
         specifier: ^0.48.0
         version: 0.48.0
+      monaco-editor-nls:
+        specifier: ^3.1.0
+        version: 3.1.0
       nanoid:
         specifier: ^5.0.4
         version: 5.0.4
@@ -3832,6 +3835,9 @@ packages:
 
   mlly@1.5.0:
     resolution: {integrity: sha512-NPVQvAY1xr1QoVeG0cy8yUYC7FQcOx6evl/RjT1wL5FvzPnzOysoqB/jmx/DhssT2dYa8nxECLAaFI/+gVLhDQ==}
+
+  monaco-editor-nls@3.1.0:
+    resolution: {integrity: sha512-GdzgKRAiwXlGI/ude/HbzP8ukml28yUoZ7rx/xsSsmYf9W13jTyWjXjoMK/+pjL6JorAThH2WkCYaDoCnIX7Jg==}
 
   monaco-editor@0.48.0:
     resolution: {integrity: sha512-goSDElNqFfw7iDHMg8WDATkfcyeLTNpBHQpO8incK6p5qZt5G/1j41X0xdGzpIkGojGXM+QiRQyLjnfDVvrpwA==}
@@ -9594,6 +9600,8 @@ snapshots:
       pathe: 1.1.2
       pkg-types: 1.0.3
       ufo: 1.3.2
+
+  monaco-editor-nls@3.1.0: {}
 
   monaco-editor@0.48.0: {}
 
