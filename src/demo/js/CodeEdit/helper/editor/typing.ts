@@ -1,10 +1,25 @@
 import * as monaco from "monaco-editor"
-import type { editor } from "monaco-editor"
 import { setupTypeAcquisition } from "@typescript/ata"
 import typescriprt from "typescript"
 
 // 添加 ts 声明：https://mp.weixin.qq.com/s/MAKK2LqOp251ccuMi3ST7A
-function addTsTyping(editor: editor.IStandaloneCodeEditor) {
+
+export function setTs() {
+  // 设置 tsconfig.json, 支持 react
+  addTsTyping()
+
+  // 添加类型声明文件
+  // const ata = createATA((code, path) => {
+  //   monaco.languages.typescript.typescriptDefaults.addExtraLib(code, `file://${path}}`)
+  // })
+
+  // 获取 ts 类型的代码
+  // ata(editor.getValue())
+
+  // return ata
+}
+
+function addTsTyping() {
   monaco.languages.typescript.typescriptDefaults.setCompilerOptions({
     // 这里设置 jsx 为 preserve，也就是输入 <div> 输出 <div>，保留原样
     // 如果设置为 react 会输出 React.createElement("div")。
@@ -32,17 +47,4 @@ export function createATA(onDownloadFile: (code: string, path: string) => void) 
   })
 
   return ata
-}
-
-function setTs(editor: editor.IStandaloneCodeEditor) {
-  // 设置 tsconfig.json, 支持 react
-  addTsTyping(editor)
-
-  // 添加类型声明文件
-  const ata = createATA((code, path) => {
-    monaco.languages.typescript.typescriptDefaults.addExtraLib(code, `file://${path}}`)
-  })
-
-  // 获取 ts 类型的代码
-  ata(editor.getValue())
 }

@@ -15,6 +15,7 @@ import "./helper/loader"
 
 import { config } from "./config"
 import { addCommand } from "@/demo/js/CodeEdit/helper/editor/command"
+import { setTs } from "@/demo/js/CodeEdit/helper/editor/typing"
 
 // monaco.languages.typescript.typescriptDefaults.setEagerModelSync(true)
 
@@ -29,7 +30,14 @@ interface EditorEmits {
 }
 
 const props = withDefaults(defineProps<CodeEditProps>(), {
-  code: ``,
+  code: `
+  import ahooks from "ahooks"
+    function App() {
+      return <div>
+
+          </div>
+  }
+  `,
   language: "typescript",
   theme: "vs-dark",
 })
@@ -57,11 +65,21 @@ function init() {
     ...config,
   })
 
+  console.log(editorIns)
+
   // 监听编辑器内容变化
   editorIns?.onDidChangeModelContent(() => {
-    // 触发父组件更新代码内容
-    emit("update:code", toRaw(editorIns)?.getValue())
+    const code = toRaw(editorIns)?.getValue()
+
+    if (code) {
+      // ata(code)
+      // 触发父组件更新代码内容
+      emit("update:code", code)
+    }
   })
+
+  // const ata = setTs()
+  // ata(toRaw(editorIns)?.getValue())
 }
 </script>
 
