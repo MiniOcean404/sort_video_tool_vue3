@@ -33,6 +33,7 @@
     "@tensorflow/tfjs-backend-webgpu": "^4.17.0",
     "@tensorflow/tfjs-converter": "^4.17.0",
     "@tensorflow/tfjs-core": "^4.17.0",
+    "@typescript/ata": "^0.9.4",
     "@vueuse/core": "^10.7.0",
     "chroma-js": "^2.4.2",
     "color-diff": "^1.4.0",

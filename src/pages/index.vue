@@ -2,20 +2,20 @@
 // import PDFJS from "@/components/PDFJS/index.vue"
 // import TransitionsAPI from "@/demo/js/TransitionsAPI/index.vue"
 // import GsapScroll from "@/demo/js/GsapScroll/index.vue"
-import RxJs from "@/demo/js/RxJs/index.vue"
+// import RxJs from "@/demo/js/RxJs/index.vue"
+import CodeEdit from "@/demo/js/CodeEdit/index.vue"
+
 // import { useUserStore } from '@/store/user'
 // const userStore = useUserStore()
 </script>
 
 <template>
   <!-- <GieJumpCode path="__filePath__" /> -->
-
   <!-- <GieInput></GieInput> -->
-
   <!-- <TransitionsAPI></TransitionsAPI> -->
   <!-- <GsapScroll></GsapScroll> -->
-
-  <RxJs></RxJs>
+  <!-- <RxJs></RxJs> -->
+  <CodeEdit></CodeEdit>
 </template>
 
 <style scope lang="scss">
