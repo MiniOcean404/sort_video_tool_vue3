@@ -125,7 +125,8 @@ export default defineConfig((config) => {
         },
       }),
       // 在 esm 中支持 commonjs
-      viteCommonjs(),
+      // ! 与 @babel/standalone 冲突，暂时注释
+      // viteCommonjs(),
       // vite将 env 暴露给import.meta.env.PREFIX_XXX，但不会像 vue-cli 或 create-react-app 那样加载到 process.env
       envInject({}),
       // CodeInspectorPlugin({ bundler: "vite" }),

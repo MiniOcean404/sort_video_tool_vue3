@@ -1,5 +1,7 @@
 <template>
-  <div ref="editorDom" class="monaco-editor-box"></div>
+  <div class="editorBox">
+    <div ref="editorDom" class="monaco-editor-box"></div>
+  </div>
 </template>
 
 <script setup lang="ts">
@@ -14,27 +16,20 @@ import "./helper/loader"
 // import zh_CN from "monaco-editor-nls/locale/zh-hans"
 
 import { config } from "./config"
-import { addCommand } from "@/demo/js/CodeEdit/helper/editor/command"
-import { setTs } from "@/demo/js/CodeEdit/helper/editor/typing"
+import { addCommand } from "@/demo/js/CodeEditor/Editor/helper/editor/command"
+import { setTs } from "@/demo/js/CodeEditor/Editor/helper/editor/typing"
+import { CodeEditProps, EditorEmits } from "@/demo/js/CodeEditor/Editor/typing/vue"
 
 // monaco.languages.typescript.typescriptDefaults.setEagerModelSync(true)
 
-interface CodeEditProps {
-  code: string
-  language: string
-  theme: string
-}
-
-interface EditorEmits {
-  (e: "update:code", value: string | undefined): void
-}
-
 const props = withDefaults(defineProps<CodeEditProps>(), {
   code: `
-  import ahooks from "ahooks"
+  // import ahooks from "ahooks"
+  // import lodash from "lodash"
+  import dayjs from "dayjs"
     function App() {
       return <div>
-
+            "啊啊啊啊啊"
           </div>
   }
   `,
@@ -47,7 +42,7 @@ let editorDom = $ref<HTMLDivElement | null>(null)
 const emit = defineEmits<EditorEmits>()
 
 onMounted(async () => {
-  init()
+  initEditor()
   // addAction(editorIns!)
   addCommand(editorIns!)
 })
@@ -56,7 +51,7 @@ onUnmounted(() => {
   editorIns?.dispose()
 })
 
-function init() {
+function initEditor() {
   // 创建 Monaco Editor 实例
   editorIns = monaco.editor.create(editorDom!, {
     value: props.code, // 编辑器初始显示文字
@@ -76,15 +71,20 @@ function init() {
     }
   })
 
-  // const ata = setTs()
-  // ata(toRaw(editorIns)?.getValue())
+  const ata = setTs()
+  ata(toRaw(editorIns)?.getValue())
 }
 </script>
 
 <style lang="scss" scoped>
-.monaco-editor-box {
-  width: 100%;
-  height: 100vh;
-  overflow: hidden;
+.editorBox {
+  width: inherit;
+  height: 100%;
+
+  .monaco-editor-box {
+    width: 100%;
+    height: 50vh;
+    overflow: hidden;
+  }
 }
 </style>

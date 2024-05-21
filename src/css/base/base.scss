@@ -1,5 +1,5 @@
 //https://juejin.cn/post/7055845836298649636#heading-7
-// @import "./normalize";
+@import "./normalize";
 @import "./tool";
 
 /* 初始化 */
@@ -148,7 +148,8 @@ xmp {
 @font-face {
   font-family: Emoji;
   // Apple Color Emojiji（苹果 Emoji）Segoe UI Symbol（win8.1/10）Segoe UI Symbol（win7/8）Noto Color Emoji（安卓）
-  src: local("Apple Color Emojiji"), local("Segoe UI Emoji"), local("Segoe UI Symbol"), local("Noto Color Emoji");
+  src: local("Apple Color Emojiji"), local("Segoe UI Emoji"), local("Segoe UI Symbol"),
+    local("Noto Color Emoji");
   // 限制Emoji字体作用的字符范围，不限制的话,兜底字符的Unicode范围覆盖了emoji字体
   //   unicode-range限制了Emoji字体的作用范围，符合该范围则使用Emoji这个font-family
   unicode-range: U+1F000-1F644, U+203C-3299;
@@ -157,7 +158,7 @@ xmp {
 // 可变商用字体，可使用 font-variation-settings
 @font-face {
   font-family: MiSans VF;
-  src: url("@/assets/font/MiSans/MiSans VF.ttf");
+  src: url("./MiSans/MiSans VF.ttf");
   font-display: block;
   font-style: normal italic;
   font-weight: 100 900;
@@ -187,11 +188,26 @@ xmp {
   margin: 0cm 2cm; // 可以控制打印布局（四周边距）,设置为 0 隐藏打印模式中的页眉页脚信息
 }
 
+// 解决微信及 webview 动态底部导航栏导致 100vh 抽搐的问题
+html {
+  position: fixed;
+  inset: 0;
+  display: inline-block;
+  overflow: auto;
+}
+body {
+  height: 100%;
+  overflow: auto;
+}
+#app {
+  height: 100%;
+}
+
 html,
 body {
   // electron 无边框窗口拖拽
   -webkit-app-region: drag;
-  // user-select: none;
+  user-select: none;
 
   // 设置 BFC
   overflow: auto;
@@ -321,10 +337,10 @@ html {
   scrollbar-color: rgba(0, 0, 0, 0.3) rgba(0, 0, 0, 0);
 }
 
-// View Transition API 产生过渡时，会生成一组伪元素，分别代表着状态变换前的图像和状态变换后的图像，并且默认就带有过滤渐隐渐现的过渡效果，
-// 我们主题切换不需要这种效果，将其默认效果关闭，同时也关闭过渡自带的 mix-blend-mode 效果。
-html::view-transition-old(root),
-html::view-transition-new(root) {
+// View Transition API产生过渡时，会生成一组伪元素，分别代表着状态变换前的图像和状态变换后的图像，并且默认就带有过滤渐隐渐现的过渡效果，
+// 我们主题切换不需要这种效果，将其默认效果关闭，同时也关闭过渡自带的mix-blend-mode效果。
+::view-transition-old(root),
+::view-transition-new(root) {
   animation: none;
   mix-blend-mode: normal;
 }
@@ -337,9 +353,9 @@ html::view-transition-new(root) {
   z-index: 999;
 }
 
-html::view-transition-old(root) {
+::view-transition-old(root) {
   z-index: 999;
 }
-html::view-transition-new(root) {
+::view-transition-new(root) {
   z-index: 1;
 }

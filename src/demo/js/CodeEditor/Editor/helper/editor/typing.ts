@@ -9,18 +9,33 @@ export function setTs() {
   addTsTyping()
 
   // 添加类型声明文件
-  // const ata = createATA((code, path) => {
-  //   monaco.languages.typescript.typescriptDefaults.addExtraLib(code, `file://${path}}`)
-  // })
+  const ata = createATA((code, path) => {
+    // var library = "declare class Test11111111111111111 { descriptionfirst:string; } "
+    // monaco.languages.typescript.typescriptDefaults.addExtraLib(
+    //   library,
+    //   monaco.Uri.file("/a/b/c/test.d.ts").toString(),
+    // )
+
+    monaco.languages.typescript.typescriptDefaults.addExtraLib(
+      code,
+      monaco.Uri.file(path).toString(),
+    )
+
+    // monaco.languages.typescript.typescriptDefaults.getExtraLibs()
+  })
 
   // 获取 ts 类型的代码
   // ata(editor.getValue())
 
-  // return ata
+  return ata
 }
 
 function addTsTyping() {
+  const compilerOptions = monaco.languages.typescript.javascriptDefaults.getCompilerOptions()
+  console.log(compilerOptions)
+
   monaco.languages.typescript.typescriptDefaults.setCompilerOptions({
+    ...compilerOptions,
     // 这里设置 jsx 为 preserve，也就是输入 <div> 输出 <div>，保留原样
     // 如果设置为 react 会输出 React.createElement("div")。
     jsx: monaco.languages.typescript.JsxEmit.Preserve,
@@ -31,7 +46,12 @@ function addTsTyping() {
     // import fs from 'fs';
     esModuleInterop: true,
     target: monaco.languages.typescript.ScriptTarget.ESNext,
-    lib: ["ESNext"],
+    module: monaco.languages.typescript.ModuleKind.ESNext,
+    resolveJsonModule: true,
+    useDefineForClassFields: true,
+    allowNonTsExtensions: true,
+    allowSyntheticDefaultImports: true,
+    baseUrl: ".",
   })
 }
 
@@ -42,8 +62,13 @@ export function createATA(onDownloadFile: (code: string, path: string) => void) 
     logger: console,
     delegate: {
       receivedFile: (code, path) => {
-        console.log("自动下载的类型包", path)
+        // console.log("自动下载的类型包", `file://${path}}`)
+        // console.log(code)
+
         onDownloadFile(code, path)
+      },
+      finished: () => {
+        console.log(monaco.languages.typescript.typescriptDefaults.getExtraLibs())
       },
     },
   })

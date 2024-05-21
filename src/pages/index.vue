@@ -3,7 +3,7 @@
 // import TransitionsAPI from "@/demo/js/TransitionsAPI/index.vue"
 // import GsapScroll from "@/demo/js/GsapScroll/index.vue"
 // import RxJs from "@/demo/js/RxJs/index.vue"
-import CodeEdit from "@/demo/js/CodeEdit/index.vue"
+import CodeEditorView from "@/demo/js/CodeEditor/View/index.vue"
 
 // import { useUserStore } from '@/store/user'
 // const userStore = useUserStore()
@@ -15,7 +15,8 @@ import CodeEdit from "@/demo/js/CodeEdit/index.vue"
   <!-- <TransitionsAPI></TransitionsAPI> -->
   <!-- <GsapScroll></GsapScroll> -->
   <!-- <RxJs></RxJs> -->
-  <CodeEdit></CodeEdit>
+
+  <CodeEditorView></CodeEditorView>
 </template>
 
 <style scope lang="scss">
