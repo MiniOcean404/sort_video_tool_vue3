@@ -29,7 +29,7 @@ const props = withDefaults(defineProps<CodeRenderProps>(), {
     return (
      <div>
         <div onClick={() => setNum((prevNum) => prevNum + 1)}>{num}</div>
-        <div>  hello word </div>
+        <div style={{fontSize:30}}> hello word </div>
       </div>
     );
   }
