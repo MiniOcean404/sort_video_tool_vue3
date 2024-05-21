@@ -30,6 +30,8 @@ function addTsTyping() {
     // 设置 esModuleInterop 会在编译的时候自动加上 default 属性。就可以这样引入了：
     // import fs from 'fs';
     esModuleInterop: true,
+    target: monaco.languages.typescript.ScriptTarget.ESNext,
+    lib: ["ESNext"],
   })
 }
 
