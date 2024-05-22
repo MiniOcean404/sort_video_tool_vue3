@@ -34,6 +34,8 @@ export const config: editor.IStandaloneEditorConstructionOptions = {
   autoClosingQuotes: "always", // 是否自动添加结束的单引号 双引号 "always" | "languageDefined" | "beforeWhitespace" | "never"
   copyWithSyntaxHighlighting: true, // 是否应将语法突出显示复制到剪贴板中 即 当你复制到 word 中是否保持文字高亮颜色
 
+  useTabStops: false, // 在制表符之后插入和删除空白。
+  quickSuggestionsDelay: 10, // 快速建议延迟
   acceptSuggestionOnCommitCharacter: true, // 接受关于提交字符的建议
   acceptSuggestionOnEnter: "smart", // 接受输入建议 "on" | "off" | "smart"
 

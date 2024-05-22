@@ -17,10 +17,11 @@ import "./helper/loader"
 
 import { config } from "./config"
 import { addCommand } from "@/demo/js/CodeEditor/Editor/helper/editor/command"
-import { setTs } from "@/demo/js/CodeEditor/Editor/helper/typing/typing"
+import { createATA, setATA } from "@/demo/js/CodeEditor/Editor/helper/typing/typing"
 import { CodeEditProps, EditorEmits } from "@/demo/js/CodeEditor/Editor/typing/vue"
 import { addFormat } from "@/demo/js/CodeEditor/Editor/helper/editor/format"
 import { debounce } from "@/utils/pref"
+import { setTypescriptMode } from "@/demo/js/CodeEditor/Editor/mode/typescript"
 
 // monaco.languages.typescript.typescriptDefaults.setEagerModelSync(true)
 
@@ -78,6 +79,8 @@ function initEditor() {
     ...config,
   })
 
+  setTypescriptMode(editorIns, props.code, "index.tsx")
+
   // 监听编辑器内容变化
   editorIns?.onDidChangeModelContent(
     debounce(() => {
@@ -93,8 +96,8 @@ function initEditor() {
   // 编辑器失去焦点
   editorIns?.onDidBlurEditorWidget(() => {})
 
-  const ata = setTs()
-  // ata(toRaw(editorIns)?.getValue())
+  const ata = setATA()
+  ata(toRaw(editorIns)?.getValue())
 }
 </script>
 

@@ -1,57 +1,33 @@
 import * as monaco from "monaco-editor"
-import { setupTypeAcquisition } from "@typescript/ata"
 import typescriprt from "typescript"
+import { setupTypeAcquisition } from "@typescript/ata"
 
 // 添加 ts 声明：https://mp.weixin.qq.com/s/MAKK2LqOp251ccuMi3ST7A
 
-export function setTs() {
-  // 设置 tsconfig.json, 支持 react
-  addTsTyping()
-
+export function setATA() {
   // 添加类型声明文件
-  // const ata = createATA((code, path) => {
-  //   // var library = "declare class Test11111111111111111 { descriptionfirst:string; } "
-  //   // monaco.languages.typescript.typescriptDefaults.addExtraLib(
-  //   //   library,
-  //   //   monaco.Uri.file("/a/b/c/test.d.ts").toString(),
-  //   // )
+  const ata = createATA(async (code, path) => {
+    // var library = "declare class Test11111111111111111 { descriptionfirst:string; } "
+    const res = await fetch("https://esm.sh/v128/@types/react@~18.2/index.d.ts")
+    const test = await res.text()
 
-  //   monaco.languages.typescript.typescriptDefaults.addExtraLib(
-  //     code,
-  //     monaco.Uri.file(path).toString(),
-  //   )
+    monaco.languages.typescript.typescriptDefaults.addExtraLib(
+      test,
+      monaco.Uri.file("node_modules/@types/react/package.json").toString(),
+    )
 
-  //   // monaco.languages.typescript.typescriptDefaults.getExtraLibs()
-  // })
+    // monaco.languages.typescript.typescriptDefaults.addExtraLib(
+    //   code,
+    //   monaco.Uri.file(path).toString(),
+    // )
+    // monaco.languages.typescript.typescriptDefaults.getExtraLibs()
+  })
+
+  console.log(monaco.languages.typescript.typescriptDefaults)
 
   // 获取 ts 类型的代码
   // ata(editor.getValue())
-
-  // return ata
-}
-
-function addTsTyping() {
-  const compilerOptions = monaco.languages.typescript.javascriptDefaults.getCompilerOptions()
-
-  monaco.languages.typescript.typescriptDefaults.setCompilerOptions({
-    ...compilerOptions,
-    // 这里设置 jsx 为 preserve，也就是输入 <div> 输出 <div>，保留原样
-    // 如果设置为 react 会输出 React.createElement("div")。
-    jsx: monaco.languages.typescript.JsxEmit.Preserve,
-    // 再就是 esModuleInterop，这个也是 ts 常用配置。
-    // 默认 fs 要这么引入，因为它是 commonjs 的包，没有 default 属性：
-    // import * as fs from 'fs';
-    // 设置 esModuleInterop 会在编译的时候自动加上 default 属性。就可以这样引入了：
-    // import fs from 'fs';
-    esModuleInterop: true,
-    target: monaco.languages.typescript.ScriptTarget.ESNext,
-    module: monaco.languages.typescript.ModuleKind.ESNext,
-    resolveJsonModule: true,
-    useDefineForClassFields: true,
-    allowNonTsExtensions: true,
-    allowSyntheticDefaultImports: true,
-    baseUrl: ".",
-  })
+  return ata
 }
 
 export function createATA(onDownloadFile: (code: string, path: string) => void) {
@@ -74,3 +50,21 @@ export function createATA(onDownloadFile: (code: string, path: string) => void) 
 
   return ata
 }
+
+const test = `
+
+import * as CSS from "https://esm.sh/v128/csstype@3.1.2/index.d.ts";
+import * as PropTypes from "https://esm.sh/v128/@types/prop-types@15.7.11/index.d.ts";
+import { Interaction as SchedulerInteraction } from "https://esm.sh/v128/@types/scheduler@0.16.8/tracing.d.ts";
+
+
+
+declare const UNDEFINED_VOID_ONLY: unique symbol;
+// Destructors are only allowed to return void.
+type Destructor = () => void | { [UNDEFINED_VOID_ONLY]: never };
+type VoidOrUndefinedOnly = void | { [UNDEFINED_VOID_ONLY]: never };
+
+// eslint-disable-next-line @definitelytyped/export-just-namespace
+// export = React;
+// export as namespace React;
+`
