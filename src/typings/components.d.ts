@@ -15,6 +15,7 @@ declare module 'vue' {
     ElUpload: typeof import('element-plus/es')['ElUpload']
     GieJumpCode: typeof import('@giegie/components')['GieJumpCode']
     ImageCompress: typeof import('./../components/ImageCompress/index.vue')['default']
+    LightCard: typeof import('./../components/LightCard/index.vue')['default']
     PDFJS: typeof import('./../components/PDFJS/index.vue')['default']
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']
