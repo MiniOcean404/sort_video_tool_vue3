@@ -1,15 +1,19 @@
 <template>
-  <!-- <CodeEditor :code="code"></CodeEditor> -->
-  <CodeRender></CodeRender>
+  <CodeEditor @code="updateCode"></CodeEditor>
+  <CodeRender :code="code"></CodeRender>
 </template>
 
 <script setup lang="ts">
 import CodeEditor from "@/demo/js/CodeEditor/Editor/index.vue"
 import CodeRender from "@/demo/js/CodeEditor/Render/index.vue"
 
+let code = $ref<string>("")
+
 onMounted(async () => {})
 
-let code = $ref<string>("")
+function updateCode(code: string) {
+  code = code
+}
 </script>
 
 <style lang="scss" scoped>

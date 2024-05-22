@@ -1,3 +1,4 @@
+import type { EditorEmits } from "@/demo/js/CodeEditor/Editor/typing/vue"
 import type { editor } from "monaco-editor"
 import * as monaco from "monaco-editor"
 
@@ -9,7 +10,7 @@ import * as monaco from "monaco-editor"
 // Alt：monaco.KeyMod.Alt
 // Ctrl：monaco.KeyMod.CtrlCmd
 // Shift：monaco.KeyMod.Shift
-export function addCommand(editorIns: editor.IStandaloneCodeEditor) {
+export function addCommand(editorIns: editor.IStandaloneCodeEditor, emit: EditorEmits) {
   /* condition：condition === true 时，按下快捷键才有效 */
   const condition = editorIns.createContextKey<boolean>("condition", false)
   condition.set(true)
@@ -41,6 +42,8 @@ export function addCommand(editorIns: editor.IStandaloneCodeEditor) {
   // Ctrl + S -- 格式化代码（未实现保存）
   editorIns.addCommand(monaco.KeyMod.CtrlCmd | monaco.KeyCode.KeyS, () => {
     editorIns?.getAction("editor.action.formatDocument")?.run()
+    const code = toRaw(editorIns)?.getValue()
+    emit("update:code", code)
   })
 
   // 快捷键Ctrl+` 给单词加上反引号

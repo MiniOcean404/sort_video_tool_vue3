@@ -66,4 +66,11 @@ export const config: editor.IStandaloneEditorConstructionOptions = {
   accessibilitySupport: "on", // 辅助功能支持 控制编辑器是否应在为屏幕阅读器优化的模式下运行。
 
   glyphMargin: true, // 是否显示行数前面的小块标记
+
+  inlineSuggest: {
+    enabled: true,
+    showToolbar: "onHover",
+    mode: "subword",
+    suppressSuggestions: false,
+  },
 }

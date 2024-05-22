@@ -17,8 +17,9 @@ import "./helper/loader"
 
 import { config } from "./config"
 import { addCommand } from "@/demo/js/CodeEditor/Editor/helper/editor/command"
-import { setTs } from "@/demo/js/CodeEditor/Editor/helper/editor/typing"
+import { setTs } from "@/demo/js/CodeEditor/Editor/helper/typing/typing"
 import { CodeEditProps, EditorEmits } from "@/demo/js/CodeEditor/Editor/typing/vue"
+import { addFormat } from "@/demo/js/CodeEditor/Editor/helper/editor/format"
 
 // monaco.languages.typescript.typescriptDefaults.setEagerModelSync(true)
 
@@ -26,12 +27,16 @@ const props = withDefaults(defineProps<CodeEditProps>(), {
   code: `
   // import ahooks from "ahooks"
   // import lodash from "lodash"
-  import dayjs from "dayjs"
-    function App() {
-      return <div>
-            "啊啊啊啊啊"
-          </div>
+  // import dayjs from "dayjs"
+
+
+  function App() {
+    return <div> 啊啊啊啊啊 </div>
   }
+
+  export default App
+
+
   `,
   language: "typescript",
   theme: "vs-dark",
@@ -42,9 +47,11 @@ let editorDom = $ref<HTMLDivElement | null>(null)
 const emit = defineEmits<EditorEmits>()
 
 onMounted(async () => {
+  addFormat()
+
   initEditor()
   // addAction(editorIns!)
-  addCommand(editorIns!)
+  addCommand(editorIns!, emit)
 })
 
 onUnmounted(() => {
@@ -67,12 +74,15 @@ function initEditor() {
     if (code) {
       // ata(code)
       // 触发父组件更新代码内容
-      emit("update:code", code)
+      // emit("update:code", code)
     }
   })
 
+  // 编辑器失去焦点
+  editorIns?.onDidBlurEditorWidget(() => {})
+
   const ata = setTs()
-  ata(toRaw(editorIns)?.getValue())
+  // ata(toRaw(editorIns)?.getValue())
 }
 </script>
 

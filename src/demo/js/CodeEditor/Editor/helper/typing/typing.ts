@@ -9,30 +9,29 @@ export function setTs() {
   addTsTyping()
 
   // 添加类型声明文件
-  const ata = createATA((code, path) => {
-    // var library = "declare class Test11111111111111111 { descriptionfirst:string; } "
-    // monaco.languages.typescript.typescriptDefaults.addExtraLib(
-    //   library,
-    //   monaco.Uri.file("/a/b/c/test.d.ts").toString(),
-    // )
+  // const ata = createATA((code, path) => {
+  //   // var library = "declare class Test11111111111111111 { descriptionfirst:string; } "
+  //   // monaco.languages.typescript.typescriptDefaults.addExtraLib(
+  //   //   library,
+  //   //   monaco.Uri.file("/a/b/c/test.d.ts").toString(),
+  //   // )
 
-    monaco.languages.typescript.typescriptDefaults.addExtraLib(
-      code,
-      monaco.Uri.file(path).toString(),
-    )
+  //   monaco.languages.typescript.typescriptDefaults.addExtraLib(
+  //     code,
+  //     monaco.Uri.file(path).toString(),
+  //   )
 
-    // monaco.languages.typescript.typescriptDefaults.getExtraLibs()
-  })
+  //   // monaco.languages.typescript.typescriptDefaults.getExtraLibs()
+  // })
 
   // 获取 ts 类型的代码
   // ata(editor.getValue())
 
-  return ata
+  // return ata
 }
 
 function addTsTyping() {
   const compilerOptions = monaco.languages.typescript.javascriptDefaults.getCompilerOptions()
-  console.log(compilerOptions)
 
   monaco.languages.typescript.typescriptDefaults.setCompilerOptions({
     ...compilerOptions,
