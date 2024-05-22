@@ -10,7 +10,7 @@ import * as monaco from "monaco-editor"
 // Alt：monaco.KeyMod.Alt
 // Ctrl：monaco.KeyMod.CtrlCmd
 // Shift：monaco.KeyMod.Shift
-export function addCommand(editorIns: editor.IStandaloneCodeEditor, emit: EditorEmits) {
+export function addCommand(editorIns: editor.IStandaloneCodeEditor) {
   /* condition：condition === true 时，按下快捷键才有效 */
   const condition = editorIns.createContextKey<boolean>("condition", false)
   condition.set(true)
@@ -18,9 +18,7 @@ export function addCommand(editorIns: editor.IStandaloneCodeEditor, emit: Editor
   // Ctrl + S -- 格式化代码
   editorIns.addCommand(monaco.KeyMod.CtrlCmd | monaco.KeyCode.KeyS, () => {
     editorIns?.getAction("editor.action.formatDocument")?.run()
-    const code = toRaw(editorIns)?.getValue()
-
-    emit("updateCode", code)
+    editorIns.getValue.call
   })
 
   /* Alt + Delete 清除代码 */

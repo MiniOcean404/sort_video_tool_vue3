@@ -20,6 +20,7 @@ import { addCommand } from "@/demo/js/CodeEditor/Editor/helper/editor/command"
 import { setTs } from "@/demo/js/CodeEditor/Editor/helper/typing/typing"
 import { CodeEditProps, EditorEmits } from "@/demo/js/CodeEditor/Editor/typing/vue"
 import { addFormat } from "@/demo/js/CodeEditor/Editor/helper/editor/format"
+import { debounce } from "@/utils/pref"
 
 // monaco.languages.typescript.typescriptDefaults.setEagerModelSync(true)
 
@@ -61,7 +62,7 @@ onMounted(async () => {
 
   initEditor()
   // addAction(editorIns!)
-  addCommand(editorIns!, emit)
+  addCommand(editorIns!)
 })
 
 onUnmounted(() => {
@@ -78,15 +79,16 @@ function initEditor() {
   })
 
   // 监听编辑器内容变化
-  editorIns?.onDidChangeModelContent(() => {
-    const code = toRaw(editorIns)?.getValue()
+  editorIns?.onDidChangeModelContent(
+    debounce(() => {
+      const code = toRaw(editorIns)?.getValue()
 
-    if (code) {
-      // ata(code)
-      // 触发父组件更新代码内容
-      // emit("updateCode", code)
-    }
-  })
+      if (code) {
+        // ata(code)
+        emit("updateCode", code)
+      }
+    }, 500),
+  )
 
   // 编辑器失去焦点
   editorIns?.onDidBlurEditorWidget(() => {})
