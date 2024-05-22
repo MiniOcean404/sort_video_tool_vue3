@@ -31,11 +31,21 @@ const props = withDefaults(defineProps<CodeEditProps>(), {
 
 
   function App() {
-    return <div> 啊啊啊啊啊 </div>
-  }
+  const [num, setNum] = useState(() => {
+    const num1 = 1 + 2;
+    const num2 = 2 + 3;
+    return num1 + num2;
+  });
 
-  export default App
+  return (
+    <div>
+      <div onClick={() => setNum(prevNum => prevNum + 1)}>{num}</div>
+      <div style={{ fontSize: 30 }}> hello word </div>
+    </div>
+  );
+}
 
+export default App;
 
   `,
   language: "typescript",
@@ -74,7 +84,7 @@ function initEditor() {
     if (code) {
       // ata(code)
       // 触发父组件更新代码内容
-      // emit("update:code", code)
+      // emit("updateCode", code)
     }
   })
 
@@ -89,11 +99,11 @@ function initEditor() {
 <style lang="scss" scoped>
 .editorBox {
   width: inherit;
-  height: 100%;
+  height: 50%;
 
   .monaco-editor-box {
     width: 100%;
-    height: 50vh;
+    height: 100%;
     overflow: hidden;
   }
 }

@@ -38,10 +38,10 @@ const props = withDefaults(defineProps<CodeRenderProps>(), {
   `,
 })
 
-watchEffect(() => {})
-
-onMounted(async () => {
-  initMounted()
+watch(props, () => {
+  if (props.code) {
+    initMounted()
+  }
 })
 
 const mounteCode = `
@@ -114,7 +114,7 @@ function reBuildCodeUrl(code: string) {
 <style lang="scss" scoped>
 .iframe {
   width: 100%;
-  height: 100%;
+  height: 50%;
   padding: 0;
   border: none;
 }

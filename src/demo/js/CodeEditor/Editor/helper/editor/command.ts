@@ -15,6 +15,14 @@ export function addCommand(editorIns: editor.IStandaloneCodeEditor, emit: Editor
   const condition = editorIns.createContextKey<boolean>("condition", false)
   condition.set(true)
 
+  // Ctrl + S -- 格式化代码
+  editorIns.addCommand(monaco.KeyMod.CtrlCmd | monaco.KeyCode.KeyS, () => {
+    editorIns?.getAction("editor.action.formatDocument")?.run()
+    const code = toRaw(editorIns)?.getValue()
+
+    emit("updateCode", code)
+  })
+
   /* Alt + Delete 清除代码 */
   editorIns.addCommand(
     monaco.KeyMod.Alt | monaco.KeyCode.Delete,
@@ -37,13 +45,6 @@ export function addCommand(editorIns: editor.IStandaloneCodeEditor, emit: Editor
   // Alt + D -- 整行删除
   editorIns.addCommand(monaco.KeyMod.Alt | monaco.KeyCode.KeyD, () => {
     editorIns.trigger("", "editor.action.deleteLines", "")
-  })
-
-  // Ctrl + S -- 格式化代码（未实现保存）
-  editorIns.addCommand(monaco.KeyMod.CtrlCmd | monaco.KeyCode.KeyS, () => {
-    editorIns?.getAction("editor.action.formatDocument")?.run()
-    const code = toRaw(editorIns)?.getValue()
-    emit("update:code", code)
   })
 
   // 快捷键Ctrl+` 给单词加上反引号

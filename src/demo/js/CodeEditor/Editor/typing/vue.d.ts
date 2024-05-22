@@ -5,5 +5,5 @@ export interface CodeEditProps {
 }
 
 export interface EditorEmits {
-  (e: "update:code", value: string | undefined): void
+  (e: "updateCode", value: string | undefined): void
 }
