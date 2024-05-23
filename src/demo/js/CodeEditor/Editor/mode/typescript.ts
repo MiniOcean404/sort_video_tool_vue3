@@ -13,9 +13,9 @@ export function setTypescriptMode(
     noSyntaxValidation: false,
   })
 
-  monaco.languages.typescript.typescriptDefaults.setWorkerOptions({
-    customWorkerPath: ".",
-  })
+  // monaco.languages.typescript.typescriptDefaults.setWorkerOptions({
+  //   customWorkerPath: ".",
+  // })
 
   // 设置 tsconfig.json, 支持 react
   monaco.languages.typescript.typescriptDefaults.setCompilerOptions({

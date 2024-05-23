@@ -3,12 +3,12 @@ import typescriprt from "typescript"
 import { setupTypeAcquisition } from "@typescript/ata"
 
 // 添加 ts 声明：https://mp.weixin.qq.com/s/MAKK2LqOp251ccuMi3ST7A
-
+// ! 与 package.json 无关，主要是路径 @type 中 @ 被编码的问题，导致类型声明无效
 export function setLocalLib() {
   const types = import.meta.glob(
     [
-      `/node_modules/{react,reacr-dom,color-diff,dayjs}/**/*.{d.ts,json}`,
-      `/node_modules/@types/{react,reacr-dom,color-diff,dayjs}/**/*.{d.ts,json}`,
+      `/node_modules/{react,reacr-dom,dayjs,nanoid}/**/*.{d.ts,json}`,
+      `/node_modules/@types/{react,reacr-dom,dayjs,nanoid}/**/*.{d.ts,json}`,
     ],
     { eager: true, as: "raw" },
   )
@@ -54,13 +54,10 @@ export function createATA(onDownloadFile: (code: string, path: string) => void) 
     logger: console,
     delegate: {
       receivedFile: (code, path) => {
-        // console.log("自动下载的类型包", `file://${path}}`)
-        // console.log(code)
-
         onDownloadFile(code, path)
       },
       finished: () => {
-        console.log(monaco.languages.typescript.typescriptDefaults.getExtraLibs())
+        // console.log(monaco.languages.typescript.typescriptDefaults.getExtraLibs())
       },
     },
   })

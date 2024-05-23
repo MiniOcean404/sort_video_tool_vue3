@@ -76,7 +76,8 @@ async function initEditor() {
   // 编辑器失去焦点
   editorIns?.onDidBlurEditorWidget(() => {})
 
-  setLocalLib()
+  const ata = await setATA()
+  ata(toRaw(editorIns)?.getValue())
 }
 </script>
 
