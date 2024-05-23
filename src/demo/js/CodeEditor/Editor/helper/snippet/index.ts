@@ -3,7 +3,9 @@ import js from "./js"
 
 function registerSnippet() {
   class SinppetProvider implements monaco.languages.CompletionItemProvider {
-    triggerCharacters?: string[] | undefined
+    // 触发字符
+    triggerCharacters?: string[] | undefined = ["."]
+
     provideCompletionItems(
       model: monaco.editor.ITextModel,
       position: monaco.Position,
