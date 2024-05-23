@@ -10,17 +10,23 @@ function registerSnippet() {
       context: monaco.languages.CompletionContext,
       token: monaco.CancellationToken,
     ): monaco.languages.ProviderResult<monaco.languages.CompletionList> {
+      const range = {
+        startLineNumber: position.lineNumber,
+        endLineNumber: position.lineNumber,
+        startColumn: model.getWordUntilPosition(position).startColumn,
+        endColumn: model.getWordUntilPosition(position).endColumn,
+      }
+
       const suggestions = Object.keys(js).map((key) => ({
         label: key,
         kind: monaco.languages.CompletionItemKind.Function,
         insertText: js[key],
         detail: js[key],
-        // range: new monaco.Range()
+        range,
       }))
 
       return {
         incomplete: true,
-        // @ts-ignore
         suggestions: [...suggestions],
       }
     }
