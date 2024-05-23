@@ -13,32 +13,13 @@ import html from "./index.html?raw"
 // 需要注释 @originjs/vite-plugin-commonjs 否则无法加载
 import { libDep } from "@/demo/js/CodeEditor/Render/constant/lib"
 import { babelTransfrom } from "@/demo/js/CodeEditor/Render/core/babel/index"
+import { esbuildTransfrom } from "@/demo/js/CodeEditor/Render/core/esbuild"
 
 let render = $ref<string>("")
 // const emit = defineEmits<EditorEmits>()
 
 const props = withDefaults(defineProps<CodeRenderProps>(), {
-  code: `
-  import React, { useState, useEffect } from 'react';
-  import ReactDOM from 'react-dom/client';
-
-  function App() {
-    const [num, setNum] = useState(() => {
-      const num1 = 1 + 2;
-      const num2 = 2 + 3;
-      return num1 + num2
-    });
-
-    return (
-     <div>
-        <div onClick={() => setNum((prevNum) => prevNum + 1)}>{num}</div>
-        <div style={{fontSize:30}}> hello word </div>
-      </div>
-    );
-  }
-
-  export default App;
-  `,
+  code: ``,
 })
 
 watch(props, () => {
@@ -59,12 +40,14 @@ const mounteCode = `
   })
 `
 
-function initMounted() {
+async function initMounted() {
   const parser = new DOMParser()
   const doc = parser.parseFromString(html, "text/html")
   addImportmapLib(doc)
 
-  const code = babelTransfrom("index.tsx", props.code)
+  console.log(await esbuildTransfrom(mounteCode, props.code))
+
+  const code = babelTransfrom("index.tsx", mounteCode, (filename) => props.code)
   addRunCode(doc, code || "")
 }
 

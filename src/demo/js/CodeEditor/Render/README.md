@@ -1,6 +1,7 @@
 ## 文章
 
 https://juejin.cn/post/7362309246556520487?searchId=20240521205712BF29FE9AFEC1E505D2AB
+esbuild-wasm 参考项目地址：https://github.dev/hellof2e/quark-playground/tree/main/src
 
 ## 核心
 

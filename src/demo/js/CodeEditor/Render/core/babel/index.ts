@@ -5,11 +5,11 @@ import type { PluginObj } from "@babel/core"
  * 使用 babel 编译代码
  */
 
-export function babelTransfrom(filename: string, code: string): string {
-  return babelBuild(filename, code)
-}
-
-function babelBuild(filename: string, code: string, callback?: (libName: string) => string) {
+export function babelTransfrom(
+  filename: string,
+  code: string,
+  callback?: (libName: string) => string,
+): string {
   const transformImportSourcePlugin: PluginObj = {
     visitor: {
       ImportDeclaration(path) {
@@ -46,7 +46,7 @@ function babelBuild(filename: string, code: string, callback?: (libName: string)
 
 // 创建 js 脚本代码，可以直接复制给 path.node.source.value 进行库的导入
 function js2JsUrl(filename: string, code: string) {
-  code = babelBuild(filename, code)
+  code = babelTransfrom(filename, code)
   return URL.createObjectURL(new Blob([code], { type: "application/javascript" }))
 }
 

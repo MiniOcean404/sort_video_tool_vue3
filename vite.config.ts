@@ -43,7 +43,7 @@ import { ProxyServer, RmoveConsole, filePathInject } from "@giegie/vite-plugin"
 import zh_cn from "./public/zh_cn.i18n.json"
 
 // https://vitejs.dev/config/
-// vite 支持在 package.json 中使用 "wasm-compress": "./src/wasm/compress" 加载库，需要 pnpm i
+// vite 支持在 package.json 中使用自定义包 "wasm-compress": "./src/wasm/compress" 加载库，需要 pnpm i
 export default defineConfig((config) => {
   const isDev = config.mode === "development"
   const isProd = config.mode === "production"
