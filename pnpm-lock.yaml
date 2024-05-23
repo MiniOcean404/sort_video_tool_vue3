@@ -98,9 +98,15 @@ importers:
       eruda:
         specifier: ^3.0.1
         version: 3.0.1
+      esbuild-wasm:
+        specifier: ^0.21.3
+        version: 0.21.3
       fabric:
         specifier: 5.3.0
         version: 5.3.0
+      fflate:
+        specifier: ^0.8.2
+        version: 0.8.2
       gsap:
         specifier: ^3.12.5
         version: 3.12.5
@@ -2633,6 +2639,11 @@ packages:
     cpu: [x64]
     os: [sunos]
 
+  esbuild-wasm@0.21.3:
+    resolution: {integrity: sha512-DMOV+eeVra0yVq3XIojfczdEQsz+RiFnpEj7lqs8Gux9mlTpN7yIbw0a4KzLspn0Uhw6UVEH3nUAidSqc/rcQg==}
+    engines: {node: '>=12'}
+    hasBin: true
+
   esbuild-windows-32@0.14.54:
     resolution: {integrity: sha512-T+rdZW19ql9MjS7pixmZYVObd9G7kcaZo+sETqNH4RCkuuYSuv9AGHUVnPoP9hhuE1WM1ZimHz1CIBHBboLU7w==}
     engines: {node: '>=12'}
@@ -2800,6 +2811,9 @@ packages:
 
   fd-slicer@1.1.0:
     resolution: {integrity: sha512-cE1qsB/VwyQozZ+q1dGxR8LBYNZeofhEdUNGSMbQD3Gw2lAzX9Zb3uIU6Ebc/Fmyjo9AWWfnn0AUCHqtevs/8g==}
+
+  fflate@0.8.2:
+    resolution: {integrity: sha512-cPJU47OaAoCbg0pBvzsgpTPhmhqI5eJjh/JIu8tPj5q+T7iLvW/JAYUqmE7KOB4R1ZyEhzBaIQpQpardBF5z8A==}
 
   figures@1.7.0:
     resolution: {integrity: sha512-UxKlfCRuCBxSXU4C6t9scbDyWZ4VlaFFdojKtzJuSkuOBQ5CNFum+zZXFwHjo+CxBC1t6zlYPgHIgFjL8ggoEQ==}
@@ -8204,6 +8218,8 @@ snapshots:
   esbuild-sunos-64@0.14.54:
     optional: true
 
+  esbuild-wasm@0.21.3: {}
+
   esbuild-windows-32@0.14.54:
     optional: true
 
@@ -8472,6 +8488,8 @@ snapshots:
   fd-slicer@1.1.0:
     dependencies:
       pend: 1.2.0
+
+  fflate@0.8.2: {}
 
   figures@1.7.0:
     dependencies:

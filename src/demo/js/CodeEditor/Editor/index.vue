@@ -83,8 +83,9 @@ async function initEditor() {
 
 <style lang="scss" scoped>
 .editorBox {
-  width: inherit;
-  height: 50%;
+  width: 70%;
+  height: inherit;
+  display: inline-block;
 
   .monaco-editor-box {
     width: 100%;

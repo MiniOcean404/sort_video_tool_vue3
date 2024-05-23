@@ -14,9 +14,6 @@ let code = $ref<string>(`
 
   import React, { useState, useEffect } from 'react';
   import ReactDOM from 'react-dom/client';
-  import dayjs from "dayjs"
-  import nanoid from "nanoid"
-
 
   function App() {
     const [num, setNum] = useState(() => {
