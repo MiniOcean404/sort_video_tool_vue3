@@ -13,9 +13,9 @@ export function setTypescriptMode(
     noSyntaxValidation: false,
   })
 
-  //   monaco.languages.typescript.typescriptDefaults.setWorkerOptions({
-  //     customWorkerPath: ".",
-  //   })
+  monaco.languages.typescript.typescriptDefaults.setWorkerOptions({
+    customWorkerPath: ".",
+  })
 
   // 设置 tsconfig.json, 支持 react
   monaco.languages.typescript.typescriptDefaults.setCompilerOptions({
@@ -32,15 +32,16 @@ export function setTypescriptMode(
     // 设置 esModuleInterop 会在编译的时候自动加上 default 属性。就可以这样引入了：
     // import fs from 'fs';
     esModuleInterop: true,
-    target: monaco.languages.typescript.ScriptTarget.ESNext,
-    module: monaco.languages.typescript.ModuleKind.ESNext,
+    target: monaco.languages.typescript.ScriptTarget.ESNext, // 指定 esm 版本
+    module: monaco.languages.typescript.ModuleKind.ESNext, // 指定模块系统
     resolveJsonModule: true,
     useDefineForClassFields: true,
     allowNonTsExtensions: true,
     allowSyntheticDefaultImports: true,
     baseUrl: ".",
     moduleResolution: monaco.languages.typescript.ModuleResolutionKind.NodeJs,
-    noEmit: true,
+    noEmit: true, // 不生成输出文件
+    skipLibCheck: true,
   })
 
   const model = monaco.editor.createModel(code, "typescript", monaco.Uri.parse(filename))

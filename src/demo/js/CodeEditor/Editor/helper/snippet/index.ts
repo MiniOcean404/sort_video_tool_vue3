@@ -20,10 +20,10 @@ function registerSnippet() {
       }
 
       const suggestions = Object.keys(js).map((key) => ({
-        label: key,
-        kind: monaco.languages.CompletionItemKind.Function,
-        insertText: js[key],
-        detail: js[key],
+        label: key, // 显示的提示内容
+        kind: monaco.languages.CompletionItemKind.Function, // 用来显示提示内容后的不同的图标
+        insertText: js[key], // 选择后粘贴到编辑器中的文字
+        detail: js[key], // 提示内容后的说明
         range,
       }))
 

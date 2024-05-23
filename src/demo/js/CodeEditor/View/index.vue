@@ -14,23 +14,28 @@ let code = $ref<string>(`
 
   import React, { useState, useEffect } from 'react';
   import ReactDOM from 'react-dom/client';
+  import dayjs from "dayjs"
+  // import lodash from "lodash"
+  // import nanoid from "nanoid"
+  import color from "color-diff"
+
 
   function App() {
-  const [num, setNum] = useState(() => {
-    const num1 = 1 + 2;
-    const num2 = 2 + 3;
-    return num1 + num2;
-  });
+    const [num, setNum] = useState(() => {
+      const num1 = 1 + 2;
+      const num2 = 2 + 3;
+      return num1 + num2;
+    });
 
-  return (
-    <div>
-      <div onClick={() => setNum(prevNum => prevNum + 1)}>{num}</div>
-      <div style={{ fontSize: 30 }}> hello word </div>
-    </div>
-  );
-}
+    return (
+      <div>
+        <div onClick={() => setNum(prevNum => prevNum + 1)}>{num}</div>
+        <div style={{ fontSize: 30 }}> hello word </div>
+      </div>
+    );
+  }
 
-export default App;
+  export default App;
 
 `)
 

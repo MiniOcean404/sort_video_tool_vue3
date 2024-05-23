@@ -4,26 +4,41 @@ import { setupTypeAcquisition } from "@typescript/ata"
 
 // 添加 ts 声明：https://mp.weixin.qq.com/s/MAKK2LqOp251ccuMi3ST7A
 
-export function setATA() {
-  // 添加类型声明文件
-  const ata = createATA(async (code, path) => {
-    // var library = "declare class Test11111111111111111 { descriptionfirst:string; } "
-    const res = await fetch("https://esm.sh/v128/@types/react@~18.2/index.d.ts")
-    const test = await res.text()
+export function setLocalLib() {
+  const types = import.meta.glob(
+    [
+      `/node_modules/{react,reacr-dom,color-diff,dayjs}/**/*.{d.ts,json}`,
+      `/node_modules/@types/{react,reacr-dom,color-diff,dayjs}/**/*.{d.ts,json}`,
+    ],
+    { eager: true, as: "raw" },
+  )
 
+  Object.keys(types).forEach((path) => {
     monaco.languages.typescript.typescriptDefaults.addExtraLib(
-      test,
-      monaco.Uri.file("node_modules/@types/react/package.json").toString(),
+      types[path],
+      monaco.Uri.file(path).toString(true),
     )
-
-    // monaco.languages.typescript.typescriptDefaults.addExtraLib(
-    //   code,
-    //   monaco.Uri.file(path).toString(),
-    // )
-    // monaco.languages.typescript.typescriptDefaults.getExtraLibs()
+    monaco.languages.typescript.javascriptDefaults.addExtraLib(
+      types[path],
+      monaco.Uri.file(path).toString(true),
+    )
   })
 
-  console.log(monaco.languages.typescript.typescriptDefaults)
+  // monaco.languages.typescript.typescriptDefaults.addExtraLib(
+  //   "export interface dayjs {} ",
+  //   monaco.Uri.file("/node_modules/@types/math/index.d.ts").toString(true),
+  // )
+  // monaco.languages.typescript.typescriptDefaults.getExtraLibs()
+}
+
+export async function setATA() {
+  // 添加类型声明文件
+  const ata = createATA(async (code, path) => {
+    monaco.languages.typescript.typescriptDefaults.addExtraLib(
+      code,
+      monaco.Uri.file(path).toString(true),
+    )
+  })
 
   // 获取 ts 类型的代码
   // ata(editor.getValue())
@@ -50,21 +65,3 @@ export function createATA(onDownloadFile: (code: string, path: string) => void) 
 
   return ata
 }
-
-const test = `
-
-import * as CSS from "https://esm.sh/v128/csstype@3.1.2/index.d.ts";
-import * as PropTypes from "https://esm.sh/v128/@types/prop-types@15.7.11/index.d.ts";
-import { Interaction as SchedulerInteraction } from "https://esm.sh/v128/@types/scheduler@0.16.8/tracing.d.ts";
-
-
-
-declare const UNDEFINED_VOID_ONLY: unique symbol;
-// Destructors are only allowed to return void.
-type Destructor = () => void | { [UNDEFINED_VOID_ONLY]: never };
-type VoidOrUndefinedOnly = void | { [UNDEFINED_VOID_ONLY]: never };
-
-// eslint-disable-next-line @definitelytyped/export-just-namespace
-// export = React;
-// export as namespace React;
-`

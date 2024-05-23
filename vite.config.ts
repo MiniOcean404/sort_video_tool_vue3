@@ -230,12 +230,12 @@ export default defineConfig((config) => {
       open: false,
       host: "127.0.0.1", // 指定服务器应该监听哪个 IP 地址
       strictPort: false, // 若端口已被占用则会直接退出
-      port: 3000, //启动端口
+      port: 4000, //启动端口
       cors: true, // 配置 CORS 跨域
       middlewareMode: false, // 以中间件模式创建 Vite 服务器
       hmr: {
         host: "127.0.0.1",
-        port: 3000,
+        port: 4000,
       },
       // https: {
       //   key: fs.readFileSync(`${__dirname}/config/https/pem/mkcert-key.pem`),
