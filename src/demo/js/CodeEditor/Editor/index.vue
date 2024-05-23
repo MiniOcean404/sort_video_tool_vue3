@@ -26,29 +26,7 @@ import { setTypescriptMode } from "@/demo/js/CodeEditor/Editor/mode/typescript"
 // monaco.languages.typescript.typescriptDefaults.setEagerModelSync(true)
 
 const props = withDefaults(defineProps<CodeEditProps>(), {
-  code: `
-  // import ahooks from "ahooks"
-  // import lodash from "lodash"
-  // import dayjs from "dayjs"
-
-  function App() {
-    const [num, setNum] = useState(() => {
-      const num1 = 1 + 2;
-      const num2 = 2 + 3;
-      return num1 + num2;
-    });
-
-    return (
-      <div>
-        <div onClick={() => setNum(prevNum => prevNum + 1)}>{num}</div>
-        <div style={{ fontSize: 30 }}> hello word </div>
-      </div>
-    );
-  }
-
-  export default App;
-
-  `,
+  code: ``,
   language: "typescript",
   theme: "vs-dark",
 })
@@ -70,6 +48,9 @@ onUnmounted(() => {
 })
 
 async function initEditor() {
+  // const ata = await setATA()
+  // ata(props.code)
+
   // 创建 Monaco Editor 实例
   editorIns = monaco.editor.create(editorDom!, {
     value: props.code, // 编辑器初始显示文字
@@ -95,8 +76,7 @@ async function initEditor() {
   // 编辑器失去焦点
   editorIns?.onDidBlurEditorWidget(() => {})
 
-  const ata = await setATA()
-  ata(toRaw(editorIns)?.getValue())
+  setLocalLib()
 }
 </script>
 

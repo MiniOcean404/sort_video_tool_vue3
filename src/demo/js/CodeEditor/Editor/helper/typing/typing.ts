@@ -29,6 +29,8 @@ export function setLocalLib() {
   //   monaco.Uri.file("/node_modules/@types/math/index.d.ts").toString(true),
   // )
   // monaco.languages.typescript.typescriptDefaults.getExtraLibs()
+
+  console.log(monaco.languages.typescript.typescriptDefaults.getExtraLibs())
 }
 
 export async function setATA() {

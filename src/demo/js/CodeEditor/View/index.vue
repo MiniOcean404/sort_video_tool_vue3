@@ -12,8 +12,8 @@ let code = $ref<string>(`
   // import lodash from "lodash"
   // import dayjs from "dayjs"
 
-  import React, { useState, useEffect } from 'react';
-  import ReactDOM from 'react-dom/client';
+  // import React, { useState, useEffect } from 'react';
+  // import ReactDOM from 'react-dom/client';
   import dayjs from "dayjs"
   // import lodash from "lodash"
   // import nanoid from "nanoid"
