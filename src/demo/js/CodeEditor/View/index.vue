@@ -13,6 +13,9 @@ let code = $ref<string>(`
   // import dayjs from "dayjs"
 
   import React, { useState, useEffect } from 'react';
+  // import styles from './app.css';
+  // console.log(styles.num)
+
 
   function App() {
     const [num, setNum] = useState(() => {
@@ -23,7 +26,7 @@ let code = $ref<string>(`
 
     return (
       <div>
-        <div onClick={() => setNum(prevNum => prevNum + 1)}>{num}</div>
+        <div className="num" onClick={() => setNum(prevNum => prevNum + 1)}>{num}</div>
         <div style={{ fontSize: 30 }}> hello word </div>
       </div>
     );

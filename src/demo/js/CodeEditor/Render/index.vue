@@ -42,13 +42,30 @@ async function initMounted() {
         ReactDOM.createRoot(root).render(React.createElement(App, null))
     })`,
     "/pages/app.jsx": props.code,
+    "/pages/app.css": `
+      .num {
+        color: #000;
+
+        .b {
+          color: #fff;
+        }
+      }
+
+      .iframe {
+        width: 30%;
+        height: 100%;
+        padding: 0;
+        border: none;
+        display: inline-block;
+      }
+    `,
   }
 
   const parser = new DOMParser()
   const doc = parser.parseFromString(html, "text/html")
   addImportmapLib(doc)
 
-  const code = await esbuildTransfrom(fileTree, props.code)
+  const code = await esbuildTransfrom(fileTree)
 
   // const code = babelTransfrom("index.tsx", mounteCode, (filename) => props.code)
   addRunCode(doc, code || "")

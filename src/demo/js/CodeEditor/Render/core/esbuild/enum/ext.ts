@@ -3,4 +3,5 @@ export enum Ext {
   ".tsx" = "tsx",
   ".js" = "js",
   ".jsx" = "jsx",
+  ".css" = "local-css",
 }
