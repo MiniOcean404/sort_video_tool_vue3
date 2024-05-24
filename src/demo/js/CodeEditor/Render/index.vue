@@ -44,7 +44,6 @@ async function initMounted() {
         insertCSSDom(rootCSS)
     })
 
-
     function insertCSSDom(css) {
       let stylesheet = document.getElementById("style")
       if (!stylesheet) {
