@@ -250,8 +250,15 @@ export default defineConfig((config) => {
       proxy: {
         "/api": {
           target: env.VITE_APP_BASE_API,
-          changeOrigin: true,
+          changeOrigin: true, // 是否跨域
+          ws: false, // 如果要代理 websockets，配置这个参数
           rewrite: (pathStr) => pathStr.replace(/^\/api/, ""),
+          // 修改请求头
+          configure(proxy, options) {
+            proxy.on("proxyReq", (proxyReq, req, res) => {
+              proxyReq.removeHeader("origin")
+            })
+          },
         },
       },
       // fs: {
