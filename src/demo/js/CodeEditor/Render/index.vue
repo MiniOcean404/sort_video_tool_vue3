@@ -35,28 +35,33 @@ async function initMounted() {
     import React, { useState, useEffect } from 'react';
     import ReactDOM from 'react-dom/client';
     import App from './pages/app.jsx';
+    import rootCSS from './pages/app.css';
 
     // 需要使用它进行挂载
     window.addEventListener('DOMContentLoaded', () => {
         const root = document.getElementById('root')
         ReactDOM.createRoot(root).render(React.createElement(App, null))
-    })`,
+        insertCSSDom(rootCSS)
+    })
+
+
+    function insertCSSDom(css) {
+      let stylesheet = document.getElementById("style")
+      if (!stylesheet) {
+        stylesheet = document.createElement("style")
+        stylesheet.setAttribute("id", "style")
+        document.head.appendChild(stylesheet)
+      }
+      const styles = document.createTextNode(css)
+      stylesheet.innerHTML = ""
+      stylesheet.appendChild(styles)
+    }
+
+    `,
     "/pages/app.jsx": props.code,
     "/pages/app.css": `
       .num {
-        color: #000;
-
-        .b {
-          color: #fff;
-        }
-      }
-
-      .iframe {
-        width: 30%;
-        height: 100%;
-        padding: 0;
-        border: none;
-        display: inline-block;
+        color: red;
       }
     `,
   }

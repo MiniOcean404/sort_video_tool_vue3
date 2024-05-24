@@ -1,3 +1,4 @@
+import { cssInsetPlugin } from "@/demo/js/CodeEditor/Render/core/esbuild/plugin/css"
 import { fileSystemPlugin } from "@/demo/js/CodeEditor/Render/core/esbuild/plugin/file-system"
 import { pkgPathPlugin } from "@/demo/js/CodeEditor/Render/core/esbuild/plugin/lib-path"
 import esbuild, { type BuildOptions } from "esbuild-wasm"
@@ -18,7 +19,7 @@ export async function esbuildTransfrom(fileTree: Record<string, string>) {
     // * 配置转译 JSX 语法的构造函数，配置 jsxFactory, 也可以自定义函数
     // * 可以配置 tsconfig.json 就不用配置 jsxFactory
     // jsxFactory: "React.createElement",
-    plugins: [fileSystemPlugin(fileTree), pkgPathPlugin],
+    plugins: [fileSystemPlugin(fileTree), cssInsetPlugin(fileTree), pkgPathPlugin],
     write: false,
 
     // stdin 选项能被用来打包不存在于文件系统上的模块，也可以用 plugins 来解析

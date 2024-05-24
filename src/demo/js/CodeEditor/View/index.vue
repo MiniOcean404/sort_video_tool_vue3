@@ -13,9 +13,6 @@ let code = $ref<string>(`
   // import dayjs from "dayjs"
 
   import React, { useState, useEffect } from 'react';
-  // import styles from './app.css';
-  // console.log(styles.num)
-
 
   function App() {
     const [num, setNum] = useState(() => {

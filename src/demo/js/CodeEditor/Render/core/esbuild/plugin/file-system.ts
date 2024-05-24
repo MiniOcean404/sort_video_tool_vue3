@@ -13,7 +13,7 @@ export function fileSystemPlugin(fileTree: Record<string, string>): esbuild.Plug
       // * 先过滤文件后缀
       build.onResolve(
         {
-          filter: /.(([jt]sx?)|css)(?:$|\?)$/,
+          filter: /.[jt]sx?(?:$|\?)$/,
         },
         (args) => {
           const { path } = args
