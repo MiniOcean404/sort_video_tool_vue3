@@ -35,29 +35,12 @@ export function addFilePathPlugin(code: string): esbuild.Plugin {
           namespace: NAMESPACE,
         },
         async ({ path }) => {
-          const build = await esbuild.build({
-            bundle: true,
-            format: "esm",
-            // * 新版本的 esbuild-wasm 需要配置 experimentalDecorators 为true，否则装饰器语法不会被降级处理
-            tsconfigRaw: `{ "compilerOptions": { "jsx": "react","experimentalDecorators": true } }`,
-            // stdin 选项能被用来打包不存在于文件系统上的模块
-            stdin: {
-              contents: code,
-              loader: "tsx",
-            },
-            // * 配置转译 JSX 语法的构造函数，配置 jsxFactory, 也可以自定义函数
-            // * 可以配置 tsconfig.json 就不用配置 jsxFactory
-            // jsxFactory: "React.createElement",
-            plugins: [pkgPathPlugin],
-          })
+          // const url = URL.createObjectURL(
+          //   new Blob([contents || ""], { type: "application/javascript" }),
+          // )
 
-          // * 转换成ESM
-          let contents = build.outputFiles && build.outputFiles[0].text
-          // 如果有需要的话，可以通过判断path中是否包含?inline查询参数
-          // 来决定是否需要修改contents字符串的内容（改成向文档插入内联style的脚本）
-          // 这里留给读者来实现
           return {
-            contents,
+            contents: code,
             loader: "tsx",
           }
         },

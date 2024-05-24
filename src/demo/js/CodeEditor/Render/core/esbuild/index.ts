@@ -1,13 +1,13 @@
 import { addFilePathPlugin } from "@/demo/js/CodeEditor/Render/core/esbuild/plugin/file-path"
 import { pkgPathPlugin } from "@/demo/js/CodeEditor/Render/core/esbuild/plugin/lib-path"
-import esbuild from "esbuild-wasm"
+import esbuild, { type BuildOptions } from "esbuild-wasm"
 import esbuildWasm from "esbuild-wasm/esbuild.wasm?url"
+
+await esbuild.initialize({ wasmURL: esbuildWasm, worker: true })
 
 // 参考项目地址：https://github.dev/hellof2e/quark-playground/tree/main/src
 export async function esbuildTransfrom(code: string, code2: string) {
-  await esbuild.initialize({ wasmURL: esbuildWasm, worker: true })
-
-  const build = await esbuild.build({
+  const build = await esbuild.build<BuildOptions>({
     bundle: true,
     format: "esm",
     // * 新版本的 esbuild-wasm 需要配置 experimentalDecorators 为true，否则装饰器语法不会被降级处理
@@ -15,6 +15,8 @@ export async function esbuildTransfrom(code: string, code2: string) {
     // stdin 选项能被用来打包不存在于文件系统上的模块
     stdin: {
       contents: code,
+      resolveDir: "/src",
+      sourcefile: "index.tsx",
       loader: "tsx",
     },
     // * 配置转译 JSX 语法的构造函数，配置 jsxFactory, 也可以自定义函数

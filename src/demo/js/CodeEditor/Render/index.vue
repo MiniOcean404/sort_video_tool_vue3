@@ -45,9 +45,9 @@ async function initMounted() {
   const doc = parser.parseFromString(html, "text/html")
   addImportmapLib(doc)
 
-  console.log(await esbuildTransfrom(mounteCode, props.code))
+  const code = await esbuildTransfrom(mounteCode, props.code)
 
-  const code = babelTransfrom("index.tsx", mounteCode, (filename) => props.code)
+  // const code = babelTransfrom("index.tsx", mounteCode, (filename) => props.code)
   addRunCode(doc, code || "")
 }
 
