@@ -248,6 +248,7 @@ export default defineConfig((config) => {
         // "Cross-Origin-Opener-Policy": "same-origin",
       },
       proxy: {
+        // 使用代理时候，网页 baseUrl 必须为空
         "/api": {
           target: env.VITE_APP_BASE_API,
           changeOrigin: true, // 是否跨域
