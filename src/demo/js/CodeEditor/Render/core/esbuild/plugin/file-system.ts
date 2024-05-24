@@ -1,0 +1,58 @@
+import { Ext } from "@/demo/js/CodeEditor/Render/core/esbuild/enum/ext"
+import { Path } from "@/demo/js/CodeEditor/Render/core/esbuild/utils/path"
+import esbuild from "esbuild-wasm"
+
+export function fileSystemPlugin(fileTree: Record<string, string>): esbuild.Plugin {
+  const map = new Map(Object.entries(fileTree))
+
+  const filePathPlugin: esbuild.Plugin = {
+    name: "file-path-plugin",
+    setup(build) {
+      const NAMESPACE = "FILE_RESOLVE_SYSTEM"
+
+      // * 先过滤文件后缀
+      build.onResolve(
+        {
+          filter: /.[jt]sx?(?:$|\?)$/,
+        },
+        (args) => {
+          const { path } = args
+          console.log("file", path)
+
+          if (args.kind === "entry-point") return { path: "/" + args.path, namespace: NAMESPACE }
+
+          if (args.kind === "import-statement") {
+            const dirname = Path.dirname(args.importer)
+            const path = Path.join(dirname, args.path)
+
+            return { path, namespace: NAMESPACE }
+          }
+
+          throw Error("无法解析")
+        },
+      )
+
+      // * 将过滤的文件内容转换成 ESM
+      build.onLoad(
+        {
+          filter: /.*/,
+          namespace: NAMESPACE,
+        },
+        (args) => {
+          if (!map.has(args.path)) throw Error("无法加载")
+
+          const ext = Path.extname(args.path) as keyof typeof Ext
+          const contents = map.get(args.path)!
+          const loader = Ext[ext] || "default"
+
+          return {
+            contents,
+            loader,
+          }
+        },
+      )
+    },
+  }
+
+  return filePathPlugin
+}

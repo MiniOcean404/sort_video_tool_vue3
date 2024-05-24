@@ -28,24 +28,27 @@ watch(props, () => {
   }
 })
 
-const mounteCode = `
-  import React, { useState, useEffect } from 'react';
-  import ReactDOM from 'react-dom/client';
-  import App from './app.js';
-
-  // 需要使用它进行挂载
-  window.addEventListener('DOMContentLoaded', () => {
-      const root = document.getElementById('root')
-      ReactDOM.createRoot(root).render(React.createElement(App, null))
-  })
-`
-
 async function initMounted() {
+  const fileTree = {
+    "/mounted.tsx": `
+
+    import React, { useState, useEffect } from 'react';
+    import ReactDOM from 'react-dom/client';
+    import App from './pages/app.jsx';
+
+    // 需要使用它进行挂载
+    window.addEventListener('DOMContentLoaded', () => {
+        const root = document.getElementById('root')
+        ReactDOM.createRoot(root).render(React.createElement(App, null))
+    })`,
+    "/pages/app.jsx": props.code,
+  }
+
   const parser = new DOMParser()
   const doc = parser.parseFromString(html, "text/html")
   addImportmapLib(doc)
 
-  const code = await esbuildTransfrom(mounteCode, props.code)
+  const code = await esbuildTransfrom(fileTree, props.code)
 
   // const code = babelTransfrom("index.tsx", mounteCode, (filename) => props.code)
   addRunCode(doc, code || "")
