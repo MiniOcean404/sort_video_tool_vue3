@@ -6,7 +6,7 @@ import { Plugin as EsbuildPlugin } from "esbuild"
 import { getLocalizeCode, getReplaceMethodCode } from "./utils/replace"
 import { goMonacoEditorFileRegexp, goNLSRegexp, isNls } from "./utils/regexp"
 import { Languages, type Options } from "@/monaco-editor-nls/typing"
-import { getAssetsPath } from "@/utils/file"
+import { getLocalize } from "@/monaco-editor-nls/utils/locale"
 
 /**
  * 在 vit e中 dev 模式下会使用 esbuild 对 node_modules 进行预编译，导致找不到映射表中的 filepath，
@@ -78,16 +78,4 @@ export function vitePluginMonacoEditorNls(options: Options = { locale: Languages
       }
     },
   }
-}
-
-/**
- * 获取语言包
- * @param locale 语言
- * @param localeData
- * @returns
- */
-function getLocalize(locale: Languages, localeData: Record<string, any> | undefined = undefined) {
-  if (localeData) return JSON.stringify(localeData)
-  const locale_data_path = getAssetsPath(`locale/${locale}.i18n.json`)
-  return fs.readFileSync(locale_data_path, "utf-8")
 }

@@ -8,7 +8,7 @@ export function getReplaceMethodCode(path: string, code: string, local: string) 
     const match = fileRelativePathRegexp.exec(path)
     path = (match.groups.path || RegExp.$1).replaceAll("\\", "/")
 
-    if (local["contents"][path]) {
+    if (local[path]) {
       if (code.includes("localize(")) code = code.replace(/localize\(/g, `localize('${path}', `)
       if (code.includes("localize2(")) code = code.replace(/localize2\(/g, `localize2('${path}', `)
       return code
@@ -30,9 +30,7 @@ export function getReplaceMethodCode(path: string, code: string, local: string) 
  */
 export function getLocalizeCode(I18N_JSON: string) {
   return `
-  function getI18N() {
-    return ${I18N_JSON}
-  }
+  const I18N_JSON = ${I18N_JSON}
   
   /*---------------------------------------------------------------------------------------------
    *  Copyright (c) Microsoft Corporation. All rights reserved.
@@ -111,8 +109,7 @@ export function getLocalizeCode(I18N_JSON: string) {
    */
   export function localize(path, data, message, ...args) {
       const key = typeof data === 'object' ? data.key : data;
-      const i18n = getI18N() || {};
-      const pageI18n = i18n['contents'][path] || {};
+      const pageI18n = I18N_JSON[path] || {};
       let transform = pageI18n[key];
       if (!transform) transform = message;
       return _format(transform, args);
@@ -122,11 +119,10 @@ export function getLocalizeCode(I18N_JSON: string) {
    * @skipMangle
    */
   export function localize2(path, data, message, ...args) {
-    const key = typeof data === 'object' ? data.key : data;
-    const i18n = getI18N() || {};
-    const pageI18n = i18n['contents'][path] || {};
-    let transform = pageI18n[key];
-    if (!transform) transform = message;
+     const key = typeof data === 'object' ? data.key : data;
+     const pageI18n = I18N_JSON[path] || {};
+     let transform = pageI18n[key];
+     if (!transform) transform = message;
     
     const original = _format(transform, args);
     return {

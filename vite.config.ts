@@ -215,7 +215,6 @@ export default defineConfig((config) => {
       // 检查Vite插件的中间状态。对于调试和创作插件很有用。
       Inspect(),
 
-      // @ts-ignore
       vitePluginMonacoEditorNls({
         locale: Languages.zh_hans,
       }),
