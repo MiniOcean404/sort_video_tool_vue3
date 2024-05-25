@@ -46,12 +46,6 @@ import {
 // 用 normalizePath 解决 window 下的路径问题
 // const variablePath = normalizePath(path.resolve("./src/css/device/device.mixin.scss"))
 
-// 代码编辑器插件
-// import MonacoEditorNlsPlugin, {
-//   esbuildPluginMonacoEditorNls,
-//   Languages,
-// } from "zjt_home_vite-plugin-monaco-editor-nls"
-
 // https://vitejs.dev/config/
 // vite 支持在 package.json 中使用自定义包 "wasm-compress": "./src/wasm/compress" 加载库，需要 pnpm i
 export default defineConfig((config) => {

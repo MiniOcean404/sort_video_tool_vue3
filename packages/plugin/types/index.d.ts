@@ -1,5 +1,5 @@
-import { Plugin } from 'vite';
-import { Plugin as Plugin_2 } from 'esbuild';
+import { Plugin } from 'esbuild';
+import { Plugin as Plugin_2 } from 'vite';
 
 /**
  * 在 vit e中 dev 模式下会使用 esbuild 对 node_modules 进行预编译，导致找不到映射表中的 filepath，
@@ -7,9 +7,9 @@ import { Plugin as Plugin_2 } from 'esbuild';
  * @param options 替换语言包
  * @returns
  */
-export declare function esbuildPluginMonacoEditorNls(options?: Options): Plugin_2;
+export declare function esbuildPluginMonacoEditorNls(options?: Options): Plugin;
 
-export declare function filePathInject(): Plugin;
+export declare function filePathInject(): Plugin_2;
 
 export declare enum Languages {
     bg = "bg",
@@ -39,9 +39,9 @@ export declare interface Options {
     localeData?: Record<string, any>;
 }
 
-export declare function ProxyServer(): Plugin;
+export declare function ProxyServer(): Plugin_2;
 
-export declare const RmoveConsole: () => Plugin;
+export declare const RmoveConsole: () => Plugin_2;
 
 /**
  * 使用了monaco-editor-nls 的语言映射包，把原始localize(data, message)的方法，替换成了localize(path, data, defaultMessage)
@@ -49,6 +49,6 @@ export declare const RmoveConsole: () => Plugin;
  * @param options 替换语言包
  * @returns
  */
-export declare function vitePluginMonacoEditorNls(options?: Options): Plugin;
+export declare function vitePluginMonacoEditorNls(options?: Options): Plugin_2;
 
 export { }

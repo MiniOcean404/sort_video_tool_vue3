@@ -3,6 +3,7 @@ import * as glob from "glob"
 import fs from "fs"
 import vm from "vm"
 import url from "url"
+import { getAssetsPath } from "@/utils/file"
 
 const context = {
   // 代码运行上下文
@@ -10,6 +11,7 @@ const context = {
   handler: () => console.warn("servers 模块导入异常"),
 }
 vm.createContext(context)
+const mock = getAssetsPath("")
 
 export function ProxyServer(): Plugin {
   return {
@@ -26,7 +28,7 @@ export function ProxyServer(): Plugin {
       })
 
       // 将 mock 下文件注册到接口
-      const files = glob.sync("../../mock/**/*.js", { cwd: __dirname, absolute: true })
+      const files = glob.sync("mock/**/*.js", { cwd: mock, absolute: true })
 
       files.map((filePath: string) => {
         let urlPath = (filePath.match(/(?<=mock).*(?=\.js)/) || [])[0]

@@ -60,8 +60,8 @@ export default defineConfig(() => {
         plugins: [
           copyPlugin({
             targets: [
-              { src: "./src/proxy-serve/mock", dest: "./dist" },
-              { src: "./src/monaco-editor-nls/locale", dest: "./dist" },
+              { src: "./src/proxy-serve/mock", dest: "./dist/assets" },
+              { src: "./src/monaco-editor-nls/locale", dest: "./dist/assets" },
             ],
           }),
           nodeExternals(),
