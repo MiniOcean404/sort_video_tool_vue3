@@ -44,8 +44,8 @@ export function addFormat() {
 
     async provideDocumentFormattingEdits(
       model: monaco.editor.ITextModel,
-      options: monaco.languages.FormattingOptions,
-      token: monaco.CancellationToken,
+      // options: monaco.languages.FormattingOptions,
+      // token: monaco.CancellationToken,
     ): Promise<monaco.languages.TextEdit[]> {
       const text = await spliceSemiAndDoubleQoute(
         model.getValue(),
@@ -69,7 +69,7 @@ export function addFormat() {
 
 // 覆盖快捷键
 // Demo: https://microsoft.github.io/monaco-editor/playground.html?source=v0.37.1#example-interacting-with-the-editor-adding-a-keybinding-to-an-existing-command
-function setupKeybindings(editorIns: editor.IStandaloneCodeEditor) {
+export function setupKeybindings() {
   monaco.editor.addKeybindingRule({
     keybinding: monaco.KeyMod.CtrlCmd | monaco.KeyCode.KeyS,
     command: "editor.action.formatDocument",

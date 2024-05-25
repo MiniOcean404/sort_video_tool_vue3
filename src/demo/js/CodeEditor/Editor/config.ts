@@ -25,9 +25,9 @@ export const config: editor.IStandaloneEditorConstructionOptions = {
   cursorSmoothCaretAnimation: "on", // 是否启用光标平滑插入动画  当你在快速输入文字的时候 光标是直接平滑的移动还是直接"闪现"到当前文字所处位置
   cursorBlinking: "smooth", // 光标动画样式
 
-  roundedSelection: false, // 右侧不显示编辑器预览框
+  roundedSelection: true, // 使用圆角边框呈现编辑器选区
   formatOnPaste: true, // 在粘贴的时候格式化
-  columnSelection: false, // 启用列编辑 按下 shift 键位然后按↑↓键位可以实现列选择 然后实现列编辑
+  columnSelection: true, // 启用列编辑 按下 shift 键位然后按↑↓键位可以实现列选择 然后实现列编辑
   autoClosingBrackets: "always", // 是否自动添加结束括号(包括中括号) "always" | "languageDefined" | "beforeWhitespace" | "never"
   autoClosingDelete: "always", // 是否自动删除结束括号(包括中括号) "always" | "never" | "auto"
   autoClosingOvertype: "always", // 是否关闭改写 即使用insert模式时是覆盖后面的文字还是不覆盖后面的文字 "always" | "never" | "auto"
@@ -39,7 +39,7 @@ export const config: editor.IStandaloneEditorConstructionOptions = {
   acceptSuggestionOnCommitCharacter: true, // 接受关于提交字符的建议
   acceptSuggestionOnEnter: "smart", // 接受输入建议 "on" | "off" | "smart"
 
-  codeLens: false, // 是否显示 codeLens 通过 CodeLens，你可以在专注于工作的同时了解代码所发生的情况 – 而无需离开编辑器。 可以查找代码引用、代码更改、关联的 Bug、工作项、代码评审和单元测试。
+  codeLens: true, // 是否显示 codeLens 通过 CodeLens，你可以在专注于工作的同时了解代码所发生的情况 – 而无需离开编辑器。 可以查找代码引用、代码更改、关联的 Bug、工作项、代码评审和单元测试。
   codeLensFontFamily: "", // codeLens 的字体样式
   codeLensFontSize: 13, // codeLens 的字体大小
   colorDecorators: true, // 呈现内联色彩装饰器和颜色选择器

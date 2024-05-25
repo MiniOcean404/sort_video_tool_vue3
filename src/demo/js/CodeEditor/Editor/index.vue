@@ -22,6 +22,7 @@ import { CodeEditProps, EditorEmits } from "@/demo/js/CodeEditor/Editor/typing/v
 import { addFormat } from "@/demo/js/CodeEditor/Editor/helper/editor/format"
 import { debounce } from "@/utils/pref"
 import { setTypescriptMode } from "@/demo/js/CodeEditor/Editor/mode/typescript"
+import { registerSnippet } from "@/demo/js/CodeEditor/Editor/helper/snippet"
 
 // monaco.languages.typescript.typescriptDefaults.setEagerModelSync(true)
 
@@ -37,8 +38,9 @@ const emit = defineEmits<EditorEmits>()
 
 onMounted(async () => {
   addFormat()
+  registerSnippet()
 
-  initEditor()
+  await initEditor()
   // addAction(editorIns!)
   addCommand(editorIns!)
 })

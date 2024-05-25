@@ -1,4 +1,3 @@
-import type { EditorEmits } from "@/demo/js/CodeEditor/Editor/typing/vue"
 import type { editor } from "monaco-editor"
 import * as monaco from "monaco-editor"
 
@@ -18,7 +17,6 @@ export function addCommand(editorIns: editor.IStandaloneCodeEditor) {
   // Ctrl + S -- 格式化代码
   editorIns.addCommand(monaco.KeyMod.CtrlCmd | monaco.KeyCode.KeyS, () => {
     editorIns?.getAction("editor.action.formatDocument")?.run()
-    editorIns.getValue.call
   })
 
   /* Alt + Delete 清除代码 */
@@ -47,10 +45,10 @@ export function addCommand(editorIns: editor.IStandaloneCodeEditor) {
 
   // 快捷键Ctrl+` 给单词加上反引号
   editorIns.addCommand(monaco.KeyMod.CtrlCmd | monaco.KeyCode.Backquote, () => {
-    var selection = editorIns.getSelection()
+    const selection = editorIns.getSelection()
 
     if (selection) {
-      var word = editorIns.getModel()?.getValueInRange(selection) || ""
+      const word = editorIns.getModel()?.getValueInRange(selection) || ""
 
       editorIns.executeEdits("addBackticks", [
         {
