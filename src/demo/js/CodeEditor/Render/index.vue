@@ -12,7 +12,6 @@ import html from "./index.html?raw"
 
 // 需要注释 @originjs/vite-plugin-commonjs 否则无法加载
 import { libDep } from "@/demo/js/CodeEditor/Render/constant/lib"
-import { babelTransfrom } from "@/demo/js/CodeEditor/Render/core/babel/index"
 import { esbuildTransfrom } from "@/demo/js/CodeEditor/Render/core/esbuild"
 
 let render = $ref<string>("")

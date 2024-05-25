@@ -4,10 +4,16 @@ import { builtinModules } from "module"
 import dts from "vite-plugin-dts"
 import copyPlugin from "rollup-plugin-copy"
 import nodeExternals from "rollup-plugin-node-externals"
+import { fileURLToPath } from "url"
 import { dependencies } from "./package.json"
 
 export default defineConfig(() => {
   return {
+    resolve: {
+      alias: {
+        "@": fileURLToPath(new URL("./src", import.meta.url)),
+      },
+    },
     build: {
       minify: false,
       rollupOptions: {
@@ -53,7 +59,10 @@ export default defineConfig(() => {
         ],
         plugins: [
           copyPlugin({
-            targets: [{ src: "./src/proxy-serve/mock", dest: "./dist" }],
+            targets: [
+              { src: "./src/proxy-serve/mock", dest: "./dist" },
+              { src: "./src/monaco-editor-nls/locale", dest: "./dist" },
+            ],
           }),
           nodeExternals(),
         ],

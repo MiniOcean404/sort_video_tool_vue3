@@ -34,13 +34,23 @@ import { visualizer } from "rollup-plugin-visualizer"
 
 import { GieResolver } from "@giegie/resolver"
 // 自定义插件
-import { ProxyServer, RmoveConsole, filePathInject } from "@giegie/vite-plugin"
+import {
+  ProxyServer,
+  RmoveConsole,
+  filePathInject,
+  vitePluginMonacoEditorNls,
+  esbuildPluginMonacoEditorNls,
+  Languages,
+} from "@giegie/vite-plugin"
 
 // 用 normalizePath 解决 window 下的路径问题
 // const variablePath = normalizePath(path.resolve("./src/css/device/device.mixin.scss"))
 
 // 代码编辑器插件
-import zh_cn from "./public/zh_cn.i18n.json"
+// import MonacoEditorNlsPlugin, {
+//   esbuildPluginMonacoEditorNls,
+//   Languages,
+// } from "zjt_home_vite-plugin-monaco-editor-nls"
 
 // https://vitejs.dev/config/
 // vite 支持在 package.json 中使用自定义包 "wasm-compress": "./src/wasm/compress" 加载库，需要 pnpm i
@@ -210,6 +220,12 @@ export default defineConfig((config) => {
 
       // 检查Vite插件的中间状态。对于调试和创作插件很有用。
       Inspect(),
+
+      // @ts-ignore
+      vitePluginMonacoEditorNls({
+        locale: Languages.zh_hans,
+      }),
+
       // isServe && RmoveConsole(),
       // isServe && filePathInject(),
       // isServe && ProxyServer(),
@@ -350,7 +366,11 @@ export default defineConfig((config) => {
         "@jsquash/webp",
       ],
       esbuildOptions: {
-        plugins: [],
+        plugins: [
+          esbuildPluginMonacoEditorNls({
+            locale: Languages.zh_hans,
+          }),
+        ],
       },
     },
     assetsInclude: ["**/*.gltf"], // 指定额外的 picomatch 模式 作为静态资源处理
