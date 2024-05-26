@@ -1,6 +1,6 @@
-import { cssInsetPlugin } from "@/demo/js/CodeEditor/Render/core/esbuild/plugin/css"
-import { fileSystemPlugin } from "@/demo/js/CodeEditor/Render/core/esbuild/plugin/file-system"
-import { pkgPathPlugin } from "@/demo/js/CodeEditor/Render/core/esbuild/plugin/lib-path"
+import { cssInsetPlugin } from "./plugin/css"
+import { fileSystemPlugin } from "./plugin/file-system"
+import { pkgPathPlugin } from "./plugin/lib-path"
 import esbuild, { type BuildOptions } from "esbuild-wasm"
 import esbuildWasm from "esbuild-wasm/esbuild.wasm?url"
 

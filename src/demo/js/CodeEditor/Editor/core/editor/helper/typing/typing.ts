@@ -1,7 +1,7 @@
 import * as monaco from "monaco-editor"
 import typescriprt from "typescript"
 import { setupTypeAcquisition } from "@typescript/ata"
-import { fileType } from "@/demo/js/CodeEditor/Editor/helper/typing/file"
+import { fileType } from "./file"
 
 // 添加 ts 声明：https://mp.weixin.qq.com/s/MAKK2LqOp251ccuMi3ST7A
 // ! 与 package.json 无关，主要是路径 @type 中 @ 被编码的问题，导致类型声明无效
@@ -34,14 +34,14 @@ export function setLocalLib() {
   console.log(monaco.languages.typescript.typescriptDefaults.getExtraLibs())
 }
 
-export async function setATA() {
+export function setATA() {
   monaco.languages.typescript.typescriptDefaults.addExtraLib(
     fileType,
     monaco.Uri.file("/file.d.ts").toString(true),
   )
 
   // 添加类型声明文件
-  const ata = createATA(async (code, path) => {
+  const ata = createATA((code, path) => {
     monaco.languages.typescript.typescriptDefaults.addExtraLib(
       code,
       monaco.Uri.file(path).toString(true),

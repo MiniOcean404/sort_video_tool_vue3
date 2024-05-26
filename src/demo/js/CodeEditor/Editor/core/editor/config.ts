@@ -1,6 +1,9 @@
 import type { editor } from "monaco-editor"
 
 export const config: editor.IStandaloneEditorConstructionOptions = {
+  // value:"", // 编辑器内容
+  // language: "javascript", // 语言
+
   fontSize: 16,
   contextmenu: true, // 启用上下文菜单
   folding: true, // 是否启用代码折叠

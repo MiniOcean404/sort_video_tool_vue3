@@ -1,6 +1,4 @@
-interface LibDep {
-  [key: string]: string
-}
+import { LibDep } from "../typing/vue"
 
 export const libDep: LibDep = {
   react: "https://esm.sh/react@18.2.0",

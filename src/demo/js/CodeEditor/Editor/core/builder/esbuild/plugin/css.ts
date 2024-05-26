@@ -1,5 +1,5 @@
-import { Path } from "@/demo/js/CodeEditor/Render/core/esbuild/utils/path"
 import esbuild from "esbuild-wasm"
+import { Path } from "@/demo/js/CodeEditor/Editor/core/file/path.ts"
 
 export function cssInsetPlugin(fileTree: Record<string, string>) {
   const map = new Map(Object.entries(fileTree))

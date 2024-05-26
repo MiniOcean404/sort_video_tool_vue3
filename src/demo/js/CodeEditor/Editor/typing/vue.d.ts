@@ -1,6 +1,13 @@
+export interface LibDep {
+  [key: string]: string
+}
+
+interface FileTree {
+  [key: string]: string
+}
+
 export interface CodeEditProps {
-  code: string
-  language: string
+  fileTree: FileTree
   theme: string
 }
 

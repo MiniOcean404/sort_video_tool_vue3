@@ -1,11 +1,6 @@
 import * as monaco from "monaco-editor"
-import type { editor } from "monaco-editor"
 
-export function setTypescriptMode(
-  editorIns: editor.IStandaloneCodeEditor,
-  code: string,
-  filename: string = "idnex.tsx",
-) {
+export function setTypescriptMode() {
   const compilerOptions = monaco.languages.typescript.javascriptDefaults.getCompilerOptions()
 
   monaco.languages.typescript.typescriptDefaults.setDiagnosticsOptions({
@@ -39,7 +34,4 @@ export function setTypescriptMode(
     noEmit: true, // 不生成输出文件
     skipLibCheck: true,
   })
-
-  const model = monaco.editor.createModel(code, "typescript", monaco.Uri.parse(filename))
-  editorIns.setModel(model)
 }
