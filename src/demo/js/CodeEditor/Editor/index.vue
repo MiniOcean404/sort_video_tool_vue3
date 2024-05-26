@@ -1,6 +1,8 @@
 <template>
   <div class="toggle-box">
-    <div v-for="file in files" class="file" @click="toggleFile(file)">{{ file }}</div>
+    <div v-for="filename in filenames" class="file" @click="toggleFile(filename)">
+      {{ filename }}
+    </div>
   </div>
 
   <div class="editorBox">
@@ -22,14 +24,15 @@ import "./core/editor/helper/loader"
 
 import { CodeEditProps, EditorEmits } from "./typing/vue"
 
-// monaco.languages.typescript.typescriptDefaults.setEagerModelSync(true)
-import { initRender } from "@/demo/js/CodeEditor/Editor/core/render"
+import { initRender, updateRenderCode } from "@/demo/js/CodeEditor/Editor/core/render"
 import { createEditor } from "@/demo/js/CodeEditor/Editor/core/editor"
 import { openFile } from "@/demo/js/CodeEditor/Editor/core/file/editor/open.ts"
 import { debounce } from "@/utils/pref.ts"
+import { initFileSystem } from "@/demo/js/CodeEditor/Editor/core/file"
+import fileState from "@/demo/js/CodeEditor/Editor/core/file/store/state.ts"
 
 const props = withDefaults(defineProps<CodeEditProps>(), {
-  fileTree: () => ({}),
+  files: () => ({}),
   theme: "vs-dark",
 })
 
@@ -38,20 +41,20 @@ const emit = defineEmits<EditorEmits>()
 let editorIns = $shallowRef<editor.IStandaloneCodeEditor | undefined>()
 let editorDom = $ref<HTMLDivElement | null>(null)
 let render = $ref<string>("")
-
-let files = $ref<string[]>([])
+let filenames = $ref<string[]>([])
 
 onMounted(async () => {
-  files = Object.keys(props.fileTree)
+  initFileSystem(props.files)
+  filenames = fileState.filenames
 
   editorIns = await createEditor({
     dom: editorDom!,
-    fileTree: props.fileTree,
+    files: fileState.files,
     theme: props.theme,
     emit,
   })
 
-  render = await initRender(props.fileTree)
+  render = await initRender(fileState.files)
 
   // 监听编辑器内容变化
   editorIns.onDidChangeModelContent(
@@ -59,7 +62,7 @@ onMounted(async () => {
       const code = toRaw(editorIns)?.getValue()
       if (code) {
         // ata(code)
-        render = await initRender(props.fileTree, code)
+        render = await updateRenderCode(code)
       }
     }, 500),
   )

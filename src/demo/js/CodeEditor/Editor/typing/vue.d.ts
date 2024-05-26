@@ -2,12 +2,12 @@ export interface LibDep {
   [key: string]: string
 }
 
-interface FileTree {
+interface Files {
   [key: string]: string
 }
 
 export interface CodeEditProps {
-  fileTree: FileTree
+  files: Files
   theme: string
 }
 

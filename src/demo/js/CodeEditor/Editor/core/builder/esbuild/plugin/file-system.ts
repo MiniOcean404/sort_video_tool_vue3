@@ -2,8 +2,8 @@ import esbuild from "esbuild-wasm"
 import { Path } from "@/demo/js/CodeEditor/Editor/core/file/path.ts"
 import { EXT_MAPPING } from "@/demo/js/CodeEditor/Editor/constant/ext.ts"
 
-export function fileSystemPlugin(fileTree: Record<string, string>): esbuild.Plugin {
-  const map = new Map(Object.entries(fileTree))
+export function fileSystemPlugin(files: Record<string, string>): esbuild.Plugin {
+  const map = new Map(Object.entries(files))
 
   return {
     name: "file-path-plugin",

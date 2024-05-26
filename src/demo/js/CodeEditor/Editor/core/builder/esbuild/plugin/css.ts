@@ -1,8 +1,8 @@
 import esbuild from "esbuild-wasm"
 import { Path } from "@/demo/js/CodeEditor/Editor/core/file/path.ts"
 
-export function cssInsetPlugin(fileTree: Record<string, string>) {
-  const map = new Map(Object.entries(fileTree))
+export function cssInsetPlugin(files: Record<string, string>) {
+  const map = new Map(Object.entries(files))
 
   const plugin: esbuild.Plugin = {
     name: "insert-css-plugin",

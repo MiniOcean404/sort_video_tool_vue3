@@ -10,11 +10,13 @@ import type { editor } from "monaco-editor"
 import { addCommand } from "@/demo/js/CodeEditor/Editor/core/editor/helper/editor/command.ts"
 import { CreateEditorOption } from "@/demo/js/CodeEditor/Editor/typing/editor"
 import { openFile } from "@/demo/js/CodeEditor/Editor/core/file/editor/open.ts"
-import { FileTree } from "@/demo/js/CodeEditor/Editor/typing/vue"
+import { Files } from "@/demo/js/CodeEditor/Editor/typing/vue"
+
+// monaco.languages.typescript.typescriptDefaults.setEagerModelSync(true)
 
 export async function createEditor(option: CreateEditorOption) {
-  const { dom, fileTree, theme } = option
-  initConfig(fileTree)
+  const { dom, files, theme } = option
+  initConfig(files)
 
   // 创建 Monaco Editor 实例
   const editorIns = monaco.editor.create(dom, {
@@ -30,7 +32,7 @@ export async function createEditor(option: CreateEditorOption) {
   return editorIns
 }
 
-function initConfig(files: FileTree) {
+function initConfig(files: Files) {
   Object.entries(files).forEach(([path, code]) => {
     const ext = EXT_MAPPING[Path.extname(path)]
     monaco.editor.createModel(code, ext.language, monaco.Uri.file(path))

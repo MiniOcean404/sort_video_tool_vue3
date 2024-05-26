@@ -1,11 +1,11 @@
 <template>
-  <CodeEditor :fileTree="fileTree" @update-code="update"></CodeEditor>
+  <CodeEditor :files="files" @update-code="update"></CodeEditor>
 </template>
 
 <script setup lang="ts">
 import CodeEditor from "@/demo/js/CodeEditor/Editor/index.vue"
 
-let fileTree = $ref({
+let files = $ref({
   "/pages/app.tsx": `
     // import ahooks from "ahooks"
     // import lodash from "lodash"

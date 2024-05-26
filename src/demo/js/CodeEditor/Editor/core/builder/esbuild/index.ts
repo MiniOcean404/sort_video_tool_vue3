@@ -8,7 +8,7 @@ await esbuild.initialize({ wasmURL: esbuildWasm, worker: true })
 
 // 参考项目地址：https://github.dev/hellof2e/quark-playground/tree/main/src
 // esbuild api 解读：https://juejin.cn/post/7296016154408894518#heading-39
-export async function esbuildTransfrom(fileTree: Record<string, string>) {
+export async function esbuildTransfrom(files: Record<string, string>) {
   const build = await esbuild.build<BuildOptions>({
     entryPoints: ["mounted.tsx"],
     bundle: true,
@@ -19,7 +19,7 @@ export async function esbuildTransfrom(fileTree: Record<string, string>) {
     // * 配置转译 JSX 语法的构造函数，配置 jsxFactory, 也可以自定义函数
     // * 可以配置 tsconfig.json 就不用配置 jsxFactory
     // jsxFactory: "React.createElement",
-    plugins: [fileSystemPlugin(fileTree), cssInsetPlugin(fileTree), pkgPathPlugin],
+    plugins: [fileSystemPlugin(files), cssInsetPlugin(files), pkgPathPlugin],
     write: false,
 
     // stdin 选项能被用来打包不存在于文件系统上的模块，也可以用 plugins 来解析

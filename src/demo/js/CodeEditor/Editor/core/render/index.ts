@@ -2,11 +2,11 @@
 import { libDep } from "@/demo/js/CodeEditor/Editor/constant/lib.ts"
 import { esbuildTransfrom } from "@/demo/js/CodeEditor/Editor/core/builder/esbuild"
 import html from "./index.html?raw"
-import { FileTree } from "@/demo/js/CodeEditor/Editor/typing/vue"
-import fileState from "@/demo/js/CodeEditor/Editor/core/file/state.ts"
+import { Files } from "@/demo/js/CodeEditor/Editor/typing/vue"
+import fileState from "@/demo/js/CodeEditor/Editor/core/file/store/state.ts"
 
-export async function initRender(fileTree: FileTree, updateCode?: string) {
-  fileTree["/mounted.tsx"] = `
+export async function initRender(files: Files) {
+  files["/mounted.tsx"] = `
       import React, { useState, useEffect } from 'react';
       import ReactDOM from 'react-dom/client';
       import App from './pages/app.tsx';
@@ -32,13 +32,22 @@ export async function initRender(fileTree: FileTree, updateCode?: string) {
       }
     `
 
-  fileTree[fileState.current.file] = updateCode || ""
+  const parser = new DOMParser()
+  const doc = parser.parseFromString(html, "text/html")
+  addImportMapLib(doc)
+
+  const code = await esbuildTransfrom(files)
+  return addRunCode(doc, code || "")
+}
+
+export async function updateRenderCode(updateCode: string) {
+  fileState.files[fileState.current.file] = updateCode
 
   const parser = new DOMParser()
   const doc = parser.parseFromString(html, "text/html")
   addImportMapLib(doc)
 
-  const code = await esbuildTransfrom(fileTree)
+  const code = await esbuildTransfrom(fileState.files)
   return addRunCode(doc, code || "")
 }
 
