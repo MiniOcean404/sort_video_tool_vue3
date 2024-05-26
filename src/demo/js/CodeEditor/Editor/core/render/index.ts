@@ -3,7 +3,6 @@ import { libDep } from "@/demo/js/CodeEditor/Editor/constant/lib.ts"
 import { esbuildTransfrom } from "@/demo/js/CodeEditor/Editor/core/builder/esbuild"
 import html from "./index.html?raw"
 import { Files } from "@/demo/js/CodeEditor/Editor/typing/vue"
-import fileState from "@/demo/js/CodeEditor/Editor/core/file/store/state.ts"
 
 export async function initRender(files: Files) {
   files["/mounted.tsx"] = `
@@ -37,17 +36,6 @@ export async function initRender(files: Files) {
   addImportMapLib(doc)
 
   const code = await esbuildTransfrom(files)
-  return addRunCode(doc, code || "")
-}
-
-export async function updateRenderCode(updateCode: string) {
-  fileState.files[fileState.current.file] = updateCode
-
-  const parser = new DOMParser()
-  const doc = parser.parseFromString(html, "text/html")
-  addImportMapLib(doc)
-
-  const code = await esbuildTransfrom(fileState.files)
   return addRunCode(doc, code || "")
 }
 

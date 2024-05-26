@@ -10,3 +10,7 @@ const fileState: FileState = {
 }
 
 export default fileState
+
+export function updateCurrentCode(code: string) {
+  fileState.files[fileState.current.file] = code
+}

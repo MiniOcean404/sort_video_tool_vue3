@@ -29,7 +29,7 @@ import { createEditor } from "@/demo/js/CodeEditor/Editor/core/editor"
 import { openFile } from "@/demo/js/CodeEditor/Editor/core/file/editor/open.ts"
 import { debounce } from "@/utils/pref.ts"
 import { initFileSystem } from "@/demo/js/CodeEditor/Editor/core/file"
-import fileState from "@/demo/js/CodeEditor/Editor/core/file/store/state.ts"
+import fileState, { updateCurrentCode } from "@/demo/js/CodeEditor/Editor/core/file/store/state.ts"
 
 const props = withDefaults(defineProps<CodeEditProps>(), {
   files: () => ({}),
@@ -41,20 +41,21 @@ const emit = defineEmits<EditorEmits>()
 let editorIns = $shallowRef<editor.IStandaloneCodeEditor | undefined>()
 let editorDom = $ref<HTMLDivElement | null>(null)
 let render = $ref<string>("")
+
 let filenames = $ref<string[]>([])
 
 onMounted(async () => {
-  initFileSystem(props.files)
-  filenames = fileState.filenames
+  const { files, filenames: names } = initFileSystem(props.files)
+  filenames = names
 
   editorIns = await createEditor({
     dom: editorDom!,
-    files: fileState.files,
+    files,
     theme: props.theme,
     emit,
   })
 
-  render = await initRender(fileState.files)
+  render = await initRender(files)
 
   // 监听编辑器内容变化
   editorIns.onDidChangeModelContent(
@@ -62,7 +63,8 @@ onMounted(async () => {
       const code = toRaw(editorIns)?.getValue()
       if (code) {
         // ata(code)
-        render = await updateRenderCode(code)
+        updateCurrentCode(code)
+        render = await initRender(files)
       }
     }, 500),
   )

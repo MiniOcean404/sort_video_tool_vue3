@@ -11,6 +11,7 @@ import { addCommand } from "@/demo/js/CodeEditor/Editor/core/editor/helper/edito
 import { CreateEditorOption } from "@/demo/js/CodeEditor/Editor/typing/editor"
 import { openFile } from "@/demo/js/CodeEditor/Editor/core/file/editor/open.ts"
 import { Files } from "@/demo/js/CodeEditor/Editor/typing/vue"
+import { jumpMethod } from "@/demo/js/CodeEditor/Editor/core/editor/helper/editor/jump.ts"
 
 // monaco.languages.typescript.typescriptDefaults.setEagerModelSync(true)
 
@@ -52,4 +53,5 @@ function finishEditorHook(editorIns: editor.IStandaloneCodeEditor) {
 
   // addAction(editorIns!)
   addCommand(editorIns)
+  jumpMethod(editorIns)
 }

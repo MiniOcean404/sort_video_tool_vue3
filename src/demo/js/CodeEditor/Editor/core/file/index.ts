@@ -5,4 +5,6 @@ export function initFileSystem(files: Files) {
   fileState.files = files
   fileState.filenames = Object.keys(files)
   fileState.default = fileState.filenames[0]
+
+  return fileState
 }

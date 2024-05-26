@@ -1,7 +1,7 @@
 import type { editor } from "monaco-editor"
 import * as monaco from "monaco-editor"
 
-function Api(editorIns: editor.IStandaloneCodeEditor) {
+export function Api(editorIns: editor.IStandaloneCodeEditor) {
   // 设置编辑器主题
   monaco.editor.setTheme("")
   // 更新编辑器的选项，可以用于动态改变编辑器的配置

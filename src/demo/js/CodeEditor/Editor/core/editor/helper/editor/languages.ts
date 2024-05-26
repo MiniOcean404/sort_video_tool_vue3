@@ -1,7 +1,7 @@
 import * as monaco from "monaco-editor"
 import type { editor } from "monaco-editor"
 
-function customLanguageLanguages() {
+export function customLanguageLanguages() {
   // https://juejin.cn/post/7273309090657419320?searchId=20240520201050E65F0FDBD81EB378E63B
   // 现在这个语言除了有个名字，还空空如也。所以，接下来，我们就要开始给 myJavascript 语言加上我们的语法高亮功能。该功能主要是通过 setMonarchTokensProvider 的函数实现
   monaco.languages.register({ id: "js" })
@@ -25,14 +25,13 @@ function customLanguageLanguages() {
   //   })
 }
 
-function registerLanguageAction(editorIns: editor.IStandaloneCodeEditor) {
+export function registerLanguageAction(editorIns: editor.IStandaloneCodeEditor) {
   class FlinkActionProvider implements monaco.languages.CodeActionProvider {
-    provideCodeActions(
-      model: editor.ITextModel,
-      range: monaco.Range,
-      context: monaco.languages.CodeActionContext,
-      token: monaco.CancellationToken,
-    ): monaco.languages.ProviderResult<monaco.languages.CodeActionList> {
+    // model: editor.ITextModel,
+    // range: monaco.Range,
+    // context: monaco.languages.CodeActionContext,
+    // token: monaco.CancellationToken,
+    provideCodeActions(): monaco.languages.ProviderResult<monaco.languages.CodeActionList> {
       const commentLineAction: monaco.languages.CodeAction = {
         title: "切换行注释",
         command: {
