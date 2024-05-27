@@ -12,6 +12,7 @@ import { CreateEditorOption } from "@/demo/js/CodeEditor/Editor/typing/editor"
 import { openFile } from "@/demo/js/CodeEditor/Editor/core/file/editor/open.ts"
 import { Files } from "@/demo/js/CodeEditor/Editor/typing/vue"
 import { jumpMethod } from "@/demo/js/CodeEditor/Editor/core/editor/helper/editor/jump.ts"
+import { loadCustomTheme } from "@/demo/js/CodeEditor/Editor/core/editor/theme"
 
 // monaco.languages.typescript.typescriptDefaults.setEagerModelSync(true)
 
@@ -39,6 +40,7 @@ function initConfig(files: Files) {
     monaco.editor.createModel(code, ext.language, monaco.Uri.file(path))
   })
 
+  loadCustomTheme()
   addFormat()
   registerSnippet()
   setTypescriptMode()

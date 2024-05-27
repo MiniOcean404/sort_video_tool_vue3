@@ -13,3 +13,14 @@ export function Api(editorIns: editor.IStandaloneCodeEditor) {
   editorIns?.getAction("editor.foldAll")?.run()
   editorIns?.getAction("editor.unfoldAll")?.run()
 }
+
+// https://juejin.cn/post/7085224136980561927?share_token=7d08debe-72f9-4161-a66e-927f88eaaa6b#heading-9
+export function isSameId(editorIns: editor.IStandaloneCodeEditor, version: number) {
+  const model = editorIns.getModel()
+  // 判断当前model的versionId与请求时是否一致
+  if (model && model.getVersionId() === version) {
+    // 设置编辑器的警告和错误提示，severity 是错误的等级
+    // monaco.editor.setModelMarkers(model, "ESLint", markers)
+    //
+  }
+}
