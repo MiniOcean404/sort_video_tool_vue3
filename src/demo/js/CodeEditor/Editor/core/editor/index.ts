@@ -12,7 +12,7 @@ import { CreateEditorOption } from "@/demo/js/CodeEditor/Editor/typing/editor"
 import { openFile } from "@/demo/js/CodeEditor/Editor/core/file/editor/open.ts"
 import { Files } from "@/demo/js/CodeEditor/Editor/typing/vue"
 import { jumpMethod } from "@/demo/js/CodeEditor/Editor/core/editor/helper/editor/jump.ts"
-import { loadCustomTheme } from "@/demo/js/CodeEditor/Editor/core/editor/theme"
+import { loadCustomTheme, setGrammarAnalyze } from "@/demo/js/CodeEditor/Editor/core/editor/theme"
 
 // monaco.languages.typescript.typescriptDefaults.setEagerModelSync(true)
 
@@ -24,9 +24,10 @@ export async function createEditor(option: CreateEditorOption) {
   const editorIns = monaco.editor.create(dom, {
     // value: props.code, // 编辑器初始显示文字
     // language: props.language, // 编辑器语言
-    theme, // 官方自带三种主题vs, hc-black, or vs-dark
+    theme: "github-dark-theme", // 官方自带三种主题vs, hc-black, or vs-dark
     model: null, // 组织默认创建的空的 model
     ...config,
+    language: "typescript",
   })
 
   finishEditorHook(editorIns)
@@ -47,6 +48,8 @@ function initConfig(files: Files) {
 }
 
 function finishEditorHook(editorIns: editor.IStandaloneCodeEditor) {
+  setGrammarAnalyze(editorIns)
+
   // 打开默认文件
   openFile(editorIns, "/pages/app.tsx")
 

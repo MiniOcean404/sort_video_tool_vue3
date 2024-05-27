@@ -4,7 +4,7 @@ import type { editor } from "monaco-editor"
 export function convertTheme(
   theme: string | VscodeTheme,
   addDefaultToken = true,
-  defaultColor = "#ffffff",
+  defaultColor = "#03ffa7",
 ) {
   if (typeof theme === "string") {
     theme = JSON.parse(
