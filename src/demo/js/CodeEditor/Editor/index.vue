@@ -19,6 +19,7 @@
 <script setup lang="ts">
 // https://juejin.cn/post/7329353489678680103?searchId=20240520110630F79B0643745C503D34B7
 // 各个功能：https://zhuanlan.zhihu.com/p/590230766
+
 import type { editor } from "monaco-editor"
 import "./core/editor/helper/loader"
 
@@ -29,7 +30,7 @@ import { createEditor } from "@/demo/js/CodeEditor/Editor/core/editor"
 import { openFile } from "@/demo/js/CodeEditor/Editor/core/file/editor/open.ts"
 import { debounce } from "@/utils/pref.ts"
 import { initFileSystem } from "@/demo/js/CodeEditor/Editor/core/file"
-import fileState, { updateCurrentCode } from "@/demo/js/CodeEditor/Editor/core/file/store/state.ts"
+import { updateCurrentCode } from "@/demo/js/CodeEditor/Editor/core/file/store/state.ts"
 
 const props = withDefaults(defineProps<CodeEditProps>(), {
   files: () => ({}),

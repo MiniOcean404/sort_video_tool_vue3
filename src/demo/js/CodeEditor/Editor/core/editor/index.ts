@@ -39,8 +39,8 @@ function initConfig(files: Files) {
     const ext = EXT_MAPPING[Path.extname(path)]
     monaco.editor.createModel(code, ext.language, monaco.Uri.file(path))
   })
-  loadCustomTheme()
   setGrammarAnalyze()
+  loadCustomTheme()
 
   addFormat()
   registerSnippet()

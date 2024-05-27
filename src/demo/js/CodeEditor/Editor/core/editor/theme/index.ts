@@ -54,8 +54,9 @@ export async function setGrammarAnalyze() {
   // monaco.languages.register({ id: "typescript" })
 
   // 需要等待 window.MonacoEnvironment.getWorkerUrl 执行完，否则被 monaco-editor 覆盖，因为 monaco-editor 设置的时候是异步的
+  // 暂时这么处理，没有找到好的方法
   // https://juejin.cn/post/7160869798493028359
   setTimeout(async () => {
     await wireTmGrammars(monaco, registry, grammars)
-  }, 500)
+  }, 100)
 }
