@@ -1,5 +1,5 @@
 <template>
-  <CodeEditor :files="files" @update-code="update"></CodeEditor>
+  <CodeEditor :files="files" theme="github-dark-theme" @update-code="update"></CodeEditor>
 </template>
 
 <script setup lang="ts">

@@ -1,4 +1,8 @@
-import type { VscodeTheme, VscodeTokenColor } from "@/demo/js/CodeEditor/Editor/typing/theme"
+import type {
+  VscodeSettings,
+  VscodeTheme,
+  VscodeTokenColor,
+} from "@/demo/js/CodeEditor/Editor/typing/theme"
 import type { editor } from "monaco-editor"
 
 export function convertTheme(
@@ -22,20 +26,21 @@ export function convertTheme(
     encodedTokensColors: [],
   }
 
-  theme.tokenColors.map((color) => {
+  theme.tokenColors.forEach((color) => {
     if (typeof color.scope == "string") {
       const split = color.scope.split(",")
 
       if (split.length > 1) {
         color.scope = split
-        monacoThemeRule.concat(evalAsArray(color))
-        return
+
+        return monacoThemeRule.push(...getArrayScopeTokenColor(color.scope, color.settings))
       }
 
       monacoThemeRule.push({ ...color.settings, token: color.scope })
       return
     }
-    monacoThemeRule.concat(evalAsArray(color))
+
+    monacoThemeRule.push(...getArrayScopeTokenColor(color.scope, color.settings))
   })
 
   if (addDefaultToken) {
@@ -48,12 +53,11 @@ export function convertTheme(
   return returnTheme
 }
 
-function evalAsArray(color: VscodeTokenColor) {
-  const rules: editor.ITokenThemeRule[] = []
-
-  if (Array.isArray(color.scope)) {
-    color.scope.forEach((scope) => rules.push({ ...color.settings, token: scope }))
-  }
-
-  return rules
+function getArrayScopeTokenColor(scope: string[], settings: VscodeSettings) {
+  return scope.map<editor.ITokenThemeRule>((scope) => {
+    return {
+      ...settings,
+      token: scope,
+    }
+  })
 }

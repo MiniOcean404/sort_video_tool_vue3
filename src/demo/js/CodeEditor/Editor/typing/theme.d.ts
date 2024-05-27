@@ -9,3 +9,8 @@ export interface VscodeTokenColor {
   scope: string | string[]
   settings: VscodeSettings
 }
+
+export interface VscodeSettings {
+  foreground?: string
+  fontStyle?: string
+}

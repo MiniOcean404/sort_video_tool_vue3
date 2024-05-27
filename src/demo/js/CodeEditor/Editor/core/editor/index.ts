@@ -24,10 +24,9 @@ export async function createEditor(option: CreateEditorOption) {
   const editorIns = monaco.editor.create(dom, {
     // value: props.code, // 编辑器初始显示文字
     // language: props.language, // 编辑器语言
-    theme: "github-dark-theme", // 官方自带三种主题vs, hc-black, or vs-dark
+    theme, // 官方自带三种主题vs, hc-black, or vs-dark
     model: null, // 组织默认创建的空的 model
     ...config,
-    language: "typescript",
   })
 
   finishEditorHook(editorIns)
@@ -40,16 +39,15 @@ function initConfig(files: Files) {
     const ext = EXT_MAPPING[Path.extname(path)]
     monaco.editor.createModel(code, ext.language, monaco.Uri.file(path))
   })
-
   loadCustomTheme()
+  setGrammarAnalyze()
+
   addFormat()
   registerSnippet()
   setTypescriptMode()
 }
 
 function finishEditorHook(editorIns: editor.IStandaloneCodeEditor) {
-  setGrammarAnalyze(editorIns)
-
   // 打开默认文件
   openFile(editorIns, "/pages/app.tsx")
 
