@@ -1,87 +1,102 @@
 <template>
+  <div class="toggle-box">
+    <div v-for="filename in filenames" class="file" @click="toggleFile(filename)">
+      {{ filename }}
+    </div>
+  </div>
+
   <div class="editorBox">
     <div ref="editorDom" class="monaco-editor-box"></div>
   </div>
+
+  <iframe
+    class="iframe"
+    :src="render"
+    sandbox="allow-popups-to-escape-sandbox allow-scripts allow-popups allow-forms allow-pointer-lock allow-top-navigation allow-modals allow-same-origin"
+  ></iframe>
 </template>
 
 <script setup lang="ts">
 // https://juejin.cn/post/7329353489678680103?searchId=20240520110630F79B0643745C503D34B7
 // 各个功能：https://zhuanlan.zhihu.com/p/590230766
-import * as monaco from "monaco-editor"
+
 import type { editor } from "monaco-editor"
-import "./helper/loader"
+import "./core/editor/helper/loader"
 
-//设置语言包
-// import { setLocaleData } from "monaco-editor-nls"
-// import zh_CN from "monaco-editor-nls/locale/zh-hans"
+import { CodeEditProps, EditorEmits } from "./typing/vue"
 
-import { config } from "./config"
-import { addCommand } from "@/demo/js/CodeEditor/Editor/helper/editor/command"
-import { createATA, setATA, setLocalLib } from "@/demo/js/CodeEditor/Editor/helper/typing/typing"
-import { CodeEditProps, EditorEmits } from "@/demo/js/CodeEditor/Editor/typing/vue"
-import { addFormat } from "@/demo/js/CodeEditor/Editor/helper/editor/format"
-import { debounce } from "@/utils/pref"
-import { setTypescriptMode } from "@/demo/js/CodeEditor/Editor/mode/typescript"
-
-// monaco.languages.typescript.typescriptDefaults.setEagerModelSync(true)
+import { initRender, updateRenderCode } from "@/demo/js/CodeEditor/Editor/core/render"
+import { createEditor } from "@/demo/js/CodeEditor/Editor/core/editor"
+import { openFile } from "@/demo/js/CodeEditor/Editor/core/file/editor/open.ts"
+import { debounce } from "@/utils/pref.ts"
+import { initFileSystem } from "@/demo/js/CodeEditor/Editor/core/file"
+import { updateCurrentCode } from "@/demo/js/CodeEditor/Editor/core/file/store/state.ts"
 
 const props = withDefaults(defineProps<CodeEditProps>(), {
-  code: ``,
-  language: "typescript",
+  files: () => ({}),
   theme: "vs-dark",
 })
 
-let editorIns = $shallowRef<editor.IStandaloneCodeEditor | undefined>()
-let editorDom = $ref<HTMLDivElement | null>(null)
 const emit = defineEmits<EditorEmits>()
 
-onMounted(async () => {
-  addFormat()
+let editorIns = $shallowRef<editor.IStandaloneCodeEditor | undefined>()
+let editorDom = $ref<HTMLDivElement | null>(null)
+let render = $ref<string>("")
 
-  initEditor()
-  // addAction(editorIns!)
-  addCommand(editorIns!)
+let filenames = $ref<string[]>([])
+
+onMounted(async () => {
+  const { files, filenames: names } = initFileSystem(props.files)
+  filenames = names
+
+  editorIns = await createEditor({
+    dom: editorDom!,
+    files,
+    theme: props.theme,
+    emit,
+  })
+
+  render = await initRender(files)
+
+  // 监听编辑器内容变化
+  editorIns.onDidChangeModelContent(
+    debounce(async () => {
+      const code = toRaw(editorIns)?.getValue()
+      if (code) {
+        // ata(code)
+        updateCurrentCode(code)
+        render = await initRender(files)
+      }
+    }, 500),
+  )
+
+  // 编辑器失去焦点
+  editorIns.onDidBlurEditorWidget(() => {})
 })
 
 onUnmounted(() => {
   editorIns?.dispose()
 })
 
-async function initEditor() {
-  // const ata = await setATA()
-  // ata(props.code)
-
-  // 创建 Monaco Editor 实例
-  editorIns = monaco.editor.create(editorDom!, {
-    value: props.code, // 编辑器初始显示文字
-    language: props.language,
-    theme: props.theme, // 官方自带三种主题vs, hc-black, or vs-dark
-    ...config,
-  })
-
-  setTypescriptMode(editorIns, props.code, "index.tsx")
-
-  // 监听编辑器内容变化
-  editorIns?.onDidChangeModelContent(
-    debounce(() => {
-      const code = toRaw(editorIns)?.getValue()
-
-      if (code) {
-        // ata(code)
-        emit("updateCode", code)
-      }
-    }, 500),
-  )
-
-  // 编辑器失去焦点
-  editorIns?.onDidBlurEditorWidget(() => {})
-
-  const ata = await setATA()
-  ata(toRaw(editorIns)?.getValue())
+function toggleFile(file: string) {
+  openFile(editorIns!, file)
 }
 </script>
 
 <style lang="scss" scoped>
+.toggle-box {
+  background-color: #0a0a0a;
+  display: flex;
+  align-items: center;
+
+  .file {
+    color: white;
+    width: 150px;
+    height: 100%;
+    text-align: center;
+  }
+}
+
 .editorBox {
   width: 70%;
   height: inherit;
@@ -92,5 +107,13 @@ async function initEditor() {
     height: 100%;
     overflow: hidden;
   }
+}
+
+.iframe {
+  width: 30%;
+  height: 100%;
+  padding: 0;
+  border: none;
+  display: inline-block;
 }
 </style>

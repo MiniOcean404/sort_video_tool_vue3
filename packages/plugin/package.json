@@ -19,7 +19,9 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "glob": "^10.3.10"
+    "glob": "^10.3.10",
+    "esbuild": "^0.21.4",
+    "magic-string": "^0.30.10"
   },
   "devDependencies": {
     "rollup-plugin-copy": "^3.5.0",

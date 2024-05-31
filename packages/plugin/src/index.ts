@@ -8,3 +8,7 @@ export * from "./proxy-serve"
 export * from "./remove-console"
 
 export * from "./filepath-injector"
+
+export * from "./monaco-editor-nls"
+
+export * from "./utils/index"
