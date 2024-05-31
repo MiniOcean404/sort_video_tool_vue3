@@ -308,6 +308,10 @@ export default defineConfig((config) => {
         },
       },
       rollupOptions: {
+        // 可以通过 input 配置多个入口 html
+        // input: {
+        //   xx: "./src/index.html",
+        // },
         output: {
           assetFileNames: `assets/[ext]/[name][extname]`,
           chunkFileNames: `js/chunks/[name].[hash].js`,
