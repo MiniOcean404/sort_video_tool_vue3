@@ -16,7 +16,7 @@ import Icons from "unplugin-icons/vite"
 import IconsResolver from "unplugin-icons/resolver"
 import { createSvgIconsPlugin } from "vite-plugin-svg-icons"
 import { ElementPlusResolver } from "unplugin-vue-components/resolvers"
-import { viteCommonjs } from "@originjs/vite-plugin-commonjs"
+import { viteCommonjs } from "@originjs/vite-plugin-commonjs" // 或 vite-plugin-commonjs
 import envInject from "vite-plugin-env-compatible"
 import copy from "rollup-plugin-copy"
 
