@@ -25,11 +25,11 @@ export async function convert(
 ): Promise<OutputMessageData | null> {
   const mime = data.info.blob.type.toLowerCase()
 
-  // For SVG type, do not support type convert
+  // 对于 SVG 类型，不支持类型转换
   if (Mimes.svg === mime) {
     // SVG has dimension already
     if (data.info.width > 0 && data.info.height > 0) {
-      return createHandler(data, method)
+      return imageTypeMethod(data, method)
     }
 
     // If SVG has no dimension from main thread
@@ -41,7 +41,7 @@ export async function convert(
     data.info.width = dimension.width
     data.info.height = dimension.height
 
-    return createHandler(data, method)
+    return imageTypeMethod(data, method)
   }
 
   // For JPG/JPEG/WEBP/AVIF/PNG/GIF type
@@ -49,7 +49,7 @@ export async function convert(
   data.info.width = bitmap.width
   data.info.height = bitmap.height
 
-  // Type convert logic here
+  // 文件类型转换
   if (
     // Only compress task need convert
     method === "compress" &&
@@ -58,13 +58,25 @@ export async function convert(
     // If target type is equal to original type, don't need convert
     data.option.format.target !== data.info.blob.type
   ) {
+    data = await fileTypeConvert(data, bitmap)
+  }
+
+  // Release bitmap
+  bitmap.close()
+
+  return imageTypeMethod(data, method)
+}
+
+async function fileTypeConvert(data: MessageData, bitmap: ImageBitmap) {
+  if (data.option.format.target) {
     const target = data.option.format.target.toLowerCase()
 
     // Currently no browsers support creation of an AVIF from a canvas
     // So we should encode AVIF image type using webassembly, and the
     // result blob don't need compress agin, return it directly
     if (target === "avif") {
-      return createHandler(data, method, Mimes.avif)
+      imageTypeMethod(data, "compress", Mimes.avif)
+      return data
     }
 
     const canvas = new OffscreenCanvas(bitmap.width, bitmap.height)
@@ -81,15 +93,14 @@ export async function convert(
       type: Mimes[target],
       quality: 1,
     })
+
+    return data
   }
 
-  // Release bitmap
-  bitmap.close()
-
-  return createHandler(data, method)
+  return data
 }
 
-async function createHandler(
+async function imageTypeMethod(
   data: MessageData,
   method: HandleMethod,
   specify?: string,
@@ -98,6 +109,7 @@ async function createHandler(
   if (specify) {
     mime = specify
   }
+
   let image: ImageBase | null = null
   if ([Mimes.jpg, Mimes.webp].includes(mime)) {
     image = new CanvasImage(data.info, data.option)

@@ -40,7 +40,7 @@ export interface ProgressHintInfo {
   rate: number
 }
 
-export type ImageInfo = {
+export type QueueImageInfo = {
   key: string
   name: string
   blob: Blob
@@ -52,7 +52,7 @@ export type ImageInfo = {
 }
 
 export class ConfigState {
-  public imageInfos: Map<string, ImageInfo> = new Map()
+  public imageInfos: Map<string, QueueImageInfo> = new Map()
   public option: CompressOption = DefaultCompressOption
   public tempOption: CompressOption = DefaultCompressOption
   public compareId: number | null = null

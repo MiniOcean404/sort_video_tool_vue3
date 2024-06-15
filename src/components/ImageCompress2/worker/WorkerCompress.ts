@@ -9,9 +9,7 @@ import { avifCheck } from "../core/avif/support"
   globalThis.addEventListener("message", async (event: MessageEvent<MessageData>) => {
     queue.push(async () => {
       const output = await convert(event.data, "compress")
-      if (output) {
-        globalThis.postMessage(output)
-      }
+      if (output) globalThis.postMessage(output)
     })
   })
 })()

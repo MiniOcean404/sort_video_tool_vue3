@@ -1,14 +1,14 @@
-export type Task = () => Promise<void>;
+export type Task = () => Promise<void>
 
 export class Queue {
   // Current task list
-  list: Array<Task> = [];
+  list: Array<Task> = []
   // Indicate whether task queue running
-  isRunning: boolean = false;
+  isRunning: boolean = false
 
   /**
    *
-   * @param max  Maximun concurrent task number
+   * @param max  最大任务数
    */
   constructor(private max: number = 1) {}
 
@@ -17,9 +17,9 @@ export class Queue {
    * @param task
    */
   public push(task: Task) {
-    this.list.push(task);
+    this.list.push(task)
     if (!this.isRunning) {
-      this.do();
+      this.do()
     }
   }
 
@@ -30,24 +30,24 @@ export class Queue {
   private async do() {
     // If list is empty, end run
     if (this.list.length === 0) {
-      this.isRunning = false;
-      return;
+      this.isRunning = false
+      return
     }
 
-    this.isRunning = true;
-    const takeList: Array<Task> = [];
+    this.isRunning = true
+    const takeList: Array<Task> = []
     for (let i = 0; i < this.max; i++) {
-      const task = this.list.shift();
+      const task = this.list.shift()
       if (task) {
-        takeList.push(task);
+        takeList.push(task)
       }
     }
 
     // Execute all task
-    const runningList = takeList.map((task) => task());
-    await Promise.all(runningList);
+    const runningList = takeList.map((task) => task())
+    await Promise.all(runningList)
 
     // Execute next batch
-    await this.do();
+    await this.do()
   }
 }

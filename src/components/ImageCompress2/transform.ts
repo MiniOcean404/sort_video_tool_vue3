@@ -1,5 +1,5 @@
 import { nanoid } from "nanoid"
-import { ImageInfo, configState } from "./config"
+import { QueueImageInfo, configState } from "./config"
 import { Dimension } from "./core/ImageBase"
 import { Mimes } from "./utils/mimes"
 import { createCompressTask, createPreviewTask } from "@/components/ImageCompress2/worker"
@@ -8,7 +8,7 @@ export async function createImageList(files: Array<File>) {
   for (let i = 0; i < files.length; i++) {
     const file = files[i]
 
-    const info: ImageInfo = {
+    const info: QueueImageInfo = {
       key: nanoid(),
       name: file.name,
       blob: file,
@@ -36,7 +36,7 @@ export async function createImageList(files: Array<File>) {
     configState.imageInfos.set(info.key, info)
   }
 
-  /* eslint-disable @typescript-eslint/no-unused-vars */
+  // 开始执行任务
   for (const [_, item] of configState.imageInfos) {
     createPreviewTask(item)
     createCompressTask(item)

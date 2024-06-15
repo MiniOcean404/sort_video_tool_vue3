@@ -18,6 +18,7 @@ export interface CompressOption {
   format: {
     // 输出格式
     target?: "jpg" | "jpeg" | "png" | "webp" | "avif"
+    // jpg 背景透明填充色
     transparentFill: string
   }
   jpeg: {
