@@ -37,6 +37,7 @@ async function message(event: MessageEvent<OutputMessageData>) {
       item = await svgConvert(item)
     }
 
+    console.log(item)
     configState.imageInfos.set(item.key, item)
   }
 }

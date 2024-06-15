@@ -7,7 +7,7 @@
 <script setup lang="ts">
 // 源码：https://github.com/joye61/pic-smaller
 import { configState } from "@/components/ImageCompress2/config"
-import { createImageList } from "@/components/ImageCompress2/transform"
+import { createImageList } from "@/components/ImageCompress2/create"
 import { removeWorkerHandler, useWorkerHandler } from "@/components/ImageCompress2/worker"
 
 onMounted(() => {
