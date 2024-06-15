@@ -1,5 +1,5 @@
-import { CompressOption, ProcessOutput } from "./engines/ImageBase"
-import { createCompressTask } from "./engines/transform"
+import { createCompressTask } from "@/components/ImageCompress2/worker"
+import { CompressOption, ProcessOutput } from "./core/ImageBase"
 
 export const DefaultCompressOption: CompressOption = {
   preview: {
@@ -40,8 +40,8 @@ export interface ProgressHintInfo {
   rate: number
 }
 
-export type ImageItem = {
-  key: number
+export type ImageInfo = {
+  key: string
   name: string
   blob: Blob
   src: string
@@ -51,19 +51,15 @@ export type ImageItem = {
   compress?: ProcessOutput
 }
 
-export class HomeState {
-  public list: Map<number, ImageItem> = new Map()
+export class ConfigState {
+  public imageInfos: Map<string, ImageInfo> = new Map()
   public option: CompressOption = DefaultCompressOption
   public tempOption: CompressOption = DefaultCompressOption
   public compareId: number | null = null
   public showOption: boolean = false
 
-  constructor() {
-    this
-  }
-
   reCompress() {
-    this.list.forEach((info) => {
+    this.imageInfos.forEach((info) => {
       URL.revokeObjectURL(info.compress!.src)
       info.compress = undefined
       createCompressTask(info)
@@ -72,7 +68,7 @@ export class HomeState {
 
   hasTaskRunning() {
     /* eslint-disable @typescript-eslint/no-unused-vars */
-    for (const [_, value] of this.list) {
+    for (const [_, value] of this.imageInfos) {
       if (!value.preview || !value.compress) {
         return true
       }
@@ -85,12 +81,12 @@ export class HomeState {
    * @returns
    */
   getProgressHintInfo(): ProgressHintInfo {
-    const totalNum = this.list.size
+    const totalNum = this.imageInfos.size
     let loadedNum = 0
     let originSize = 0
     let outputSize = 0
     /* eslint-disable @typescript-eslint/no-unused-vars */
-    for (const [_, info] of this.list) {
+    for (const [_, info] of this.imageInfos) {
       originSize += info.blob.size
       if (info.compress) {
         loadedNum++
@@ -112,4 +108,4 @@ export class HomeState {
   }
 }
 
-export const homeState = new HomeState()
+export const configState = new ConfigState()

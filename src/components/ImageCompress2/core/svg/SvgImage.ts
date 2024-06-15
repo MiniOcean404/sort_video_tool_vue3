@@ -1,5 +1,5 @@
-import { Mimes } from "../mimes"
-import { ImageBase, ProcessOutput } from "./ImageBase"
+import { Mimes } from "../../utils/mimes"
+import { ImageBase, ProcessOutput } from "../ImageBase"
 import { optimize } from "svgo/lib/svgo"
 
 /**

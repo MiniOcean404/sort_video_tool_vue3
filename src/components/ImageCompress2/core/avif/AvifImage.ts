@@ -3,9 +3,9 @@
  * https://github.com/packurl/wasm_avif
  */
 
-import { Mimes } from "../mimes"
+import { Mimes } from "../../utils/mimes"
 import { avif } from "./AvifWasmModule"
-import { ImageBase, ProcessOutput } from "./ImageBase"
+import { ImageBase, ProcessOutput } from "../ImageBase"
 
 export class AvifImage extends ImageBase {
   /**

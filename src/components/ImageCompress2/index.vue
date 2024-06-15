@@ -6,14 +6,15 @@
 
 <script setup lang="ts">
 // 源码：https://github.com/joye61/pic-smaller
-import {
-  createImageList,
-  removeWorkerHandler,
-  useWorkerHandler,
-} from "@/components/ImageCompress2/engines/transform"
+import { configState } from "@/components/ImageCompress2/config"
+import { createImageList } from "@/components/ImageCompress2/transform"
+import { removeWorkerHandler, useWorkerHandler } from "@/components/ImageCompress2/worker"
 
 onMounted(() => {
   useWorkerHandler()
+
+  // 设置输出格式
+  configState.option.format.target = "webp"
 })
 
 onUnmounted(() => {

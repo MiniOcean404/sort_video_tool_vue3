@@ -1,11 +1,11 @@
-import { CompressOption, ImageBase, ImageInfo, ProcessOutput } from "./ImageBase"
-import { GifImage } from "./GifImage"
-import { CanvasImage } from "./CanvasImage"
-import { PngImage } from "./PngImage"
-import { AvifImage } from "./AvifImage"
-import { Mimes } from "../mimes"
-import { SvgImage } from "./SvgImage"
-import { getSvgDimension } from "./svgParse"
+import { CompressOption, ImageBase, ImageInfo, ProcessOutput } from "../core/ImageBase"
+import { GifImage } from "../core/gif/GifImage"
+import { CanvasImage } from "../core/CanvasImage"
+import { PngImage } from "../core/png/PngImage"
+import { AvifImage } from "../core/avif/AvifImage"
+import { Mimes } from "./mimes"
+import { SvgImage } from "../core/svg/SvgImage"
+import { getSvgDimension } from "../core/svg/svgParse"
 
 export interface MessageData {
   info: ImageInfo
@@ -89,7 +89,7 @@ export async function convert(
   return createHandler(data, method)
 }
 
-export async function createHandler(
+async function createHandler(
   data: MessageData,
   method: HandleMethod,
   specify?: string,
