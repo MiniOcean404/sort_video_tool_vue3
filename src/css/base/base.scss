@@ -188,17 +188,6 @@ xmp {
   margin: 0cm 2cm; // 可以控制打印布局（四周边距）,设置为 0 隐藏打印模式中的页眉页脚信息
 }
 
-// 解决微信及 webview 动态底部导航栏导致 100vh 抽搐的问题
-html {
-  position: fixed;
-  inset: 0;
-  display: inline-block;
-  overflow: auto;
-}
-body {
-  height: 100%;
-  overflow: auto;
-}
 #app {
   height: 100%;
 }

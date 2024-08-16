@@ -1,12 +1,26 @@
 <template>
   <div v-loading="loading">
-    <el-upload ref="uploadRef" :on-change="handleFile" :auto-upload="false" :limit="1" :show-file-list="false" accept="image/*">
+    <el-upload
+      ref="uploadRef"
+      :on-change="handleFile"
+      :auto-upload="false"
+      :limit="1"
+      :show-file-list="false"
+      accept="image/*"
+    >
       <template #trigger>
         <el-button type="primary">选择主图</el-button>
       </template>
     </el-upload>
 
-    <el-upload ref="uploadRef" :on-change="handleFiles" multiple :auto-upload="false" :show-file-list="false" accept="image/*">
+    <el-upload
+      ref="uploadRef"
+      :on-change="handleFiles"
+      multiple
+      :auto-upload="false"
+      :show-file-list="false"
+      accept="image/*"
+    >
       <template #trigger>
         <el-button type="primary">选择千图</el-button>
       </template>
@@ -57,11 +71,19 @@ const handleFile: UploadProps["onChange"] = async (file) => {
 
     worker.onmessage = (event) => {
       blocks = event.data
-      console.log("🚀 ~ file: index.vue:59 ~ consthandleFile:UploadProps= ~ blocks:", "格栅计算完成")
+      console.log(
+        "🚀 ~ file: index.vue:59 ~ consthandleFile:UploadProps= ~ blocks:",
+        "格栅计算完成",
+      )
       loading.value = false
     }
 
-    worker.postMessage({ imageData, width: canvas.width || 0, height: canvas.height || 0, GrilleSize })
+    worker.postMessage({
+      imageData,
+      width: canvas.width || 0,
+      height: canvas.height || 0,
+      GrilleSize,
+    })
   }
 }
 
