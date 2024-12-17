@@ -18,6 +18,17 @@
 <script setup lang="ts">
 import gsap from "gsap"
 
+// gsap 媒体查询
+// let mm = gsap.matchMedia()
+//   mm.add('(min-width: 1280px)', () => {
+//     const t1 = gsap.timeline({
+//       scrollTrigger: {}
+//     })
+
+//     t1.to('.item', {})
+//   })
+
+
 onMounted(() => {
   load()
 })
