@@ -18,3 +18,7 @@ workspace 安装依赖命令：`pnpm add xx -D --filter 包名/后的名字`
 
 1. ts 全局导入 vue 后的不导入直接使用报错
    `使用 ts include 导入类型文件解决`
+
+
+## GSAP 
+1. GSAP 动画开发小记： https://juejin.cn/post/7434828120470962176?searchId=2024121710560017F2065A95FC1EB0B35E
