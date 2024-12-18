@@ -98,4 +98,3 @@ onMounted(() => {})
   overflow: hidden;
 }
 </style>
-@/demo/js/GsapScroll/utils/global
