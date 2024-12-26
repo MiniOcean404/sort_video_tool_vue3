@@ -380,7 +380,9 @@ export default defineConfig((config) => {
         // 给含有中文的scss文件添加 @charset:UTF-8;
         charset: false,
         scss: {
-          /* .scss全局预定义变量，引入多个文件 以;(分号分割)*/
+          // 关闭 scss 旧版警告
+          // api: "modern-compiler",
+          //  .scss全局预定义变量，引入多个文件 以;(分号分割)
           additionalData: `@use "@/css/device/device.mixin.scss" as *;`,
         },
       },
